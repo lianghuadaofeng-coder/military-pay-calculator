@@ -151,7 +151,21 @@
   .toolbar button:hover{background:var(--soft)}
   .toolbar #resetBtn{flex:0 0 76px;color:var(--muted)}
   .toolbar #themeBtn{flex:0 0 46px;font-size:1rem}
+  .content{max-width:1120px;margin:0 auto 26px;padding:0 16px}
+  .content .card .body{padding:6px 18px 14px}
+  .content h2{font-size:1.15rem;color:var(--brand);margin:0 0 4px}
+  .content .lead{font-size:.9rem;color:var(--muted);margin:0 0 8px}
+  .faq details{border-bottom:1px solid var(--line);padding:2px 0}
+  .faq details:last-child{border-bottom:0}
+  .faq summary{cursor:pointer;font-weight:600;font-size:.92rem;padding:12px 0;list-style:none;
+    display:flex;justify-content:space-between;align-items:center;gap:10px;color:var(--ink)}
+  .faq summary::-webkit-details-marker{display:none}
+  .faq summary::after{content:"+";color:var(--brand);font-weight:700;font-size:1.1rem}
+  .faq details[open] summary::after{content:"−"}
+  .faq .ans{font-size:.86rem;color:var(--muted);line-height:1.6;padding:0 0 12px}
+  .faq .ans b{color:var(--ink)}
   @media print{
+    .content{display:none}
     header.top{padding:10px 16px}
     header.top .badge,.toolbar,section.inputs{display:none!important}
     main{display:block;max-width:none;margin:10px auto}
@@ -399,6 +413,69 @@
   </section>
 </main>
 
+<section class="content">
+  <div class="card">
+    <h2 style="padding:16px 18px 0">2026 Military Pay — Common Questions</h2>
+    <div class="body">
+      <p class="lead">A quick guide to how U.S. military compensation works in 2026, for active duty and Reserve/National Guard.</p>
+      <div class="faq">
+        <details open>
+          <summary>How is military pay calculated?</summary>
+          <div class="ans">Your pay starts with <b>basic pay</b>, set by your pay grade (E-1 to O-10) and years of service.
+            On top of that you receive <b>allowances</b> — most importantly <b>BAH</b> (housing) and <b>BAS</b> (food) — plus any
+            <b>special &amp; incentive pays</b>. Basic pay and special pays are taxable; allowances are not. After federal/state
+            income tax, Social Security and Medicare (FICA), TSP and SGLI, what's left is your <b>take-home pay</b>.</div>
+        </details>
+        <details>
+          <summary>How much does an E-5 make in 2026?</summary>
+          <div class="ans">In 2026 an <b>E-5 with 4 years</b> of service earns about <b>$3,947/month</b> in basic pay (~$47,400/year),
+            following the 3.8% pay raise. On top of that come tax-free <b>BAH</b> (varies by ZIP code and dependents) and
+            <b>$476.95/month BAS</b>. Total compensation commonly lands around <b>$5,000–$8,500/month</b> depending on duty location
+            and dependent status. Enter your grade and ZIP above for an exact estimate.</div>
+        </details>
+        <details>
+          <summary>What is BAH and how is it determined?</summary>
+          <div class="ans"><b>Basic Allowance for Housing</b> is a <b>tax-free</b> allowance based on three things: your <b>duty ZIP code</b>,
+            your <b>pay grade</b>, and whether you have <b>dependents</b>. It's meant to cover local rental housing costs, so it's much
+            higher in expensive areas. This calculator looks it up automatically from your ZIP.</div>
+        </details>
+        <details>
+          <summary>Is BAH (and BAS) taxable?</summary>
+          <div class="ans">No. <b>BAH, BAS, and most allowances are not subject to federal income tax.</b> That's why your real
+            take-home pay is higher than the basic-pay figure alone suggests — a large share of military compensation is tax-free.</div>
+        </details>
+        <details>
+          <summary>How is Reserve / National Guard drill pay calculated?</summary>
+          <div class="ans">Each 4-hour <b>drill period</b> pays <b>1/30 of your monthly basic pay</b>. A normal drill weekend is
+            <b>4 periods</b> (≈4 days of basic pay), and a typical year has about <b>48 drill periods</b> plus <b>~14 days of Annual
+            Training</b>. Drills pay basic pay only; Annual Training is paid like active duty (basic + BAS + BAH). Switch to
+            <b>Reserve / National Guard</b> mode above to estimate it.</div>
+        </details>
+        <details>
+          <summary>What is a "good year" for reserve retirement?</summary>
+          <div class="ans">A <b>"good year"</b> is any anniversary year in which you earn at least <b>50 retirement points</b>. You earn
+            <b>1 point per drill period</b>, <b>1 point per Annual Training day</b>, and <b>15 membership points</b> per year. Twenty good
+            years generally qualify you for Reserve retired pay (starting around age 60). Total career points ÷ 360 ≈ your equivalent
+            years of service for the pension formula.</div>
+        </details>
+        <details>
+          <summary>How much of military pay goes to taxes?</summary>
+          <div class="ans">Only <b>basic pay and taxable special pays</b> are taxed — not BAH/BAS. You'll see <b>federal income tax</b>,
+            <b>Social Security (6.2%</b> up to the wage base) and <b>Medicare (1.45%)</b>. Many states fully exempt active-duty military pay.
+            Pay earned in a designated <b>combat zone</b> can be excluded from federal income tax (FICA still applies).</div>
+        </details>
+        <details>
+          <summary>What deductions come out of each paycheck?</summary>
+          <div class="ans">Common deductions are <b>federal &amp; state income tax</b>, <b>FICA</b> (Social Security + Medicare),
+            your optional <b>TSP</b> retirement contribution, and <b>SGLI</b> life insurance (about <b>$26/month</b> for the maximum
+            $500,000 of coverage). This calculator subtracts all of these to show your net take-home.</div>
+        </details>
+      </div>
+      <p class="lead" style="margin-top:10px">Estimates only — your Leave and Earnings Statement (LES) is the official source. Not affiliated with the U.S. Government or DoD.</p>
+    </div>
+  </div>
+</section>
+
 <footer>
   <div class="disc">
     <h3>Data sources &amp; important notes</h3>
@@ -416,6 +493,21 @@
   </div>
 </footer>
 
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {"@type":"Question","name":"How is military pay calculated?","acceptedAnswer":{"@type":"Answer","text":"Military pay starts with basic pay (set by pay grade and years of service), plus tax-free allowances such as BAH (housing) and BAS (food), plus any special and incentive pays. Basic and special pays are taxable; allowances are not. Take-home pay is what remains after federal/state income tax, Social Security and Medicare (FICA), TSP, and SGLI."}},
+    {"@type":"Question","name":"How much does an E-5 make in 2026?","acceptedAnswer":{"@type":"Answer","text":"In 2026 an E-5 with 4 years of service earns about $3,947 per month in basic pay (about $47,400 per year) after the 3.8% raise, plus tax-free BAH (varies by ZIP code and dependents) and $476.95 per month BAS. Total compensation commonly falls around $5,000 to $8,500 per month depending on location and dependents."}},
+    {"@type":"Question","name":"What is BAH and how is it determined?","acceptedAnswer":{"@type":"Answer","text":"Basic Allowance for Housing (BAH) is a tax-free allowance based on your duty ZIP code, pay grade, and whether you have dependents. It covers local rental housing costs, so it is higher in expensive areas."}},
+    {"@type":"Question","name":"Is BAH taxable?","acceptedAnswer":{"@type":"Answer","text":"No. BAH, BAS, and most military allowances are not subject to federal income tax, which is why real take-home pay is higher than the basic-pay figure alone suggests."}},
+    {"@type":"Question","name":"How is Reserve or National Guard drill pay calculated?","acceptedAnswer":{"@type":"Answer","text":"Each 4-hour drill period pays 1/30 of monthly basic pay. A normal drill weekend is 4 periods, and a typical year has about 48 drill periods plus around 14 days of Annual Training. Drills pay basic pay only; Annual Training is paid like active duty with basic pay, BAS, and BAH."}},
+    {"@type":"Question","name":"What is a good year for reserve retirement?","acceptedAnswer":{"@type":"Answer","text":"A good year is an anniversary year with at least 50 retirement points. You earn 1 point per drill period, 1 point per Annual Training day, and 15 membership points per year. Twenty good years generally qualify you for Reserve retired pay around age 60."}},
+    {"@type":"Question","name":"How much of military pay goes to taxes?","acceptedAnswer":{"@type":"Answer","text":"Only basic pay and taxable special pays are taxed, not BAH or BAS. Deductions include federal income tax, Social Security (6.2% up to the wage base), and Medicare (1.45%). Many states fully exempt active-duty military pay, and combat-zone pay can be excluded from federal income tax."}}
+  ]
+}
+</script>
 <script src="data/basic_pay_2026.js"></script>
 <script src="data/bah_2025.js"></script>
 <script src="data/zip_mha.js"></script>
