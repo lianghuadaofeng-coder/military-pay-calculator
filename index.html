@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>U.S. Military Pay Calculator — 2026</title>
+<style>
+  :root{
+    --navy:#0b2545; --navy2:#13315c; --accent:#c9a227; --accent2:#e0b73e;
+    --green:#2e7d4f; --red:#b23b3b; --ink:#1a2230; --muted:#5b6675;
+    --line:#e3e7ee; --bg:#eef1f6; --card:#ffffff; --soft:#f6f8fb;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    color:var(--ink);background:var(--bg);line-height:1.45;-webkit-font-smoothing:antialiased}
+  a{color:var(--navy2)}
+  header.top{background:linear-gradient(135deg,var(--navy),var(--navy2));color:#fff;padding:22px 20px;
+    border-bottom:4px solid var(--accent)}
+  header.top .wrap{max-width:1120px;margin:0 auto;display:flex;align-items:center;gap:16px;flex-wrap:wrap}
+  .seal{width:46px;height:46px;border:2px solid var(--accent);border-radius:50%;display:flex;align-items:center;
+    justify-content:center;font-size:22px;flex:none;background:rgba(255,255,255,.06)}
+  header.top h1{font-size:1.45rem;margin:0;letter-spacing:.3px}
+  header.top p{margin:2px 0 0;font-size:.85rem;color:#c7d2e3}
+  .badge{margin-left:auto;background:var(--accent);color:#23210b;font-weight:700;font-size:.72rem;
+    padding:5px 11px;border-radius:20px;letter-spacing:.5px}
+  main{max-width:1120px;margin:22px auto;padding:0 16px;display:grid;
+    grid-template-columns:1fr 420px;gap:22px;align-items:start}
+  @media (max-width:920px){main{grid-template-columns:1fr}}
+  @media (max-width:480px){
+    .row{flex-direction:column;gap:0}
+    main{padding:0 12px}
+    header.top h1{font-size:1.2rem}
+    .net .big{font-size:2.1rem}
+    .toolbar{flex-wrap:wrap}
+  }
+  .card{background:var(--card);border:1px solid var(--line);border-radius:12px;
+    box-shadow:0 1px 3px rgba(13,30,60,.05);margin-bottom:20px;overflow:hidden}
+  .card h2{font-size:.82rem;text-transform:uppercase;letter-spacing:.8px;color:var(--navy2);
+    margin:0;padding:13px 18px;background:var(--soft);border-bottom:1px solid var(--line);
+    display:flex;align-items:center;gap:8px}
+  .card h2 .n{background:var(--navy);color:#fff;width:20px;height:20px;border-radius:50%;font-size:.7rem;
+    display:inline-flex;align-items:center;justify-content:center;flex:none}
+  .card .body{padding:16px 18px}
+  .field{margin-bottom:14px}
+  .field:last-child{margin-bottom:0}
+  label{display:block;font-size:.8rem;font-weight:600;color:var(--ink);margin-bottom:5px}
+  label .hint{font-weight:400;color:var(--muted);font-size:.74rem}
+  input[type=text],input[type=number],select{width:100%;padding:9px 11px;border:1px solid #cfd6e0;
+    border-radius:8px;font-size:.92rem;background:#fff;color:var(--ink)}
+  input:focus,select:focus{outline:none;border-color:var(--navy2);box-shadow:0 0 0 3px rgba(19,49,92,.12)}
+  .row{display:flex;gap:12px}.row>*{flex:1}
+  .seg{display:flex;border:1px solid #cfd6e0;border-radius:8px;overflow:hidden}
+  .seg button{flex:1;border:0;background:#fff;padding:9px 6px;font-size:.85rem;cursor:pointer;color:var(--muted)}
+  .seg button.on{background:var(--navy);color:#fff;font-weight:600}
+  .seg button[aria-pressed="true"]{background:var(--navy);color:#fff;font-weight:600}
+  button:focus-visible,select:focus-visible,input:focus-visible,a:focus-visible{
+    outline:3px solid var(--accent);outline-offset:1px}
+  .checkrow{display:flex;align-items:center;gap:10px;padding:8px 0;border-bottom:1px dashed var(--line)}
+  .checkrow:last-child{border-bottom:0}
+  .checkrow input[type=checkbox]{width:17px;height:17px;flex:none;accent-color:var(--navy)}
+  .checkrow .lbl{flex:1;font-size:.85rem}
+  .checkrow .lbl small{display:block;color:var(--muted);font-size:.72rem;font-weight:400}
+  .checkrow .amt{width:96px;flex:none}
+  .checkrow .amt input{padding:6px 8px;text-align:right;font-size:.85rem}
+  .note{font-size:.74rem;color:var(--muted);margin-top:6px}
+  .toggle-link{font-size:.78rem;color:var(--navy2);cursor:pointer;text-decoration:underline;user-select:none}
+
+  /* Results */
+  .results{position:sticky;top:16px}
+  .net{background:linear-gradient(135deg,var(--navy),var(--navy2));color:#fff;border-radius:12px;
+    padding:20px;text-align:center;box-shadow:0 4px 14px rgba(11,37,69,.25)}
+  .net .lab{font-size:.78rem;text-transform:uppercase;letter-spacing:1px;color:#c7d2e3}
+  .net .big{font-size:2.5rem;font-weight:800;margin:4px 0;letter-spacing:.5px}
+  .net .sub{font-size:.82rem;color:#cdd8e8}
+  .net .annual{margin-top:10px;padding-top:10px;border-top:1px solid rgba(255,255,255,.18);font-size:.85rem}
+  .bar{display:flex;height:14px;border-radius:7px;overflow:hidden;margin:16px 0 6px}
+  .bar span{display:block}
+  .legend{display:flex;flex-wrap:wrap;gap:10px;font-size:.72rem;color:var(--muted)}
+  .legend i{display:inline-block;width:10px;height:10px;border-radius:2px;margin-right:4px;vertical-align:middle}
+  table.bd{width:100%;border-collapse:collapse;font-size:.86rem}
+  table.bd td{padding:7px 0;border-bottom:1px solid var(--line)}
+  table.bd td.r{text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap}
+  table.bd tr.sec td{font-weight:700;color:var(--navy2);font-size:.74rem;text-transform:uppercase;
+    letter-spacing:.6px;border-bottom:2px solid var(--line);padding-top:14px}
+  table.bd tr.tot td{font-weight:700;border-top:2px solid var(--navy);border-bottom:0}
+  table.bd td .tag{font-size:.66rem;background:#eef3f8;color:var(--muted);padding:1px 6px;border-radius:4px;margin-left:6px}
+  table.bd td.r.pos{color:var(--green)} table.bd td.r.neg{color:var(--red)}
+  .pill{display:inline-block;font-size:.72rem;background:var(--soft);border:1px solid var(--line);
+    padding:3px 9px;border-radius:20px;color:var(--muted);margin-top:8px}
+  .insight{margin-top:12px;padding:11px 13px;background:#f0f6ff;border:1px solid #d4e3f7;
+    border-radius:9px;font-size:.79rem;color:#234;line-height:1.5}
+  .insight b{color:var(--navy2)}
+  .insight .row2{display:flex;gap:14px;margin-top:6px;flex-wrap:wrap}
+  .insight .stat{font-size:.72rem;color:var(--muted)}
+  .insight .stat b{font-size:.95rem;color:var(--navy);display:block}
+  .ptbadge{display:inline-block;font-size:.7rem;font-weight:700;padding:2px 9px;border-radius:20px;
+    margin-left:8px;vertical-align:middle}
+  .ptbadge.good{background:#e3f5ea;color:var(--green);border:1px solid #b6e0c6}
+  .ptbadge.bad{background:#fdecec;color:var(--red);border:1px solid #f3c6c6}
+  footer{max-width:1120px;margin:8px auto 50px;padding:0 16px;font-size:.74rem;color:var(--muted)}
+  footer .disc{background:#fff;border:1px solid var(--line);border-radius:10px;padding:14px 16px}
+  footer h3{font-size:.78rem;color:var(--navy2);margin:0 0 6px;text-transform:uppercase;letter-spacing:.6px}
+  footer ul{margin:6px 0;padding-left:18px}
+  .warn{background:#fff8e6;border:1px solid #f0d98a;color:#7a5c00;border-radius:8px;padding:10px 12px;
+    font-size:.78rem;margin-top:10px}
+  .toolbar{display:flex;gap:8px;margin-bottom:14px}
+  .toolbar button{flex:1;border:1px solid #cfd6e0;background:#fff;border-radius:8px;padding:9px 6px;
+    font-size:.8rem;cursor:pointer;color:var(--navy2);font-weight:600;transition:background .15s}
+  .toolbar button:hover{background:var(--soft)}
+  .toolbar #resetBtn{flex:0 0 80px;color:var(--muted)}
+  @media print{
+    header.top{padding:10px 16px}
+    header.top .badge,.toolbar,section.inputs{display:none!important}
+    main{display:block;max-width:none;margin:10px auto}
+    .results{position:static}
+    .net{box-shadow:none}
+    body{background:#fff}
+    .card{box-shadow:none;break-inside:avoid}
+  }
+</style>
+</head>
+<body>
+<header class="top">
+  <div class="wrap">
+    <div class="seal">★</div>
+    <div>
+      <h1>U.S. Military Pay Calculator</h1>
+      <p>Estimate your monthly &amp; annual military compensation and take-home pay</p>
+    </div>
+    <div class="badge" id="yearBadge">2026 RATES</div>
+  </div>
+</header>
+
+<main>
+  <!-- LEFT: inputs -->
+  <section class="inputs">
+    <div class="card">
+      <h2><span class="n">1</span> Service Profile</h2>
+      <div class="body">
+        <div class="field">
+          <label>Duty status</label>
+          <div class="seg" id="modeSeg" role="group" aria-label="Duty status">
+            <button type="button" data-mode="active" class="on">Active Duty</button>
+            <button type="button" data-mode="reserve">Reserve / National Guard</button>
+          </div>
+        </div>
+        <div class="row">
+          <div class="field">
+            <label for="grade">Pay grade</label>
+            <select id="grade"></select>
+          </div>
+          <div class="field">
+            <label for="yos">Years of service <span class="hint">(total active)</span></label>
+            <input type="number" id="yos" min="0" max="40" step="1" value="4" />
+          </div>
+        </div>
+        <div class="field" id="e1mWrap" style="display:none">
+          <label class="checkrow" style="border:0;padding:0">
+            <input type="checkbox" id="e1m" />
+            <span class="lbl">E-1 with less than 4 months of service (lower rate)</span>
+          </label>
+        </div>
+        <div class="field">
+          <label>Dependent status <span class="hint">(affects BAH)</span></label>
+          <div class="seg" id="depSeg" role="group" aria-label="Dependent status">
+            <button type="button" data-dep="with" class="on">With dependents</button>
+            <button type="button" data-dep="without">Without dependents</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card" id="reserveCard" style="display:none">
+      <h2><span class="n">R</span> Reserve / Guard Service</h2>
+      <div class="body">
+        <div class="row">
+          <div class="field">
+            <label for="drillsMonth">Drill periods / month <span class="hint">(weekend = 4)</span></label>
+            <input type="number" id="drillsMonth" min="0" max="20" step="1" value="4" />
+          </div>
+          <div class="field">
+            <label for="drillsYear">Drill periods / year <span class="hint">(typical 48)</span></label>
+            <input type="number" id="drillsYear" min="0" max="130" step="1" value="48" />
+          </div>
+        </div>
+        <div class="row">
+          <div class="field">
+            <label for="atDays">Annual Training days <span class="hint">(typical 14)</span></label>
+            <input type="number" id="atDays" min="0" max="365" step="1" value="14" />
+          </div>
+          <div class="field">
+            <label>AT housing basis</label>
+            <div class="seg" id="atBahSeg" role="group" aria-label="Annual Training housing basis">
+              <button type="button" data-at="rct" class="on">Orders &lt; 30 days</button>
+              <button type="button" data-at="locality">≥ 30 days</button>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="field">
+            <label for="civIncome">Other annual income <span class="hint">(civilian)</span></label>
+            <input type="number" id="civIncome" min="0" step="1000" value="0" />
+          </div>
+          <div class="field">
+            <label for="careerPoints">Career points so far <span class="hint">(optional)</span></label>
+            <input type="number" id="careerPoints" min="0" step="1" placeholder="0" />
+          </div>
+        </div>
+        <div class="note">Reserve pay is taxed on top of civilian income — enter your civilian gross so the
+          federal tax estimate uses your real marginal bracket. "Career points so far" projects your
+          retirement-point total (÷360 = equivalent years of service for age-60 retired pay).</div>
+        <div class="note">
+          One drill period (4 hrs) pays <b>1/30 of monthly basic pay</b>; a normal drill weekend is 4 periods.
+          Drills pay basic pay only (no BAH/BAS). Annual Training is paid like active duty (basic + BAS + BAH).
+          AT under 30 days uses the BAH RC/Transit table; 30+ days uses your locality BAH (enter a ZIP below).
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <h2><span class="n">2</span> Housing (BAH) &amp; Subsistence (BAS)</h2>
+      <div class="body">
+        <div class="row">
+          <div class="field" style="flex:0 0 150px">
+            <label for="zipInput">ZIP code</label>
+            <input type="text" id="zipInput" inputmode="numeric" maxlength="5" placeholder="e.g. 92101" autocomplete="off" />
+          </div>
+          <div class="field">
+            <label for="mhaInput">or search by city / base <span class="hint">(optional)</span></label>
+            <input type="text" id="mhaInput" list="mhaList" placeholder="e.g. San Diego, Fort Liberty…" autocomplete="off" />
+            <datalist id="mhaList"></datalist>
+          </div>
+        </div>
+        <div class="note" id="mhaNote">Enter your residence ZIP code — BAH is set by where you live.</div>
+        <div class="field">
+          <span class="toggle-link" id="bahManualToggle">Don't see your area, or want exact rate? Enter BAH manually ▾</span>
+          <div id="bahManualWrap" style="display:none;margin-top:8px">
+            <label for="bahManual">Monthly BAH (from the official DoD BAH calculator)</label>
+            <input type="number" id="bahManual" min="0" step="1" placeholder="e.g. 2850" />
+            <div class="note">Look up your exact rate at travel.dod.mil → BAH Rate Lookup, then paste it here.</div>
+          </div>
+        </div>
+        <div class="warn" id="bahYearWarn">
+          BAH rates below are the official <b>2025</b> DoD rates (the latest complete dataset publicly downloadable).
+          All other figures use <b>2026</b> rates. 2026 BAH averages ~4.2% higher — use the manual field for an exact 2026 amount.
+        </div>
+        <div class="field" style="margin-top:14px">
+          <label class="checkrow" style="border:0;padding:0">
+            <input type="checkbox" id="basOn" checked />
+            <span class="lbl">Receive BAS (Basic Allowance for Subsistence) <small id="basNote"></small></span>
+          </label>
+        </div>
+      </div>
+    </div>
+
+    <div class="card" id="specialCard">
+      <h2><span class="n">3</span> Special &amp; Incentive Pays <span style="font-weight:400;text-transform:none;letter-spacing:0;color:var(--muted);font-size:.74rem">(optional)</span></h2>
+      <div class="body" id="specialBody"></div>
+    </div>
+
+    <div class="card" id="colaCard">
+      <h2><span class="n">4</span> COLA (Cost-of-Living Allowance)</h2>
+      <div class="body">
+        <div class="field">
+          <label for="cola">Monthly COLA <span class="hint">(CONUS or OCONUS, if any)</span></label>
+          <input type="number" id="cola" min="0" step="1" value="0" />
+          <div class="note">COLA is location/grade/dependent-specific and <b>tax-free</b>. Look up your amount on the
+            DTMO CONUS or Overseas COLA calculator and enter the monthly total here.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <h2><span class="n">5</span> Deductions &amp; Taxes</h2>
+      <div class="body">
+        <div class="row">
+          <div class="field">
+            <label for="filing">Federal filing status</label>
+            <select id="filing">
+              <option value="single">Single</option>
+              <option value="mfj">Married filing jointly</option>
+              <option value="hoh">Head of household</option>
+              <option value="mfs">Married filing separately</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="stateSel">State of legal residence</label>
+            <select id="stateSel"></select>
+          </div>
+        </div>
+        <div class="field" id="stateRateField">
+          <label for="stateRate">State income tax <span class="hint">(your effective %)</span></label>
+          <input type="number" id="stateRate" min="0" max="20" step="0.1" value="0" />
+          <div class="note" id="stateNote" style="margin-top:6px">
+            Many states fully exempt active-duty military pay — enter <b>0</b> if yours does.
+          </div>
+        </div>
+
+        <div class="field">
+          <label>TSP contribution <span class="hint">(% of basic pay)</span></label>
+          <div class="row">
+            <input type="number" id="tspPct" min="0" max="100" step="1" value="5" />
+            <div class="seg" id="tspTypeSeg" role="group" aria-label="TSP contribution type" style="max-width:200px">
+              <button type="button" data-tsp="trad" class="on">Traditional</button>
+              <button type="button" data-tsp="roth">Roth</button>
+            </div>
+          </div>
+          <div class="note">Traditional lowers taxable income; Roth does not. Capped at the 2026 elective limit.</div>
+        </div>
+
+        <div class="field">
+          <label for="sgli">SGLI life insurance coverage</label>
+          <select id="sgli"></select>
+        </div>
+
+        <div class="field">
+          <label class="checkrow" style="border:0;padding:0">
+            <input type="checkbox" id="czte" />
+            <span class="lbl">Combat Zone Tax Exclusion (CZTE)
+              <small>Basic pay &amp; most special pays become federally tax-free (officers capped). FICA still applies.</small></span>
+          </label>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- RIGHT: results -->
+  <section class="results">
+    <div class="toolbar" id="toolbar">
+      <button type="button" id="shareBtn">🔗 Copy share link</button>
+      <button type="button" id="printBtn">🖨 Print / Save PDF</button>
+      <button type="button" id="resetBtn" title="Reset all inputs">↺ Reset</button>
+    </div>
+    <div class="card" style="margin-bottom:18px">
+      <div class="net">
+        <div class="lab" id="netLab">Estimated Monthly Take-Home</div>
+        <div class="big" id="netMonthly" aria-live="polite">$0</div>
+        <div class="sub" id="netSub">Gross entitlements <span id="grossMonthly">$0</span> · Deductions <span id="dedMonthly">$0</span></div>
+        <div class="annual" id="netAnnualLine">Annual take-home: <b id="netAnnual">$0</b> &nbsp;·&nbsp; Annual gross: <b id="grossAnnual">$0</b></div>
+      </div>
+      <div class="body">
+        <div class="bar" id="compBar"></div>
+        <div class="legend" id="compLegend"></div>
+      </div>
+    </div>
+
+    <div class="card">
+      <h2 id="bdTitle">Monthly Breakdown</h2>
+      <div class="body">
+        <table class="bd" id="breakdown"></table>
+        <div class="pill" id="effRate">Effective tax + FICA rate: —</div>
+        <div class="insight" id="insight"></div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="disc">
+    <h3>Data sources &amp; important notes</h3>
+    <ul>
+      <li><b>Basic Pay:</b> 2026 DFAS pay table (3.8% raise), rounded to the nearest dollar; senior officers capped at Executive Schedule Level II ($18,808.20/mo).</li>
+      <li><b>BAS:</b> 2026 — Enlisted $476.95, Officer $328.48.</li>
+      <li><b>BAH:</b> Official DoD 2025 rates (latest complete public dataset). ZIP→location mapping covers ~98.8% of U.S. ZIP codes; assignments can shift over time, so verify the resolved city. For an exact 2026 amount use the manual field and the official BAH Rate Lookup at travel.dod.mil.</li>
+      <li><b>Taxes:</b> 2026 IRS brackets &amp; standard deduction (post-OBBBA). Federal figure is an estimated annual tax liability divided by 12 — not exact W-4 withholding. BAH, BAS and COLA are non-taxable.</li>
+      <li><b>FICA:</b> Social Security 6.2% up to $184,500; Medicare 1.45% (+0.9% over $200k). Applies to basic &amp; special pay even in a combat zone.</li>
+      <li><b>SGLI:</b> $0.05 per $1,000/mo + $1.00 TSGLI.</li>
+      <li><b>Reserve / Guard:</b> Drill pay = 1/30 of monthly basic pay per 4-hour drill period (weekend = 4 periods); drills pay basic only. Annual Training is paid like active duty (basic + BAS + BAH); under 30 days uses the 2025 BAH RC/Transit table, 30+ days uses locality BAH. Reserve federal tax is estimated as the marginal tax stacked on the civilian income you enter.</li>
+    </ul>
+    <p style="margin:8px 0 0"><b>Disclaimer:</b> This is an unofficial estimate for planning only and is not affiliated with the U.S. Government or DoD.
+    Your actual Leave and Earnings Statement (LES) is the authoritative source. State tax treatment and individual circumstances vary.</p>
+  </div>
+</footer>
+
+<script src="data/basic_pay_2026.js"></script>
+<script src="data/bah_2025.js"></script>
+<script src="data/zip_mha.js"></script>
+<script src="data/reserve_2025.js"></script>
+<script src="data/rates_2026.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
