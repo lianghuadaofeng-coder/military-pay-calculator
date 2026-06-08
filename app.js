@@ -699,6 +699,27 @@
     location.hash = ""; location.reload();
   });
 
+  // ---- theme (dark / light, persisted; default follows system) ----
+  function prefersDark() { return window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches; }
+  function applyTheme(t) {
+    var html = document.documentElement;
+    if (t === "dark" || t === "light") html.setAttribute("data-theme", t);
+    else html.removeAttribute("data-theme");
+    var effDark = t === "dark" || (!t && prefersDark());
+    var b = $("themeBtn"); if (b) b.textContent = effDark ? "☀️" : "🌙";
+  }
+  (function initTheme() {
+    var saved = null; try { saved = localStorage.getItem("milpay-theme"); } catch (e) {}
+    applyTheme(saved);
+    $("themeBtn").addEventListener("click", function () {
+      var cur = document.documentElement.getAttribute("data-theme");
+      var effDark = cur === "dark" || (!cur && prefersDark());
+      var next = effDark ? "light" : "dark";
+      try { localStorage.setItem("milpay-theme", next); } catch (e) {}
+      applyTheme(next);
+    });
+  })();
+
   // init
   $("yearBadge").textContent = R.year + " RATES";
   loadState();
