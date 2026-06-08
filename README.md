@@ -1,6 +1,6 @@
 # U.S. Military Pay Calculator (2026)
 
-**🔗 Live: https://lianghuadaofeng-coder.github.io/military-pay-calculator/**
+**🔗 Live: https://militarypaytool.com/**
 
 A single-page web calculator that estimates a U.S. service member's **monthly and annual
 compensation and take-home pay** — Basic Pay, BAH, BAS, special/incentive pays, COLA,
