@@ -690,8 +690,11 @@
     var url = location.origin + location.pathname + "#" + encodeURIComponent(JSON.stringify(snapshot()));
     var btn = this;
     function ok() { var t = btn.textContent; btn.textContent = "✓ Link copied!"; setTimeout(function () { btn.textContent = t; }, 1800); }
-    if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(url).then(ok, function () { prompt("Copy this link:", url); });
-    else prompt("Copy this link:", url);
+    if (navigator.share) {
+      navigator.share({ title: "U.S. Military Pay Calculator", text: "Estimate your 2026 military take-home pay (active duty & reserve)", url: url }).catch(function () {});
+    } else if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(url).then(ok, function () { prompt("Copy this link:", url); });
+    } else prompt("Copy this link:", url);
   });
   $("printBtn").addEventListener("click", function () { window.print(); });
   $("resetBtn").addEventListener("click", function () {
