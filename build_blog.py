@@ -2232,6 +2232,130 @@ write("scra-6-percent-interest-cap.html",
                ("Roth IRA vs TSP for military","/blog/roth-ira-vs-tsp-military.html")],
       blurb="The SCRA 6% cap forgives interest on pre-service debt &mdash; plus lease and foreclosure protections.")
 
+# ===================== CURIOSITY-SEARCH BATCH =====================
+# --- General / flag officer pay ---
+body = f'''<h1>How Much Does a General Make? Flag Officer Pay (O-7 to O-10)</h1>
+<p class="meta">Updated {_D2}</p>
+<p class="lead">A <strong>four-star general or admiral (O-10)</strong> earns <strong>{money(BP["O-10"]["20"])}/month</strong>
+in basic pay in 2026 &mdash; the maximum allowed by law. Generals and admirals hit a hard ceiling: military basic pay
+can't exceed <strong>Level II of the Executive Schedule ($18,808.20/month, about $225,700/year)</strong>.</p>
+<h2>2026 flag officer basic pay (monthly)</h2>
+<div class="tablewrap"><table class="pay"><thead><tr><th>Grade</th><th>Title (Army / Navy)</th><th>Over 20 yrs</th><th>Over 30 yrs</th></tr></thead><tbody>
+<tr><td>O-7</td><td>Brigadier General / Rear Admiral (lower)</td><td>{money(BP["O-7"]["20"])}</td><td>{money(BP["O-7"]["30"])}</td></tr>
+<tr><td>O-8</td><td>Major General / Rear Admiral</td><td>{money(BP["O-8"]["20"])}</td><td>{money(BP["O-8"]["30"])}</td></tr>
+<tr><td>O-9</td><td>Lieutenant General / Vice Admiral</td><td>{money(BP["O-9"]["20"])}</td><td>{money(BP["O-9"]["30"])}</td></tr>
+<tr><td>O-10</td><td>General / Admiral (4-star)</td><td>{money(BP["O-10"]["20"])}</td><td>{money(BP["O-10"]["30"])}</td></tr>
+</tbody></table></div>
+<p class="callout">Because of the Executive Schedule cap, an O-9 and an O-10 receive the <strong>same</strong> basic pay in
+2026 ({money(BP["O-10"]["20"])}/month). The "raise" from three to four stars is about responsibility and retirement, not
+the monthly basic-pay number.</p>
+<h2>What a general's total compensation looks like</h2>
+<p>On top of basic pay, generals receive tax-free <a href="/blog/2026-bah-rates-explained.html">BAH</a> and BAS, often
+live in government quarters, and may receive Personal Money Allowances for senior positions. Total cash compensation for a
+four-star runs roughly <strong>$235,000&ndash;$250,000+/year</strong> &mdash; substantial, but far below what equivalent
+private-sector executives earn.</p>
+<h2>The real payoff: the pension</h2>
+<p>A general retiring at 30+ years under the legacy system can draw <strong>75% of their high-3 basic pay</strong> &mdash;
+well over <strong>$160,000/year for life</strong>, plus COLA. See <a href="/blog/military-retirement-brs-vs-high3.html">how
+military retirement is calculated</a>.</p>
+{cta("Curious about any rank? Look up exact 2026 pay in the calculator.", deep("O-7"))}
+'''
+write("how-much-does-a-general-make.html",
+      "How Much Does a General Make? 2026 Flag Officer Pay (O-7 to O-10)",
+      f"A 4-star general or admiral (O-10) earns {money(BP['O-10']['20'])}/month in 2026 — capped at Executive Schedule Level II. Full O-7 to O-10 pay, total compensation, and the pension.",
+      "General Pay", body,
+      faq=[("How much does a 4-star general make?",f"In 2026, a four-star general or admiral (O-10) earns {money(BP['O-10']['20'])}/month in basic pay — the maximum allowed, capped at Executive Schedule Level II (about $225,700/year), plus tax-free allowances."),
+           ("Why do O-9 and O-10 make the same pay?","Military basic pay is capped at Level II of the Executive Schedule ($18,808.20/month in 2026), and both grades hit that ceiling, so their basic pay is identical."),
+           ("How much is a general's pension?","A general retiring at 30+ years under the legacy system can receive 75% of their high-3 basic pay — over $160,000/year for life, plus annual COLA.")],
+      related=[("2026 military pay chart","/blog/2026-military-pay-chart.html"),
+               ("How much does an O-5 make in 2026?","/blog/how-much-does-an-o5-make-2026.html"),
+               ("Military retirement: BRS vs High-3","/blog/military-retirement-brs-vs-high3.html")],
+      blurb=f"A 4-star (O-10) earns {money(BP['O-10']['20'])}/mo &mdash; capped; O-9 and O-10 make the same.")
+
+# --- Academy / ROTC cadet pay ---
+body = f'''<h1>Military Academy &amp; ROTC Pay: What Cadets and Midshipmen Earn</h1>
+<p class="meta">Updated {_D2}</p>
+<p class="lead">Yes &mdash; cadets and midshipmen get paid while they train to become officers, though not on the regular
+pay table. <strong>Service academy</strong> students earn a monthly stipend; <strong>ROTC scholarship</strong> students
+earn a smaller monthly allowance plus full tuition.</p>
+<h2>Service academy pay (West Point, Annapolis, Air Force Academy, etc.)</h2>
+<ul>
+<li>Cadets/midshipmen receive a <strong>monthly stipend of roughly $1,200+</strong> (a percentage of O-1 basic pay), with
+deductions for uniforms, books, and supplies in the early years.</li>
+<li><strong>Tuition, room, and board are fully covered</strong> &mdash; the education itself is worth ~$300,000+.</li>
+<li>In exchange, graduates commission as <a href="/blog/how-much-does-an-o1-make-2026.html">O-1 officers</a> with a
+service obligation (typically 5 years).</li>
+</ul>
+<h2>ROTC pay (Army, Navy, Air Force ROTC)</h2>
+<ul>
+<li><strong>Monthly subsistence allowance</strong> for contracted cadets, commonly <strong>$300&ndash;$500/month</strong>,
+rising by year in the program.</li>
+<li><strong>Scholarships</strong> can cover full tuition plus a book stipend.</li>
+<li><strong>Summer training</strong> is paid at a cadet rate.</li>
+<li>Graduates commission as O-1s &mdash; or, for prior-enlisted ROTC, the higher
+<a href="/blog/prior-enlisted-officer-pay.html">O-1E scale</a>.</li>
+</ul>
+<h2>Enlisted-to-officer programs</h2>
+<p>Enlisted members selected for academy or ROTC programs may keep enlisted pay during training under certain programs &mdash;
+a big financial advantage over starting from scratch. The real payoff arrives at commissioning: see
+<a href="/blog/how-much-does-an-o1-make-2026.html">O-1 pay</a> and the
+<a href="/blog/officer-vs-enlisted-pay-career.html">officer vs enlisted career comparison</a>.</p>
+{cta("See what you'll earn the day you commission — look up O-1 pay.", deep("O-1"))}
+'''
+write("military-academy-rotc-cadet-pay.html",
+      "Military Academy & ROTC Pay: What Cadets and Midshipmen Earn",
+      "Service academy cadets earn ~$1,200+/month plus full tuition; ROTC scholarship cadets get $300–$500/month plus tuition. How cadet pay works and what you earn at commissioning.",
+      "Cadet Pay", body,
+      faq=[("Do you get paid at West Point or the Naval Academy?","Yes — service academy cadets and midshipmen receive a monthly stipend of roughly $1,200+ (a percentage of O-1 pay), with tuition, room, and board fully covered."),
+           ("How much do ROTC cadets get paid?","Contracted ROTC cadets receive a monthly subsistence allowance of about $300–$500, rising by year in the program, often plus a full-tuition scholarship and a book stipend."),
+           ("What do you earn after a military academy or ROTC?","You commission as an O-1 officer; with prior enlisted service you may qualify for the higher O-1E pay scale.")],
+      related=[("How much does an O-1 make in 2026?","/blog/how-much-does-an-o1-make-2026.html"),
+               ("Prior-enlisted officer pay (O-1E)","/blog/prior-enlisted-officer-pay.html"),
+               ("Officer vs enlisted pay career","/blog/officer-vs-enlisted-pay-career.html")],
+      blurb="Academy cadets earn ~$1,200+/mo + full tuition; ROTC $300&ndash;$500/mo &mdash; then commission as O-1.")
+
+# --- Navy SEAL / special ops pay ---
+_seb = BP["E-6"]["8"]
+body = f'''<h1>How Much Does a Navy SEAL Make? Special Operations Pay Explained</h1>
+<p class="meta">Updated {_D2}</p>
+<p class="lead">Navy SEALs &mdash; and special operators across the services &mdash; earn the <strong>same basic pay</strong>
+as anyone at their rank, then <strong>stack special pays</strong> that few other jobs qualify for. The base salary isn't
+unusual; the <em>extras</em> and deployment tempo are what add up.</p>
+<h2>It starts with normal basic pay</h2>
+<p>A SEAL who is an <a href="/blog/how-much-does-an-e6-make-2026.html">E-6 with 8 years</a> earns the standard
+{money(_seb)}/month in basic pay &mdash; identical to any other E-6. Rank and years of service set the base, not the job.</p>
+<h2>The special pays operators stack</h2>
+<div class="tablewrap"><table class="pay"><thead><tr><th>Special pay</th><th>Typical monthly amount</th></tr></thead><tbody>
+<tr><td>Special Duty Assignment Pay (SDAP)</td><td>up to ~$750</td></tr>
+<tr><td>Dive Pay</td><td>up to $340</td></tr>
+<tr><td>Parachute (Jump) Pay / HALO</td><td>$150 / $225</td></tr>
+<tr><td>Demolition (HDIP)</td><td>$150</td></tr>
+<tr><td>Hostile Fire / Imminent Danger Pay (deployed)</td><td>up to $225</td></tr>
+<tr><td>Family Separation Allowance (deployed)</td><td>$300</td></tr>
+</tbody></table></div>
+<p>Stacked, these can add <strong>$1,000&ndash;$1,800+/month</strong> on top of basic pay &mdash; and during a
+<a href="/blog/deployment-pay-explained.html">combat-zone deployment</a>, much of it (plus basic pay) becomes
+<a href="/blog/combat-zone-tax-exclusion.html">federally tax-free</a>.</p>
+<h2>Plus bonuses</h2>
+<p>SEALs and SWCC also receive sizable <strong>enlistment and reenlistment bonuses</strong> to retain the rating &mdash;
+often among the largest in the Navy. Officers in special operations earn standard officer pay plus applicable special pays.</p>
+<p class="callout">Bottom line: a mid-career SEAL's total compensation commonly runs well into the
+<strong>six figures</strong> once allowances, special pays, deployments, and bonuses are counted &mdash; but the
+<em>basic pay</em> is the same as any peer at that rank.</p>
+{cta("Add SEAL special pays into the calculator's special-pay fields to see the total.", "/")}
+'''
+write("how-much-does-a-navy-seal-make.html",
+      "How Much Does a Navy SEAL Make? Special Operations Pay (2026)",
+      f"Navy SEALs earn standard basic pay for their rank ({money(_seb)}/month for an E-6) plus stacked special pays — SDAP, dive, jump, danger pay — adding $1,000–$1,800+/month, often tax-free when deployed.",
+      "SEAL Pay", body,
+      faq=[("How much does a Navy SEAL make?",f"A SEAL earns the same basic pay as any service member at their rank (e.g., {money(_seb)}/month for an E-6 with 8 years) plus stacked special pays — SDAP, dive, jump, and danger pay — that can add $1,000–$1,800+/month, often tax-free when deployed."),
+           ("Do SEALs get paid more than regular Navy?","Their basic pay is identical for the same rank, but special duty assignment pay, dive/jump pay, deployment pays, and large reenlistment bonuses make total compensation significantly higher."),
+           ("Is special operations pay tax-free?","The special pays are taxable normally, but during a combat-zone deployment most pay — basic and special — becomes federally tax-free under the combat-zone tax exclusion.")],
+      related=[("Special pays guide","/blog/military-special-pays-guide.html"),
+               ("Deployment pay explained","/blog/deployment-pay-explained.html"),
+               ("How much does an E-6 make in 2026?","/blog/how-much-does-an-e6-make-2026.html")],
+      blurb=f"SEALs earn standard rank pay + stacked special pays (+$1,000&ndash;$1,800/mo) &mdash; tax-free when deployed.")
+
 # ===================== POLICY / NEWS INTERPRETATION PAGES =====================
 NEWS_DATE = "2026-06-10"
 
