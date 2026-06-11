@@ -2697,6 +2697,202 @@ write("military-clothing-allowance.html",
                ("Basic training pay 2026","/blog/basic-training-pay-2026.html")],
       blurb="Enlisted get ~$400&ndash;$650/yr to replace uniforms; officers a one-time ~$400 &mdash; tax-free.")
 
+# ===================== HOME BUYING / VA LOAN BATCH =====================
+_HB_REL = [("VA home loan & BAH","/blog/va-home-loan-and-bah.html"),
+           ("VA loan vs conventional vs FHA","/blog/va-loan-vs-conventional-fha.html"),
+           ("First-time military homebuyer guide","/blog/first-time-military-homebuyer-va-loan.html")]
+
+# --- 1. First-time military homebuyer / VA loan step by step ---
+body = f'''<h1>First-Time Military Homebuyer Guide: Buying with a VA Loan</h1>
+<p class="meta">Updated {_D2}</p>
+<p class="lead">The <strong>VA home loan</strong> makes service members some of the most powerful buyers in any market:
+<strong>$0 down, no PMI</strong>, competitive rates, and lenders count your tax-free
+<a href="/blog/2026-bah-rates-explained.html">BAH</a> as income. Here's the whole process, start to finish.</p>
+<h2>Step 1 &mdash; Confirm eligibility (COE)</h2>
+<p>You qualify with enough active-duty, Guard, or Reserve service. Your lender can pull your
+<strong>Certificate of Eligibility (COE)</strong> instantly online, or you can request it through VA.gov.</p>
+<h2>Step 2 &mdash; Get pre-approved</h2>
+<p>A lender reviews income, credit, and debts. Crucially, they count <strong>BAH and BAS as qualifying income</strong> &mdash;
+and because they're tax-free, that income stretches further. Use a <a href="/">pay calculator</a> to know your exact BAH.</p>
+<h2>Step 3 &mdash; Find a VA-savvy agent</h2>
+<p>Pick a real-estate agent who closes VA loans regularly. They'll write offers that account for the VA appraisal and help
+you negotiate seller concessions (the seller can pay closing costs).</p>
+<h2>Step 4 &mdash; Make an offer &amp; VA appraisal</h2>
+<p>Once under contract, the VA orders an appraisal that also checks the home meets minimum property requirements (safe,
+sound, sanitary). This protects you from buying a money pit.</p>
+<h2>Step 5 &mdash; Close</h2>
+<p>You'll pay closing costs (often partly seller-paid) and the one-time
+<a href="/blog/va-loan-funding-fee.html">VA funding fee</a> (financed into the loan, and waived if you have a
+<a href="/blog/2026-va-disability-rates.html">service-connected disability rating</a>). No down payment required.</p>
+<h2>Smart moves for military buyers</h2>
+<ul>
+<li><strong>Think about your next PCS</strong> &mdash; see <a href="/blog/buy-or-rent-duty-station.html">buy vs rent</a>.</li>
+<li><strong>House-hack:</strong> buy a 2&ndash;4 unit, live in one, rent the rest &mdash; BAH plus rent can cover the mortgage.</li>
+<li><strong>Reuse the benefit:</strong> the VA loan isn't one-and-done.</li>
+</ul>
+{cta("Know your BAH first — it's the income lenders use. Look it up by ZIP.", "/")}
+'''
+write("first-time-military-homebuyer-va-loan.html",
+      "First-Time Military Homebuyer Guide: Buying with a VA Loan (2026)",
+      "Buy your first home with a VA loan: $0 down, no PMI, BAH counts as income. The full step-by-step — COE, pre-approval, VA appraisal, funding fee, and closing.",
+      "Homebuyer Guide", body,
+      faq=[("How do I buy a house with a VA loan?","Get your Certificate of Eligibility, get pre-approved (lenders count tax-free BAH/BAS as income), find a VA-savvy agent, make an offer, complete the VA appraisal, and close — with $0 down and no PMI."),
+           ("Do you need a down payment for a VA loan?","No — most VA purchase loans require no down payment and charge no private mortgage insurance."),
+           ("What is a COE for a VA loan?","The Certificate of Eligibility proves you qualify for the VA loan benefit; lenders can usually pull it instantly, or you can request it on VA.gov.")],
+      related=_HB_REL, blurb="VA loan step-by-step: COE, pre-approval (BAH counts), appraisal, funding fee, $0-down close.")
+
+# --- 2. VA loan funding fee ---
+body = f'''<h1>VA Loan Funding Fee (2026): Rates, Who's Exempt &amp; How to Avoid It</h1>
+<p class="meta">Updated {_D2}</p>
+<p class="lead">The VA loan has no PMI, but it does charge a one-time <strong>funding fee</strong> that keeps the program
+running. It's a percentage of the loan, <strong>financed into the mortgage</strong> &mdash; and many veterans pay
+<strong>$0</strong> because they're exempt.</p>
+<h2>2026 funding fee rates (purchase loans)</h2>
+<div class="tablewrap"><table class="pay"><thead><tr><th>Down payment</th><th>First use</th><th>Subsequent use</th></tr></thead><tbody>
+<tr><td>Less than 5%</td><td>2.15%</td><td>3.3%</td></tr>
+<tr><td>5% to 9.99%</td><td>1.5%</td><td>1.5%</td></tr>
+<tr><td>10% or more</td><td>1.25%</td><td>1.25%</td></tr>
+</tbody></table></div>
+<p>On a $300,000 loan with nothing down, a first-use fee of 2.15% is <strong>$6,450</strong> &mdash; usually rolled into
+the loan, not paid in cash.</p>
+<h2>Who is exempt (pays $0)</h2>
+<ul>
+<li>Veterans receiving <a href="/blog/2026-va-disability-rates.html">VA disability compensation</a> (even a 10% rating).</li>
+<li>Veterans eligible for disability comp but receiving retired pay instead.</li>
+<li><strong>Purple Heart</strong> recipients on active duty.</li>
+<li>Surviving spouses of members who died in service or from a service-connected disability.</li>
+</ul>
+<h2>How to lower or avoid it</h2>
+<ul>
+<li><strong>Get a disability rating:</strong> if you're owed one, it can waive the fee entirely &mdash; worth thousands.</li>
+<li><strong>Put money down:</strong> 5%+ drops the rate, and it also avoids the higher subsequent-use rate.</li>
+<li>The fee is the <em>only</em> ongoing-cost difference vs a no-PMI conventional loan &mdash; and one-time, unlike PMI.</li>
+</ul>
+{cta("Plan your purchase — start by checking your BAH and pay by ZIP.", "/")}
+'''
+write("va-loan-funding-fee.html",
+      "VA Loan Funding Fee 2026: Rates, Exemptions & How to Avoid It",
+      "The VA funding fee is 2.15% first use / 3.3% subsequent with $0 down (lower with a down payment). Veterans with a disability rating, Purple Heart recipients, and surviving spouses pay $0.",
+      "VA Funding Fee", body,
+      faq=[("How much is the VA funding fee in 2026?","2.15% of the loan for first use with less than 5% down (3.3% for subsequent use); it drops to 1.5% with 5% down and 1.25% with 10% down. It's usually financed into the loan."),
+           ("Who is exempt from the VA funding fee?","Veterans receiving VA disability compensation, those eligible for it, Purple Heart recipients on active duty, and surviving spouses — they pay $0."),
+           ("Can I avoid the VA funding fee?","Yes — a service-connected disability rating waives it entirely, and a down payment of 5% or more lowers the rate.")],
+      related=_HB_REL, blurb="2.15% first use ($0 down), waived for disability/Purple Heart/surviving spouses.")
+
+# --- 3. VA vs conventional vs FHA ---
+body = f'''<h1>VA Loan vs Conventional vs FHA: Which Should Military Buyers Use?</h1>
+<p class="meta">Updated {_D2}</p>
+<p class="lead">If you're eligible, the <strong>VA loan usually wins</strong> &mdash; but not always. Here's an honest
+comparison of the three main mortgage types for service members.</p>
+<div class="tablewrap"><table class="pay"><thead><tr><th>&nbsp;</th><th>VA Loan</th><th>Conventional</th><th>FHA</th></tr></thead><tbody>
+<tr><td>Down payment</td><td><strong>$0</strong></td><td>3&ndash;20%</td><td>3.5%</td></tr>
+<tr><td>Mortgage insurance</td><td><strong>None</strong></td><td>PMI under 20% down</td><td>MIP (often for life of loan)</td></tr>
+<tr><td>Upfront fee</td><td>Funding fee (financed, often waived)</td><td>None</td><td>1.75% upfront MIP</td></tr>
+<tr><td>Credit flexibility</td><td>High (residual-income test)</td><td>Strictest</td><td>High</td></tr>
+<tr><td>Who can use it</td><td>Eligible service members/vets</td><td>Anyone</td><td>Anyone</td></tr>
+</tbody></table></div>
+<h2>When the VA loan wins (most of the time)</h2>
+<p>No down payment and no monthly mortgage insurance is hard to beat &mdash; the
+<a href="/blog/va-loan-funding-fee.html">funding fee</a> is one-time (and $0 if you have a disability rating). Over a few
+years, skipping PMI alone saves thousands.</p>
+<h2>When conventional or FHA might fit</h2>
+<ul>
+<li><strong>Conventional:</strong> if you have 20% down (no PMI, no funding fee) or are buying a non-primary residence the
+VA loan doesn't allow.</li>
+<li><strong>FHA:</strong> rarely better than VA for those eligible, but an option if you've exhausted VA entitlement.</li>
+<li><strong>Multiple properties:</strong> you can pair a VA loan on your home with conventional financing on a rental.</li>
+</ul>
+<p class="callout">Bottom line: if you qualify for VA and it's your primary home, start there. Lenders count your tax-free
+<a href="/blog/2026-bah-rates-explained.html">BAH</a> as income on all three.</p>
+{cta("Check the BAH lenders will use — look it up by ZIP.", "/")}
+'''
+write("va-loan-vs-conventional-fha.html",
+      "VA Loan vs Conventional vs FHA: Best Mortgage for Military",
+      "VA loan: $0 down, no PMI, one-time funding fee (often waived). Conventional needs more down or PMI; FHA has lifetime MIP. An honest comparison for military buyers.",
+      "VA vs Conventional", body,
+      faq=[("Is a VA loan better than conventional or FHA?","For eligible buyers on a primary home, usually yes — $0 down and no monthly mortgage insurance beat conventional (PMI under 20% down) and FHA (lifetime MIP). The VA funding fee is one-time and often waived."),
+           ("When should military use a conventional loan?","If you have 20% down (avoiding PMI and the funding fee) or are buying a property the VA loan doesn't allow, such as a pure investment property."),
+           ("Do all three count BAH as income?","Yes — lenders count tax-free BAH and BAS as qualifying income on VA, conventional, and FHA loans.")],
+      related=_HB_REL, blurb="VA usually wins ($0 down, no PMI) &mdash; when conventional or FHA make sense instead.")
+
+# --- 4. Buy or rent at duty station ---
+_brbah = bah_rate("CA038","E05","with")
+body = f'''<h1>Buy or Rent at Your Next Duty Station? The PCS Decision</h1>
+<p class="meta">Updated {_D2}</p>
+<p class="lead">Every PCS raises the question: rent, or use that $0-down <a href="/blog/va-home-loan-and-bah.html">VA loan</a>
+to buy? The military twist is that you'll probably <strong>move again in 2&ndash;4 years</strong> &mdash; which changes the
+math a lot.</p>
+<h2>The case for buying</h2>
+<ul>
+<li><strong>$0 down</strong> removes the biggest barrier; your <a href="/bah/">BAH</a> can cover the mortgage.</li>
+<li><strong>Build equity</strong> instead of paying a landlord; potential appreciation.</li>
+<li><strong>House-hack:</strong> a multi-unit lets BAH + rent cover the note.</li>
+<li><strong>Keep it as a rental</strong> when you PCS &mdash; BAH-priced markets often rent well.</li>
+</ul>
+<h2>The case for renting</h2>
+<ul>
+<li><strong>Transaction costs:</strong> buying and selling can total <strong>8&ndash;10% of the price</strong>. On a short
+tour, appreciation may not cover that &mdash; you can lose money.</li>
+<li><strong>Flexibility &amp; zero maintenance</strong> &mdash; renting with BAH is simple and predictable.</li>
+<li><strong>Accidental-landlord risk:</strong> managing a rental from across the country (or overseas) is real work.</li>
+</ul>
+<h2>A simple rule of thumb</h2>
+<p class="callout">The shorter your expected tour and the hotter/pricier the market, the more renting makes sense. The longer
+you'll stay (or the more confident you are it'll cash-flow as a rental), the better buying looks. With a typical 3-year tour,
+many members rent unless they plan to keep the home long-term.</p>
+<p>Either way, know your <a href="/blog/2026-bah-rates-explained.html">BAH</a> first &mdash; it's your housing budget and the
+income lenders use. Compare on-base too: <a href="/blog/on-base-vs-off-base-housing.html">on-base vs off-base</a>.</p>
+{cta("Look up your new BAH by ZIP before you rent or buy.", "/")}
+'''
+write("buy-or-rent-duty-station.html",
+      "Buy or Rent at Your Next Duty Station? The PCS Decision",
+      "Should you use your VA loan to buy, or rent at your next base? $0 down and BAH-covered mortgages favor buying, but 8–10% transaction costs on a short tour favor renting. A clear framework.",
+      "Buy or Rent", body,
+      faq=[("Should I buy or rent at a new duty station?","Renting often wins on a short (2–3 year) tour because buying-and-selling costs run 8–10% of the price, which appreciation may not cover. Buying favors longer stays or homes that will cash-flow as a rental after you PCS."),
+           ("Can BAH cover a mortgage?","Often yes — your BAH is your housing budget, and with a $0-down VA loan it can cover a mortgage, though a mortgage also includes taxes, insurance, and maintenance."),
+           ("Is it smart to keep a house as a rental after PCS?","It can be, especially in markets that rent near BAH levels — but managing a long-distance rental is real work and risk.")],
+      related=[("On-base vs off-base housing","/blog/on-base-vs-off-base-housing.html"),
+               ("VA home loan & BAH","/blog/va-home-loan-and-bah.html"),
+               ("BAH rates by location","/bah/")],
+      blurb="$0-down VA loan vs 8&ndash;10% transaction costs on a 3-year tour &mdash; a clear buy-vs-rent framework.")
+
+# --- 5. VA loan credit score & requirements ---
+body = f'''<h1>VA Loan Requirements: Credit Score, Income &amp; the Residual Income Test</h1>
+<p class="meta">Updated {_D2}</p>
+<p class="lead">The VA doesn't set a minimum credit score &mdash; but lenders do, and the VA adds a unique
+<strong>residual income</strong> test that helps service members qualify when other loans say no.</p>
+<h2>Credit score</h2>
+<ul>
+<li><strong>The VA has no official minimum.</strong> Most lenders set an overlay around <strong>580&ndash;620</strong>;
+some go lower with strong compensating factors.</li>
+<li>Better scores get better rates &mdash; but VA loans are famously forgiving compared with conventional.</li>
+</ul>
+<h2>Debt-to-income (DTI)</h2>
+<p>Lenders look at your monthly debts vs gross income. VA is flexible &mdash; a DTI over 41% is allowed if your
+<strong>residual income</strong> is strong.</p>
+<h2>The residual income test (VA's secret weapon)</h2>
+<p class="callout">The VA requires you to have a minimum amount of <strong>cash left over each month</strong> after the
+mortgage, debts, and basic living costs &mdash; varying by family size and region. Because tax-free
+<a href="/blog/2026-bah-rates-explained.html">BAH and BAS</a> count as income, military buyers usually pass comfortably.
+It's a big reason VA borrowers default less despite easier credit rules.</p>
+<h2>Other requirements</h2>
+<ul>
+<li><strong>Certificate of Eligibility</strong> (service requirement met).</li>
+<li><strong>Primary residence</strong> &mdash; you must intend to live there (multi-unit OK if you occupy one unit).</li>
+<li>The home must pass the <strong>VA appraisal</strong> and minimum property requirements.</li>
+</ul>
+<p>Counting your exact BAH helps your numbers &mdash; look it up in the <a href="/">calculator</a> before you apply.</p>
+{cta("See the BAH/BAS income lenders will use — by ZIP in the calculator.", "/")}
+'''
+write("va-loan-credit-score-requirements.html",
+      "VA Loan Requirements 2026: Credit Score, DTI & Residual Income",
+      "The VA sets no minimum credit score (lenders often want 580–620), allows higher DTI, and adds a residual-income test that tax-free BAH/BAS helps military buyers pass. Full VA loan requirements.",
+      "VA Requirements", body,
+      faq=[("What credit score do you need for a VA loan?","The VA has no official minimum; most lenders look for about 580–620, though some go lower with strong compensating factors."),
+           ("What is the VA residual income test?","A VA rule requiring a minimum amount of monthly cash left after the mortgage, debts, and living costs (by family size and region). Tax-free BAH and BAS count as income, so military buyers usually pass."),
+           ("Can I use a VA loan for an investment property?","Not a pure investment property — it must be your primary residence, though a 2–4 unit is allowed if you occupy one unit.")],
+      related=_HB_REL, blurb="No VA minimum score (lenders ~580&ndash;620) + the residual-income test BAH helps you pass.")
+
 # ===================== POLICY / NEWS INTERPRETATION PAGES =====================
 NEWS_DATE = "2026-06-10"
 
@@ -2846,21 +3042,23 @@ write("bah-reform-95-to-100.html",
 # ===================== BLOG INDEX =====================
 def _cat(slug):
     order=[("Policy News (2027 & Reform)",["2027","fy2027","bah-reform"]),
+           ("Home Buying & VA Loans",["va-loan","va-home-loan","homebuyer","buy-or-rent","funding-fee"]),
            ("Reserve & National Guard",["reserve","national-guard"]),
-           ("Pay Charts & Rank Pay",["how-much-does-an","2026-military-pay-chart","warrant-officer-pay","prior-enlisted","officer-vs-enlisted","basic-training-pay","does-military-pay-differ","promotion-value"]),
+           ("Pay Charts & Rank Pay",["how-much-does-an","how-much-does-a-general","navy-seal","academy-rotc","2026-military-pay-chart","warrant-officer-pay","prior-enlisted","officer-vs-enlisted","basic-training-pay","does-military-pay-differ","promotion-value"]),
            ("Special & Incentive Pays",["special-pays","flight-pay","sea-pay","submarine","deployment-pay","bonuses"]),
            ("Taxes",["combat-zone","states-that-dont","tax-filing"]),
-           ("Retirement, Benefits & Total Comp",["tsp","retirement","sgli","roth","gi-bill","tricare","va-disability","separation-severance","total-compensation","civilian-equivalent-rmc"]),
-           ("Paychecks, Moves & Money Moves",["pay-dates","how-to-read","why-is-my","military-pay-raise","ppm","selling-military-leave","va-home-loan","scra","basic-needs"]),
-           ("Allowances, BAH & Family",["bah","bas-rates","cola","on-base","dual-military","dislocation","family-allowances","partial-bah"]),
+           ("Retirement, Benefits & Total Comp",["tsp","retirement","sgli","roth","gi-bill","tricare","va-disability","separation-severance","total-compensation","civilian-equivalent-rmc","continuation","survivor-benefit","sbp","crdp","crsc"]),
+           ("Paychecks, Moves & Money Moves",["pay-dates","how-to-read","why-is-my","military-pay-raise","2025-vs-2026","ppm","selling-military-leave","per-diem","scra","basic-needs"]),
+           ("Allowances, BAH & Family",["bah","bas-rates","cola","on-base","dual-military","dislocation","family-allowances","partial-bah","clothing-allowance"]),
           ]
     for name,subs in order:
         if any(s in slug for s in subs): return name
     return "More Guides"
 
-_DISPLAY = ["Pay Charts & Rank Pay","Allowances, BAH & Family","Special & Incentive Pays",
-            "Reserve & National Guard","Taxes","Retirement, Benefits & Total Comp",
-            "Paychecks, Moves & Money Moves","Policy News (2027 & Reform)","More Guides"]
+_DISPLAY = ["Pay Charts & Rank Pay","Allowances, BAH & Family","Home Buying & VA Loans",
+            "Special & Incentive Pays","Reserve & National Guard","Taxes",
+            "Retirement, Benefits & Total Comp","Paychecks, Moves & Money Moves",
+            "Policy News (2027 & Reform)","More Guides"]
 _buckets = {c:[] for c in _DISPLAY}
 for slug,title,desc,blurb in ARTICLES:
     _buckets[_cat(slug)].append((slug,title,blurb))
