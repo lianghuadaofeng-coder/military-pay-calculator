@@ -1,0 +1,38 @@
+# U.S. Military Pay Calculator (militarypaytool.com)
+
+> Free 2026 U.S. military pay calculator and reference. Computes monthly and annual
+> take-home pay for active duty and Reserve/National Guard: basic pay (2026 tables,
+> 3.8% raise), BAH by ZIP code (official DoD rates), BAS, special pays, federal/FICA/state
+> tax, TSP, SGLI, combat-zone tax exclusion, drill pay, and reserve retirement points.
+> No login. Unofficial planning tool — a member's LES is the authoritative source.
+
+Key facts (2026): basic pay raise 3.8% (effective 2026-01-01); BAS $476.95/mo enlisted,
+$328.48/mo officer; SGLI $0.05 per $1,000 + $1 TSGLI ($26/mo at $500,000); Social Security
+6.2% up to $184,500; Medicare 1.45% (+0.9% over $200k); TSP elective limit $24,500.
+BAH location tables are official 2025 DoD rates (latest complete public dataset; 2026
+averages ~4.2% higher). Drill pay: one 4-hour drill period = 1/30 of monthly basic pay.
+
+## Core pages
+
+- [Pay calculator](https://militarypaytool.com/): interactive 2026 take-home pay calculator (active duty & reserve)
+- [BAH rates by location](https://militarypaytool.com/bah/): rate tables for 299 military housing areas, every grade, with/without dependents
+- [All pay guides](https://militarypaytool.com/blog/): plain-English articles on military pay
+
+## Key guides
+
+- [2026 military pay chart](https://militarypaytool.com/blog/2026-military-pay-chart.html): full basic pay table for every rank
+- [2026 military pay raise](https://militarypaytool.com/blog/2026-military-pay-raise.html): the 3.8% increase in dollars by rank
+- [2026 BAH explained](https://militarypaytool.com/blog/2026-bah-rates-explained.html): how the housing allowance works
+- [2026 BAS rates](https://militarypaytool.com/blog/2026-bas-rates.html): subsistence allowance amounts
+- [Reserve & Guard drill pay](https://militarypaytool.com/blog/reserve-drill-pay-explained.html): drill periods, Annual Training, retirement points
+- [States that don't tax military pay](https://militarypaytool.com/blog/states-that-dont-tax-military-pay.html)
+- [Military TSP explained](https://militarypaytool.com/blog/military-tsp-explained.html): BRS matching and 2026 limits
+- [Combat zone tax exclusion](https://militarypaytool.com/blog/combat-zone-tax-exclusion.html): how deployed pay becomes tax-free
+- [Military retirement: BRS vs High-3](https://militarypaytool.com/blog/military-retirement-brs-vs-high3.html): pension multipliers and a 20-year example
+- [SGLI cost](https://militarypaytool.com/blog/sgli-cost-2026.html): 2026 premium table
+- [E-5 pay](https://militarypaytool.com/blog/how-much-does-an-e5-make-2026.html) and similar pages for E-1 through E-9 and O-1 through O-5
+
+## Data sources
+
+DFAS 2026 basic pay tables; DTMO official BAH datasets; IRS 2026 brackets (post-OBBBA);
+SSA 2026 FICA parameters; VA SGLI rates.

@@ -532,6 +532,30 @@
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebApplication",
+      "name": "U.S. Military Pay Calculator",
+      "url": "https://militarypaytool.com/",
+      "description": "Free 2026 military pay calculator for active duty and Reserve/National Guard: basic pay, BAH by ZIP code, BAS, special pays, taxes, TSP, SGLI, drill pay and retirement points.",
+      "applicationCategory": "FinanceApplication",
+      "operatingSystem": "Web",
+      "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+      "publisher": { "@id": "https://militarypaytool.com/#org" }
+    },
+    {
+      "@type": "Organization",
+      "@id": "https://militarypaytool.com/#org",
+      "name": "militarypaytool.com",
+      "url": "https://militarypaytool.com/",
+      "logo": "https://militarypaytool.com/favicon.svg"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
   "@type": "FAQPage",
   "mainEntity": [
     {"@type":"Question","name":"How is military pay calculated?","acceptedAnswer":{"@type":"Answer","text":"Military pay starts with basic pay (set by pay grade and years of service), plus tax-free allowances such as BAH (housing) and BAS (food), plus any special and incentive pays. Basic and special pays are taxable; allowances are not. Take-home pay is what remains after federal/state income tax, Social Security and Medicare (FICA), TSP, and SGLI."}},

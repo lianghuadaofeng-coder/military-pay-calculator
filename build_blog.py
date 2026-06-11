@@ -525,6 +525,176 @@ write("states-that-dont-tax-military-pay.html",
                ("2026 BAH rates explained","/blog/2026-bah-rates-explained.html")],
       blurb="The 9 no-income-tax states + how military state residence (SCRA) works.")
 
+# ===================== 6 MORE RANK ARTICLES =====================
+rank_article("E-2","a Private / Seaman Apprentice / Airman","how-much-does-an-e2-make-2026.html",
+             ["<2"], "<2",
+             "E-2 is typically reached after about six months of service. E-2 basic pay is a single flat rate that does not change with years of service.")
+rank_article("E-8","a Master Sergeant / First Sergeant / Senior Chief Petty Officer","how-much-does-an-e8-make-2026.html",
+             ["8","10","12","14","16","18","20","22","24","26"], "16",
+             "E-8 is a senior enlisted leadership grade, typically reached after 14&ndash;18 years of service. The pay table for E-8 starts at 8 years of service.")
+rank_article("E-9","a Sergeant Major / Master Chief / Chief Master Sergeant","how-much-does-an-e9-make-2026.html",
+             ["10","12","14","16","18","20","22","24","26"], "20",
+             "E-9 is the highest enlisted pay grade, normally reached after 18&ndash;22 years. The pay table for E-9 starts at 10 years of service.")
+rank_article("O-2","a First Lieutenant / Lieutenant Junior Grade","how-much-does-an-o2-make-2026.html",
+             ["<2","2","3","4","6"], "2",
+             "O-2 is usually reached about 18&ndash;24 months after commissioning. O-2 basic pay stops increasing after 6 years (most officers promote to O-3 before then).")
+rank_article("O-4","a Major / Lieutenant Commander","how-much-does-an-o4-make-2026.html",
+             ["<2","2","3","4","6","8","10","12","14","16","18"], "10",
+             "O-4 is a field-grade officer rank, typically reached around the 10-year mark.")
+rank_article("O-5","a Lieutenant Colonel / Commander","how-much-does-an-o5-make-2026.html",
+             ["<2","2","3","4","6","8","10","12","14","16","18","20","22"], "16",
+             "O-5 is a senior field-grade rank, often a battalion-command or ship-command level, typically reached around 15&ndash;17 years.")
+
+# ===================== TOPIC: TSP =====================
+body=f'''<h1>Military TSP Explained: Matching, Limits &amp; Roth vs Traditional (2026)</h1>
+<p class="meta">Updated {DATE}</p>
+<p class="lead">The <strong>Thrift Savings Plan (TSP)</strong> is the military's 401(k)-style retirement account. Under the
+Blended Retirement System (BRS), the government adds up to <strong>5% of your basic pay</strong> on top of your own
+contributions &mdash; free money if you contribute at least 5%.</p>
+<h2>How the BRS match works</h2>
+<ul>
+<li><strong>1% automatic</strong> &mdash; the government deposits 1% of basic pay even if you contribute nothing.</li>
+<li><strong>Up to 4% matching</strong> &mdash; dollar-for-dollar on your first 3%, 50 cents per dollar on the next 2%.</li>
+<li><strong>Total: 5%</strong> of basic pay when you contribute 5% yourself.</li>
+</ul>
+<p class="callout tip">Rule of thumb: contribute <strong>at least 5% of basic pay</strong>. Anything less leaves matching
+money on the table.</p>
+<h2>2026 contribution limit</h2>
+<p>The elective deferral limit for 2026 is <strong>$24,500</strong>. Members in a combat zone may be able to contribute
+beyond that toward the higher annual additions limit (tax-exempt contributions).</p>
+<h2>Roth vs Traditional TSP</h2>
+<ul>
+<li><strong>Traditional</strong>: contributions reduce taxable income now; withdrawals taxed in retirement.</li>
+<li><strong>Roth</strong>: contributions are taxed now; qualified withdrawals are tax-free later.</li>
+</ul>
+<p>Junior members in low tax brackets often favor <strong>Roth</strong> (you pay little tax today), and combat-zone pay
+contributed to Roth can be tax-free going in <em>and</em> coming out. Higher earners may prefer Traditional. The
+<a href="/">calculator</a> lets you toggle Roth vs Traditional and see the paycheck impact.</p>
+{cta("Model your TSP contribution and see the paycheck impact.", "/")}
+'''
+write("military-tsp-explained.html",
+      "Military TSP Explained: BRS Matching, 2026 Limits, Roth vs Traditional",
+      "How the military TSP works in 2026: BRS gives up to 5% of basic pay in government contributions, the elective limit is $24,500, and Roth vs Traditional changes your paycheck.",
+      "TSP", body,
+      faq=[("How much does the military match in TSP?","Under BRS the government contributes up to <b>5% of basic pay</b>: 1% automatic plus up to 4% matching when you contribute 5%."),
+           ("What is the 2026 TSP contribution limit?","The elective deferral limit is <b>$24,500</b> for 2026."),
+           ("Should I do Roth or Traditional TSP?","Junior members in low tax brackets often favor Roth; higher earners may prefer Traditional. Combat-zone contributions to Roth can be tax-free in and out.")],
+      related=[("2026 military pay chart","/blog/2026-military-pay-chart.html"),
+               ("Military retirement: BRS vs High-3","/blog/military-retirement-brs-vs-high3.html"),
+               ("Combat zone tax exclusion","/blog/combat-zone-tax-exclusion.html")],
+      blurb="BRS matches up to 5% of basic pay — how TSP works and the 2026 limit.")
+
+# ===================== TOPIC: CZTE =====================
+body=f'''<h1>Combat Zone Tax Exclusion (CZTE): How Combat Pay Becomes Tax-Free</h1>
+<p class="meta">Updated {DATE}</p>
+<p class="lead">Serve even <strong>one day</strong> in a designated combat zone during a month and your military pay for
+that entire month can be <strong>excluded from federal income tax</strong>. For enlisted members and warrant officers,
+the exclusion is unlimited; for officers it's capped.</p>
+<h2>Who gets what</h2>
+<ul>
+<li><strong>Enlisted &amp; warrant officers:</strong> all basic pay and most special pays for the month are federally tax-free.</li>
+<li><strong>Commissioned officers:</strong> the exclusion is capped at the highest enlisted basic pay rate plus $225
+hostile-fire/imminent-danger pay (about <strong>$10,954/month in 2026</strong>). Pay above the cap is taxed normally.</li>
+</ul>
+<h2>What CZTE does <em>not</em> change</h2>
+<p class="callout"><strong>FICA still applies.</strong> Social Security (6.2%) and Medicare (1.45%) are still withheld from
+basic pay even in a combat zone. BAH and BAS were already tax-free.</p>
+<h2>Side benefits</h2>
+<ul>
+<li><strong>Roth TSP supercharge:</strong> combat-zone pay contributed to Roth TSP is tax-free going in and, if qualified, tax-free coming out.</li>
+<li><strong>Higher TSP ceiling:</strong> combat-zone months allow contributions beyond the normal elective limit.</li>
+<li><strong>State taxes:</strong> most states follow the federal exclusion, and many exempt military pay anyway.</li>
+</ul>
+{cta("Toggle 'Combat Zone Tax Exclusion' in the calculator to see your deployed take-home pay.", "/")}
+'''
+write("combat-zone-tax-exclusion.html",
+      "Combat Zone Tax Exclusion (CZTE): How Combat Pay Becomes Tax-Free",
+      "One day in a designated combat zone makes the whole month's military pay federally tax-free — unlimited for enlisted, capped near $10,954/month for officers in 2026. FICA still applies.",
+      "CZTE", body,
+      faq=[("Is combat pay tax-free?","Yes. Pay earned in a designated combat zone is excluded from federal income tax — fully for enlisted members and warrant officers, capped for officers."),
+           ("Do I pay Social Security and Medicare in a combat zone?","Yes. FICA (6.2% Social Security + 1.45% Medicare) still applies to basic pay even when CZTE makes it income-tax-free."),
+           ("How much of an officer's pay is excluded?","Up to the highest enlisted basic pay plus $225 IDP — about $10,954/month in 2026. Pay above that is taxed normally.")],
+      related=[("2026 military pay chart","/blog/2026-military-pay-chart.html"),
+               ("Military TSP explained","/blog/military-tsp-explained.html"),
+               ("States that don't tax military pay","/blog/states-that-dont-tax-military-pay.html")],
+      blurb="One day in a combat zone = the whole month federally tax-free (officers capped).")
+
+# ===================== TOPIC: RETIREMENT =====================
+body=f'''<h1>Military Retirement: BRS vs High-3, and What 20 Years Is Worth</h1>
+<p class="meta">Updated {DATE}</p>
+<p class="lead">Military retired pay is a percentage of your <strong>"High-3"</strong> &mdash; the average of your highest
+36 months of basic pay. Which percentage depends on your retirement system: the legacy <strong>High-3 system (2.5%/year)</strong>
+or the <strong>Blended Retirement System (2.0%/year + TSP matching)</strong>.</p>
+<h2>The two systems at a glance</h2>
+<div class="tablewrap"><table class="pay"><thead><tr><th>&nbsp;</th><th>Legacy High-3</th><th>BRS</th></tr></thead><tbody>
+<tr><td>Who</td><td>Entered service before 2018 (didn't opt in to BRS)</td><td>Entered 2018 or later (and opt-ins)</td></tr>
+<tr><td>Multiplier</td><td>2.5% &times; years</td><td>2.0% &times; years</td></tr>
+<tr><td>20-year pension</td><td>50% of High-3</td><td>40% of High-3</td></tr>
+<tr><td>TSP match</td><td>None</td><td>Up to 5% of basic pay</td></tr>
+<tr><td>Continuation pay</td><td>No</td><td>Yes (mid-career bonus)</td></tr>
+</tbody></table></div>
+<h2>A concrete 20-year example</h2>
+<p>An <a href="/blog/how-much-does-an-e7-make-2026.html">E-7</a> retiring at 20 years with a High-3 average around
+{money(BP["E-7"]["18"])}/month would receive roughly <strong>{money(BP["E-7"]["18"]*0.5)}/month under High-3</strong> (50%)
+or <strong>{money(BP["E-7"]["18"]*0.4)}/month under BRS</strong> (40%) &mdash; plus whatever their TSP grew to, which for
+BRS members with full matching can be substantial.</p>
+<p class="callout">Retired pay is based on <strong>basic pay only</strong> &mdash; BAH and BAS don't count toward the pension.
+That's one reason promotions and time in service matter so much in your last years.</p>
+<h2>Reserve retirement is different</h2>
+<p>Reserve/Guard members earn <strong>points</strong> instead of straight years, and retired pay generally starts around
+age 60. See our <a href="/blog/reserve-drill-pay-explained.html">drill pay &amp; retirement points guide</a>.</p>
+{cta("See how a promotion or more years changes your basic pay (and future pension).", "/")}
+'''
+write("military-retirement-brs-vs-high3.html",
+      "Military Retirement: BRS vs High-3 — What 20 Years Is Worth",
+      "Military pensions pay 2.5%/year (High-3) or 2.0%/year + TSP match (BRS) of your highest-36-month average basic pay. A 20-year E-7 gets roughly 40–50% of High-3.",
+      "Retirement", body,
+      faq=[("How much is military retirement after 20 years?","Under the legacy High-3 system, 20 years pays <b>50%</b> of your highest-36-month average basic pay. Under BRS it's <b>40%</b>, plus TSP matching along the way."),
+           ("What is the BRS multiplier?","2.0% per year of service, versus 2.5% under the legacy High-3 system."),
+           ("Does BAH count toward retirement?","No. Retired pay is calculated from basic pay only — allowances like BAH and BAS are excluded.")],
+      related=[("How much does an E-7 make in 2026?","/blog/how-much-does-an-e7-make-2026.html"),
+               ("Military TSP explained","/blog/military-tsp-explained.html"),
+               ("Reserve drill pay & retirement points","/blog/reserve-drill-pay-explained.html")],
+      blurb="20 years = 40–50% of your High-3 basic pay. BRS vs legacy, explained.")
+
+# ===================== TOPIC: SGLI =====================
+body=f'''<h1>SGLI in 2026: Coverage, Cost, and How It Hits Your Paycheck</h1>
+<p class="meta">Updated {DATE}</p>
+<p class="lead"><strong>Servicemembers' Group Life Insurance (SGLI)</strong> covers up to <strong>$500,000</strong> for
+<strong>$0.05 per $1,000 of coverage per month</strong>, plus a flat $1 for TSGLI. Maximum coverage costs
+<strong>$26/month</strong>, deducted automatically from your pay.</p>
+<h2>2026 SGLI premiums by coverage level</h2>
+<div class="tablewrap"><table class="pay"><thead><tr><th>Coverage</th><th>Monthly premium (incl. $1 TSGLI)</th></tr></thead><tbody>
+<tr><td>$500,000 (max)</td><td>$26.00</td></tr>
+<tr><td>$400,000</td><td>$21.00</td></tr>
+<tr><td>$300,000</td><td>$16.00</td></tr>
+<tr><td>$200,000</td><td>$11.00</td></tr>
+<tr><td>$100,000</td><td>$6.00</td></tr>
+<tr><td>$50,000 (min)</td><td>$3.50</td></tr>
+</tbody></table></div>
+<p>Coverage is elected in <strong>$50,000 increments</strong>. New members are automatically enrolled at the maximum;
+you can reduce or decline in writing (think hard before doing so &mdash; SGLI is far cheaper than comparable civilian
+term life for most members).</p>
+<h2>What else to know</h2>
+<ul>
+<li><strong>TSGLI</strong> ($1/month) pays for certain traumatic injuries.</li>
+<li><strong>FSGLI</strong> covers spouses (up to $100,000) and children (free) for a separate small premium.</li>
+<li>After separation, SGLI converts to <strong>VGLI</strong> within set deadlines.</li>
+</ul>
+{cta("See SGLI and every other deduction in your full paycheck breakdown.", "/")}
+'''
+write("sgli-cost-2026.html",
+      "SGLI in 2026: $500k Coverage for $26/Month — Rates by Coverage Level",
+      "SGLI costs $0.05 per $1,000 of coverage plus $1 TSGLI in 2026 — $26/month for the $500,000 maximum. Premium table by coverage level and how it hits your paycheck.",
+      "SGLI", body,
+      faq=[("How much does SGLI cost in 2026?","$0.05 per $1,000 of coverage plus $1 TSGLI — the $500,000 maximum costs <b>$26 per month</b>."),
+           ("How much SGLI coverage can I get?","Up to $500,000, elected in $50,000 increments. New members are auto-enrolled at the maximum."),
+           ("Is SGLI worth it?","For most members yes — it's significantly cheaper than comparable civilian term life insurance and has no health screening.")],
+      related=[("2026 military pay chart","/blog/2026-military-pay-chart.html"),
+               ("Military TSP explained","/blog/military-tsp-explained.html"),
+               ("2026 military pay raise","/blog/2026-military-pay-raise.html")],
+      blurb="SGLI: $26/mo for $500k — 2026 premium table by coverage level.")
+
 # ===================== BLOG INDEX =====================
 cards = ""
 for slug,title,desc,blurb in ARTICLES:
