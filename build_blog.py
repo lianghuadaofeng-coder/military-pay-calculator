@@ -1506,6 +1506,137 @@ write("military-tax-filing-guide.html",
                ("Military bonuses & taxes","/blog/military-bonuses-taxes.html")],
       blurb="Free MilTax filing, automatic combat-zone extensions, and the MSRRA spouse-residency tax break.")
 
+# ===================== TOTAL COMPENSATION / HIDDEN BENEFITS BATCH =====================
+# --- Tricare value ---
+body = f'''<h1>What Military Health Care Is Really Worth (Tricare's Hidden Paycheck)</h1>
+<p class="meta">Updated {_D2}</p>
+<p class="lead">Tricare almost never shows up on your LES, but it's one of the largest pieces of military compensation.
+For a family, comparable civilian health coverage runs <strong>$15,000&ndash;$25,000 a year</strong> &mdash; money you'd
+have to earn, and be taxed on, in the civilian world.</p>
+<h2>What you actually pay</h2>
+<div class="tablewrap"><table class="pay"><thead><tr><th>Plan</th><th>Active-duty monthly premium</th><th>Typical costs</th></tr></thead><tbody>
+<tr><td>Tricare Prime (active duty)</td><td>$0</td><td>$0 for the member; minimal/no copays for the family in-network</td></tr>
+<tr><td>Tricare Select (active-duty family)</td><td>$0</td><td>Small copays per visit; annual deductible</td></tr>
+<tr><td>Tricare Dental (family)</td><td>~$11&ndash;$38</td><td>Low cost-share for most procedures</td></tr>
+</tbody></table></div>
+<p>Active-duty members and their families pay <strong>no monthly medical premium</strong>. Compare that to a civilian
+employee's average share of a family plan &mdash; often <strong>$6,000&ndash;$7,000/year in premiums alone</strong>,
+before deductibles that routinely top $3,000.</p>
+<h2>Putting a number on it</h2>
+<p>A fair estimate of the employer-equivalent value of active-duty family medical + dental coverage is
+<strong>$18,000&ndash;$25,000 per year</strong>. Because you don't pay for it <em>and</em> don't pay tax on it, matching
+it as a civilian could require <strong>$22,000&ndash;$33,000 of pre-tax salary</strong>. That's on top of your
+<a href="/blog/military-pay-civilian-equivalent-rmc.html">cash compensation (RMC)</a>.</p>
+<h2>It doesn't stop at separation</h2>
+<ul>
+<li><strong>Transitional care (TAMP)</strong> bridges you for 180 days after active duty in many cases.</li>
+<li><strong>Retirees</strong> keep Tricare for life at modest cost &mdash; a benefit worth six figures over a retirement.</li>
+<li><strong>VA care</strong> for service-connected conditions is separate and additional.</li>
+</ul>
+{cta("See your cash compensation — then add Tricare's value on top.", "/")}
+'''
+write("tricare-value-military-health-care.html",
+      "What Military Health Care Is Worth: Tricare's Hidden Paycheck",
+      "Active-duty families pay $0 in medical premiums - comparable civilian coverage costs $15,000-$25,000/year. The employer-equivalent value of Tricare and how to add it to your pay.",
+      "Tricare Value", body,
+      faq=[("How much is Tricare worth?","For an active-duty family, the employer-equivalent value of Tricare medical and dental coverage is roughly $18,000-$25,000 per year - and you pay no premium and no tax on it."),
+           ("Do active-duty families pay for Tricare?","No monthly medical premium for active-duty members or their families on Tricare Prime/Select; dental is a small monthly cost."),
+           ("Does Tricare continue after I leave?","Transitional coverage (TAMP) can bridge 180 days after active duty, and retirees keep Tricare at modest cost.")],
+      related=[("What's military pay worth in civilian salary?","/blog/military-pay-civilian-equivalent-rmc.html"),
+               ("Military retirement: BRS vs High-3","/blog/military-retirement-brs-vs-high3.html"),
+               ("2026 military pay chart","/blog/2026-military-pay-chart.html")],
+      blurb="Tricare is worth $18k&ndash;$25k/yr to a family &mdash; the paycheck that never hits your LES.")
+
+# --- GI Bill value ---
+body = f'''<h1>The GI Bill Is a Six-Figure Benefit: Here's the Math</h1>
+<p class="meta">Updated {_D2}</p>
+<p class="lead">The Post-9/11 GI Bill is the most valuable education benefit in America &mdash; and for a member using it at
+a high-cost school, it's worth <strong>well over $100,000</strong>. Counting it (and Tuition Assistance you use while
+serving) is essential to understanding total military compensation.</p>
+<h2>What the Post-9/11 GI Bill covers (at 100%)</h2>
+<ul>
+<li><strong>Tuition &amp; fees:</strong> full in-state public tuition, or up to a national cap at private schools (with the
+Yellow Ribbon Program often covering the rest).</li>
+<li><strong>Monthly housing allowance (MHA):</strong> based on the BAH rate for an <strong>E-5 with dependents</strong> at
+your school's ZIP code &mdash; paid <em>to you</em> while enrolled.</li>
+<li><strong>Books stipend:</strong> up to $1,000 per year.</li>
+</ul>
+<h2>Putting a number on 36 months of benefits</h2>
+<p>At a public university, tuition + the E-5 housing allowance + books over a four-year degree commonly totals
+<strong>$100,000&ndash;$160,000+</strong> in tax-free benefits, depending on location. In an expensive metro the housing
+allowance alone can exceed <strong>$30,000/year</strong> &mdash; tied to the same
+<a href="/blog/2026-bah-rates-explained.html">BAH rates</a> our calculator uses.</p>
+<h2>Two more multipliers</h2>
+<ul>
+<li><strong>Transferability:</strong> career members can transfer unused benefits to a spouse or child &mdash; effectively
+a tax-free college fund worth six figures.</li>
+<li><strong>Tuition Assistance (TA):</strong> while serving, TA covers up to $250/semester-hour ($4,500/year) so you can
+finish a degree <em>without</em> touching the GI Bill &mdash; then keep the GI Bill for later or transfer it.</li>
+</ul>
+{cta("The GI Bill housing stipend uses E-5 BAH — look up the rate for any school's ZIP.", "/")}
+'''
+write("gi-bill-value-explained.html",
+      "The GI Bill Is a Six-Figure Benefit: The Real Math",
+      "The Post-9/11 GI Bill is worth $100,000-$160,000+: full tuition, a monthly housing allowance based on E-5 BAH at your school, and a books stipend - plus transfer to a spouse or child.",
+      "GI Bill Value", body,
+      faq=[("How much is the GI Bill worth?","For a four-year degree, the Post-9/11 GI Bill commonly totals $100,000-$160,000+ in tax-free benefits - full in-state tuition, a monthly housing allowance based on E-5 BAH, and a books stipend."),
+           ("How is the GI Bill housing allowance calculated?","It uses the BAH rate for an E-5 with dependents at your school's ZIP code, paid to you while enrolled."),
+           ("Can I give my GI Bill to my kids?","Yes - career members can transfer unused Post-9/11 GI Bill benefits to a spouse or children, subject to a service commitment.")],
+      related=[("2026 BAH rates explained","/blog/2026-bah-rates-explained.html"),
+               ("What's military pay worth in civilian salary?","/blog/military-pay-civilian-equivalent-rmc.html"),
+               ("BAH rates by location","/bah/")],
+      blurb="The Post-9/11 GI Bill is worth $100k&ndash;$160k+ &mdash; tuition + E-5 housing stipend + transfer.")
+
+# --- Total compensation vs civilian ---
+_tcb5=BP["E-5"]["4"]; _tcbah=bah_rate("CA038","E05","with"); _tcbas=476.95
+_tccash=(_tcb5+_tcbah+_tcbas)*12
+_tctri=21000; _tctsp=_tcb5*12*0.05; _tcpen=_tcb5*12*0.10
+_tctotal=_tccash+_tctri+_tctsp+_tcpen
+body = f'''<h1>Military Total Compensation vs a Civilian Salary: The Honest Comparison</h1>
+<p class="meta">Updated {_D2}</p>
+<p class="lead">"I could make more as a civilian" is sometimes true &mdash; but only if you compare the <em>whole</em>
+package. Cash is just the start; the tax-free allowances, free health care, retirement match, and pension accrual add up
+fast. Here's a full-stack estimate for a mid-career E-5.</p>
+<h2>Total compensation: E-5, 4 years, San Diego, family</h2>
+<div class="tablewrap"><table class="pay"><thead><tr><th>Component</th><th>Annual value</th><th>Taxed?</th></tr></thead><tbody>
+<tr><td>Basic pay</td><td>{money(_tcb5*12)}</td><td>Yes</td></tr>
+<tr><td>BAH (housing)</td><td>{money(_tcbah*12)}</td><td>No</td></tr>
+<tr><td>BAS (food)</td><td>{money(_tcbas*12)}</td><td>No</td></tr>
+<tr><td>Tricare (family medical+dental, est.)</td><td>~{money(_tctri)}</td><td>No</td></tr>
+<tr><td>TSP match (BRS, 5% of basic)</td><td>~{money(_tctsp)}</td><td>Tax-deferred</td></tr>
+<tr><td>Pension accrual (est. value/yr)</td><td>~{money(_tcpen)}</td><td>Deferred</td></tr>
+<tr><td><strong>Total package</strong></td><td><strong>~{money(_tctotal)}</strong></td><td></td></tr>
+</tbody></table></div>
+<p class="callout">Roughly <strong>{money((_tcbah+_tcbas)*12+_tctri)}</strong> of this arrives <strong>tax-free</strong>.
+After accounting for the tax advantage, a civilian would generally need a salary in the
+<strong>{money(_tctotal*1.1)}&ndash;{money(_tctotal*1.2)}</strong> range to match the same lifestyle &mdash; before
+counting 30 days of paid leave, education benefits, and base services.</p>
+<h2>When civilian really does pay more</h2>
+<ul>
+<li><strong>High-demand technical fields</strong> (software, cyber, medicine) can out-earn military cash by a lot &mdash;
+though often without the pension or job security.</li>
+<li><strong>Low-cost-of-living areas</strong> shrink the BAH advantage, narrowing the gap.</li>
+<li><strong>The pension is the wildcard:</strong> reach 20 years and the lifetime annuity is worth hundreds of thousands
+&mdash; reach 19 and it's $0 under the legacy system (BRS softens this with the portable TSP).</li>
+</ul>
+<h2>The honest takeaway</h2>
+<p>For most enlisted members in most locations, total military compensation is <strong>competitive with or better than</strong>
+an equivalent civilian job once benefits are counted &mdash; and far more stable. Run <em>your</em> numbers, in
+<em>your</em> ZIP code, before making the call.</p>
+{cta("Start with your cash compensation — then layer benefits on top.", "/")}
+'''
+write("military-total-compensation-vs-civilian.html",
+      "Military Total Compensation vs Civilian Salary: Full-Stack Math",
+      f"A mid-career E-5 family's total package is worth ~{money(_tctotal)}/year once you count tax-free BAH/BAS, Tricare (~$21k), the TSP match, and pension accrual - like a {money(_tctotal*1.1)}+ civilian salary.",
+      "Total Comp", body,
+      faq=[("Is military pay better than civilian pay?",f"Once you count tax-free allowances, free Tricare, the TSP match, and pension accrual, a mid-career E-5 family's package is worth roughly {money(_tctotal)}/year - competitive with or better than an equivalent civilian job in most locations."),
+           ("What is military total compensation?","The full package: basic pay + tax-free BAH and BAS + Tricare + TSP match + pension accrual + leave and education benefits - not just the basic-pay number."),
+           ("When does a civilian job pay more?","In high-demand technical fields or low-cost-of-living areas where the BAH advantage shrinks - though usually without the military pension and job security.")],
+      related=[("What's military pay worth in civilian salary?","/blog/military-pay-civilian-equivalent-rmc.html"),
+               ("What military health care is worth","/blog/tricare-value-military-health-care.html"),
+               ("Military retirement: BRS vs High-3","/blog/military-retirement-brs-vs-high3.html")],
+      blurb=f"A mid-career E-5 family's full package &asymp; {money(_tctotal)}/yr &mdash; the honest civilian comparison.")
+
 # ===================== POLICY / NEWS INTERPRETATION PAGES =====================
 NEWS_DATE = "2026-06-10"
 
