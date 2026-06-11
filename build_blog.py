@@ -2610,6 +2610,93 @@ write("military-divorce-retirement-pay.html",
                ("2026 VA disability rates","/blog/2026-va-disability-rates.html")],
       blurb="Dividing a military pension: USFSPA + the 10/10 rule (who DFAS pays) explained.")
 
+# ===================== UNCOVERED PAY COMPONENTS BATCH =====================
+# --- Per diem / TDY ---
+body = f'''<h1>Military Per Diem &amp; TDY Pay: How Travel Reimbursement Works</h1>
+<p class="meta">Updated {_D2}</p>
+<p class="lead">When you travel on temporary duty (TDY), the government covers your costs through <strong>per diem</strong> &mdash;
+a daily allowance for <strong>lodging</strong> plus <strong>meals and incidental expenses (M&amp;IE)</strong>. Manage it
+well and per diem can even leave a little in your pocket.</p>
+<h2>The two parts of per diem</h2>
+<ul>
+<li><strong>Lodging:</strong> reimbursed for your <em>actual</em> cost up to the location's nightly cap. Spend less than the
+cap and you only get what you spent (lodging isn't profit).</li>
+<li><strong>M&amp;IE:</strong> a <strong>flat daily amount</strong> for the location &mdash; you keep it whether or not you
+spend it all. This is where careful travelers come out ahead.</li>
+</ul>
+<h2>How the rates work</h2>
+<ul>
+<li>Rates are set by <strong>location</strong> (DTMO for OCONUS, GSA for CONUS) &mdash; high-cost cities pay more. The
+standard CONUS rate covers most U.S. locations, with hundreds of higher-cost exceptions.</li>
+<li><strong>Travel days</strong> (first and last) pay <strong>75% of the M&amp;IE</strong> rate.</li>
+<li><strong>Government-provided meals</strong> reduce your M&amp;IE (the "proportional meal rate") &mdash; e.g., staying
+where meals are furnished.</li>
+<li>A <strong>government travel card (GTCC)</strong> is normally used for official travel expenses; file a voucher in DTS
+to get reimbursed.</li>
+</ul>
+<h2>How it relates to your regular pay</h2>
+<p class="callout">Per diem is <strong>reimbursement, not income</strong> &mdash; it's separate from basic pay, BAH, and BAS,
+and it's <strong>not taxed</strong> when within the rates. You keep drawing your normal
+<a href="/blog/how-much-does-an-e5-make-2026.html">pay and allowances</a> while TDY. Long TDYs (30+ days) can reduce the
+flat per diem to a "long-term" rate.</p>
+<h2>For Reserve &amp; Guard</h2>
+<p>Annual Training and orders away from home often include per diem too &mdash; on top of your
+<a href="/blog/reserve-drill-pay-explained.html">drill/AT pay</a>.</p>
+{cta("Per diem is on top of your regular pay — estimate your base pay in the calculator.", "/")}
+'''
+write("military-per-diem-tdy-pay.html",
+      "Military Per Diem & TDY Pay: How Travel Reimbursement Works",
+      "TDY per diem covers lodging (actual cost up to a cap) plus a flat daily M&IE you keep — travel days pay 75%. Rates by location, government meals, the travel card, and how it's tax-free.",
+      "Per Diem", body,
+      faq=[("How does military per diem work?","Per diem reimburses lodging (your actual cost up to the location's nightly cap) plus a flat daily meals & incidental (M&IE) allowance you keep regardless of what you spend. Travel days pay 75% of M&IE."),
+           ("Is per diem taxable?","No — per diem is reimbursement within the set rates, not income, so it isn't taxed and is separate from basic pay, BAH, and BAS."),
+           ("Do you keep leftover per diem?","You keep leftover M&IE (the flat meals allowance), but lodging only reimburses what you actually spent up to the cap.")],
+      related=[("Special pays guide","/blog/military-special-pays-guide.html"),
+               ("Dislocation Allowance (DLA) 2026","/blog/dislocation-allowance-dla-2026.html"),
+               ("How to read your LES","/blog/how-to-read-your-les.html")],
+      blurb="TDY per diem: lodging up to a cap + a flat M&amp;IE you keep &mdash; tax-free, on top of normal pay.")
+
+# --- Clothing allowance ---
+body = f'''<h1>Military Clothing Allowance: Uniform Money Explained</h1>
+<p class="meta">Updated {_D2}</p>
+<p class="lead">Enlisted members get money to maintain their uniforms &mdash; a yearly <strong>Clothing Replacement
+Allowance</strong> &mdash; while officers receive a one-time uniform allowance. It's small compared to basic pay, but it's
+real money that shows up on the LES.</p>
+<h2>Enlisted: annual Clothing Replacement Allowance</h2>
+<ul>
+<li>Paid <strong>once a year</strong> (on your enlistment anniversary month) to replace worn-out uniform items.</li>
+<li>The amount is set <strong>by service and gender</strong> and rises after the first three years (the "standard" rate);
+it commonly runs in the <strong>$400&ndash;$650/year</strong> range, adjusted annually.</li>
+<li>A higher initial issue happens at <a href="/blog/basic-training-pay-2026.html">basic training</a> (often provided
+in-kind rather than cash).</li>
+</ul>
+<h2>Officers: one-time uniform allowance</h2>
+<ul>
+<li>Officers receive a <strong>one-time Uniform Allowance (around $400)</strong> upon first reporting to active duty &mdash;
+officers buy their own uniforms and don't get the recurring enlisted allowance.</li>
+<li>An <strong>additional active-duty uniform allowance</strong> may be paid to reserve/guard officers called to extended
+active duty under certain conditions.</li>
+</ul>
+<h2>Special clothing allowances</h2>
+<p>Members with unusual uniform requirements (civilian-clothes billets, special-duty assignments, certain overseas tours)
+may receive <strong>Special or Civilian Clothing Allowances</strong> on top of the standard amount.</p>
+<p class="callout">Clothing allowance is <strong>tax-free</strong> and separate from your
+<a href="/blog/2026-military-pay-chart.html">basic pay</a> and <a href="/blog/2026-bah-rates-explained.html">allowances</a>.
+It's easy to miss &mdash; check your <a href="/blog/how-to-read-your-les.html">LES</a> around your anniversary month.</p>
+{cta("Clothing allowance is a small extra — see your full pay picture in the calculator.", "/")}
+'''
+write("military-clothing-allowance.html",
+      "Military Clothing Allowance: Uniform Money Explained (2026)",
+      "Enlisted members get an annual Clothing Replacement Allowance (about $400–$650/year, by service and gender); officers get a one-time ~$400 uniform allowance. How it works and where to find it on your LES.",
+      "Clothing Allowance", body,
+      faq=[("What is the military clothing allowance?","An annual Clothing Replacement Allowance for enlisted members to replace worn uniforms — commonly $400–$650/year by service and gender — plus a one-time ~$400 uniform allowance for officers."),
+           ("Do officers get a clothing allowance?","Officers receive a one-time uniform allowance (about $400) when they first report to active duty, but not the recurring annual enlisted allowance."),
+           ("Is the clothing allowance taxable?","No — the military clothing allowance is tax-free and separate from basic pay and other allowances.")],
+      related=[("2026 military pay chart","/blog/2026-military-pay-chart.html"),
+               ("How to read your LES","/blog/how-to-read-your-les.html"),
+               ("Basic training pay 2026","/blog/basic-training-pay-2026.html")],
+      blurb="Enlisted get ~$400&ndash;$650/yr to replace uniforms; officers a one-time ~$400 &mdash; tax-free.")
+
 # ===================== POLICY / NEWS INTERPRETATION PAGES =====================
 NEWS_DATE = "2026-06-10"
 
