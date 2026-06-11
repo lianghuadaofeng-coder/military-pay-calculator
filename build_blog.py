@@ -13,6 +13,7 @@ YOS = ["<2","2","3","4","6","8","10","12","14","16","18","20","22","24","26"]
 YOS_LBL = {"<2":"&lt;2","2":"2","3":"3","4":"4","6":"6","8":"8","10":"10","12":"12","14":"14","16":"16","18":"18","20":"20","22":"22","24":"24","26":"26"}
 
 def money(v): return "$"+format(int(round(v)), ",d") if v is not None else "—"
+def money2(v): return "$"+format(v, ",.2f")
 
 def deep(grade=None, mode=None, extra=None):
     snap = {}
@@ -1344,6 +1345,166 @@ write("promotion-value-e5-to-e6.html",
                ("Military retirement: BRS vs High-3","/blog/military-retirement-brs-vs-high3.html"),
                ("2026 military pay chart","/blog/2026-military-pay-chart.html")],
       blurb=f"E-5&rarr;E-6 = +{money(_p56b+_p56bah)}/mo (incl. BAH bump) &mdash; and a steeper curve for 12 more years.")
+
+# ===================== CAREER COMPARISON / NICHE BAH / TAX FILING BATCH =====================
+def _yoscol(g, yrs):
+    best = None
+    for c, v in BP[g].items():
+        if c == "<2":
+            t = 0
+        else:
+            try: t = int(c)
+            except ValueError: continue
+        if yrs >= t and v is not None:
+            if best is None or t > best[0]: best = (t, c)
+    return best[1] if best else None
+
+def _cum_basic(path, years=20):
+    # path: list of (grade, start_year); returns cumulative basic pay over `years`
+    total = 0
+    for y in range(years):
+        g = None
+        for grade, start in path:
+            if y >= start: g = grade
+        col = _yoscol(g, y + 0.5)
+        total += BP[g][col] * 12
+    return total
+
+_enl_path = [("E-1",0),("E-2",0.5),("E-3",1.5),("E-4",3),("E-5",5),("E-6",9),("E-7",14)]
+_off_path = [("O-1",0),("O-2",2),("O-3",4),("O-4",10),("O-5",16)]
+_enl20 = _cum_basic(_enl_path); _off20 = _cum_basic(_off_path)
+_rs = open('data/reserve_2025.js').read()
+_RCT = json.loads(_rs[_rs.index('=')+1:_rs.rstrip().rstrip(';').rfind('}')+1])['rct']
+def _rct(g,k): return _RCT[g][k]
+
+body = f'''<h1>Officer vs Enlisted Pay: 20-Year Career Earnings Compared</h1>
+<p class="meta">Updated {_D2} &middot; Computed from the 2026 pay table</p>
+<p class="lead">Over a 20-year career the basic-pay gap between an officer and an enlisted member is real but smaller than
+most people assume &mdash; and allowances, bonuses, and reaching top pay sooner narrow it further. Using the 2026 table
+and typical promotion timelines, here's how <strong>basic pay</strong> stacks up.</p>
+<h2>Estimated 20-year basic pay (2026 rates)</h2>
+<div class="tablewrap"><table class="pay"><thead><tr><th>Path</th><th>Typical track</th><th>20-year basic pay</th></tr></thead><tbody>
+<tr><td>Enlisted</td><td>E-1 &rarr; E-7 (SFC/GySgt/CPO)</td><td>~{money(_enl20)}</td></tr>
+<tr><td>Officer</td><td>O-1 &rarr; O-5 (LtCol/CDR)</td><td>~{money(_off20)}</td></tr>
+<tr><td><strong>Difference</strong></td><td></td><td><strong>~{money(_off20-_enl20)}</strong> over 20 years</td></tr>
+</tbody></table></div>
+<p class="callout">These are <em>basic pay</em> estimates using 2026 rates held flat and standard promotion points. Real
+careers vary, and future raises lift both paths. They exclude BAH, BAS, special pays, and bonuses.</p>
+<h2>What the basic-pay gap leaves out</h2>
+<ul>
+<li><strong>Allowances are similar in kind.</strong> Both get tax-free BAH and BAS; an officer's BAH is higher, but a
+senior enlisted member in a high-cost area still draws substantial housing money.</li>
+<li><strong>Enlisted reach top pay sooner.</strong> An E-7 hits a strong pay band years before an officer reaches O-5,
+and many enlisted members earn reenlistment <a href="/blog/military-bonuses-taxes.html">bonuses</a> officers don't.</li>
+<li><strong>The pension scales with both.</strong> 20 years pays a percentage of final basic pay either way &mdash; see
+<a href="/blog/military-retirement-brs-vs-high3.html">how retirement is calculated</a>.</li>
+<li><strong>Prior-enlisted officers</strong> get the best of both via the
+<a href="/blog/prior-enlisted-officer-pay.html">O-1E/O-2E/O-3E scales</a>.</li>
+</ul>
+{cta("Compare any two ranks for yourself — same ZIP, same years of service.", "/")}
+'''
+write("officer-vs-enlisted-pay-career.html",
+      "Officer vs Enlisted Pay: 20-Year Career Earnings Compared (2026)",
+      f"Over 20 years at 2026 rates, a typical enlisted (E-1 to E-7) career earns about {money(_enl20)} in basic pay vs {money(_off20)} for an officer (O-1 to O-5) - a gap of about {money(_off20-_enl20)}.",
+      "Officer vs Enlisted", body,
+      faq=[("Do officers make a lot more than enlisted?",f"Over a typical 20-year career at 2026 rates, an officer (O-1 to O-5) earns roughly {money(_off20)} in basic pay versus {money(_enl20)} for enlisted (E-1 to E-7) - about {money(_off20-_enl20)} more, before allowances and bonuses."),
+           ("Is the officer-enlisted pay gap as big as people think?","Not entirely - both receive tax-free allowances, enlisted reach top pay bands sooner and earn reenlistment bonuses, and the pension scales with both paths."),
+           ("How can enlisted members get officer pay?","By commissioning; with 4+ years prior service they are paid on the higher O-1E/O-2E/O-3E scales and keep their years of service.")],
+      related=[("2026 military pay chart","/blog/2026-military-pay-chart.html"),
+               ("Prior-enlisted officer pay (O-1E)","/blog/prior-enlisted-officer-pay.html"),
+               ("Military retirement: BRS vs High-3","/blog/military-retirement-brs-vs-high3.html")],
+      blurb=f"20 years: enlisted ~{money(_enl20)} vs officer ~{money(_off20)} in basic pay &mdash; and what closes the gap.")
+
+# --- Partial BAH & BAH-Diff (niche data) ---
+body = f'''<h1>BAH-Diff and Partial BAH: The Housing Allowances Almost Nobody Explains</h1>
+<p class="meta">Updated {_D2}</p>
+<p class="lead">Most members know BAH and BAH RC/Transit. But two smaller housing allowances &mdash;
+<strong>BAH-Diff</strong> and <strong>Partial BAH</strong> &mdash; quietly appear on LESs in specific situations, and the
+amounts are easy to miss. Here's exactly who gets them, with the 2025 figures.</p>
+<h2>Partial BAH (single members in the barracks)</h2>
+<p>If you're <strong>without dependents and living in government quarters</strong> (barracks/dorms), you don't get full
+BAH &mdash; but you do get a small <strong>Partial BAH</strong>. The rates are tiny and grade-based:</p>
+<div class="tablewrap"><table class="pay"><thead><tr><th>Grade</th><th>Monthly Partial BAH (2025)</th></tr></thead><tbody>
+<tr><td>E-5</td><td>{money2(_rct("E-5","partial"))}</td></tr>
+<tr><td>E-6</td><td>{money2(_rct("E-6","partial"))}</td></tr>
+<tr><td>E-7</td><td>{money2(_rct("E-7","partial"))}</td></tr>
+<tr><td>O-3</td><td>{money2(_rct("O-3","partial"))}</td></tr>
+<tr><td>O-4</td><td>{money2(_rct("O-4","partial"))}</td></tr>
+</tbody></table></div>
+<p>Partial BAH rates have been fixed for decades, which is why they look so small &mdash; a few dollars to a few tens of
+dollars a month.</p>
+<h2>BAH-Diff (members paying child support while in quarters)</h2>
+<p><strong>BAH-Diff</strong> is for members <strong>without primary custody who pay child support</strong> and live in
+government quarters. It bridges the gap between the with- and without-dependents rates. 2025 examples:</p>
+<div class="tablewrap"><table class="pay"><thead><tr><th>Grade</th><th>Monthly BAH-Diff (2025)</th></tr></thead><tbody>
+<tr><td>E-5</td><td>{money2(_rct("E-5","diff"))}</td></tr>
+<tr><td>E-6</td><td>{money2(_rct("E-6","diff"))}</td></tr>
+<tr><td>E-7</td><td>{money2(_rct("E-7","diff"))}</td></tr>
+<tr><td>O-3</td><td>{money2(_rct("O-3","diff"))}</td></tr>
+</tbody></table></div>
+<p class="callout">A key rule: your child-support payment must be <strong>at least equal to the BAH-Diff amount</strong> to
+qualify. Move out of quarters and you generally shift to regular BAH instead.</p>
+<h2>How these fit the bigger picture</h2>
+<p>For the main rates &mdash; full locality BAH and the reserve <strong>BAH RC/Transit</strong> table &mdash; see our
+<a href="/blog/2026-bah-rates-explained.html">2026 BAH guide</a> and <a href="/bah/">BAH-by-location</a> pages.</p>
+{cta("Living off base? Look up your full BAH by ZIP and see your real take-home.", "/")}
+'''
+write("partial-bah-and-bah-diff.html",
+      "BAH-Diff and Partial BAH Explained (2025 Rates)",
+      "Partial BAH (single members in the barracks) and BAH-Diff (members paying child support in quarters) are the housing allowances nobody explains. Who qualifies, with 2025 amounts by grade.",
+      "Partial BAH", body,
+      faq=[("What is Partial BAH?","A small housing allowance for members without dependents who live in government quarters and therefore don't receive full BAH. Rates are grade-based and have been fixed for decades."),
+           ("What is BAH-Diff?","BAH-Differential is paid to members without primary custody who pay child support and live in government quarters; the child-support payment must be at least the BAH-Diff amount to qualify."),
+           ("Do barracks residents get any BAH?","Yes - a small Partial BAH, even though they don't receive full BAH while living in government quarters.")],
+      related=[("2026 BAH rates explained","/blog/2026-bah-rates-explained.html"),
+               ("BAH with vs without dependents","/blog/bah-with-vs-without-dependents.html"),
+               ("Reserve drill pay & BAH RC/Transit","/blog/reserve-drill-pay-explained.html")],
+      blurb="Partial BAH and BAH-Diff: the two housing allowances almost nobody explains, with 2025 rates.")
+
+# --- Military tax filing guide ---
+body = f'''<h1>Military Tax Filing: Free Filing, Deadlines &amp; State Residency (2026)</h1>
+<p class="meta">Updated {_D2}</p>
+<p class="lead">Military taxes have rules civilians don't &mdash; free filing software, automatic deadline extensions for
+the deployed, and a spouse-residency law that can erase a state tax bill. Here's what actually saves you money.</p>
+<h2>1. File for free with MilTax</h2>
+<p><strong>MilTax</strong> (via Military OneSource) is free tax software built for military life &mdash; it handles
+combat pay, multistate moves, and rental situations, with no income limit, plus free consultations with tax pros. Most
+members should never pay for tax software.</p>
+<h2>2. What's taxable vs not</h2>
+<ul>
+<li><strong>Taxable:</strong> basic pay, most <a href="/blog/military-special-pays-guide.html">special pays</a>, bonuses,
+and <a href="/blog/military-cola-explained.html">CONUS COLA</a>.</li>
+<li><strong>Tax-free:</strong> BAH, BAS, overseas COLA, <a href="/blog/dislocation-allowance-dla-2026.html">DLA</a> and
+most PCS allowances, and all pay excluded under the <a href="/blog/combat-zone-tax-exclusion.html">combat-zone exclusion</a>.</li>
+</ul>
+<h2>3. Deployed? Your deadline moves automatically</h2>
+<p>Serving in a combat zone gives you an <strong>automatic extension</strong>: the normal April deadline is pushed to at
+least <strong>180 days after you leave the zone</strong> (plus the days you had left before deploying). No form required,
+and the same extension covers IRA contributions and many IRS actions.</p>
+<h2>4. The spouse residency rule (MSRRA)</h2>
+<p>Under the <strong>Military Spouses Residency Relief Act</strong>, a military spouse can keep the servicemember's state
+of legal residence for tax purposes &mdash; so a couple domiciled in a <a href="/blog/states-that-dont-tax-military-pay.html">no-tax
+state</a> like Texas or Florida can keep the spouse's income state-tax-free even after a PCS to a taxing state.</p>
+<h2>5. Don't leave these on the table</h2>
+<ul>
+<li><strong>Earned Income Tax Credit:</strong> you can elect to <em>include</em> nontaxable combat pay when it raises your
+EITC &mdash; a rare case where combat pay helps your refund.</li>
+<li><strong>Saver's Credit</strong> for TSP contributions at lower incomes.</li>
+<li><strong>Moving deductions</strong> for PCS costs the military didn't reimburse (still available to active duty).</li>
+</ul>
+{cta("Know your taxable vs tax-free pay before you file — see the breakdown in the calculator.", "/")}
+'''
+write("military-tax-filing-guide.html",
+      "Military Tax Filing 2026: Free MilTax, Combat-Zone Extensions & MSRRA",
+      "Military tax guide: file free with MilTax, automatic 180-day combat-zone deadline extensions, the MSRRA spouse-residency rule, and credits like EITC with combat pay.",
+      "Tax Filing", body,
+      faq=[("How can military members file taxes for free?","MilTax through Military OneSource is free tax software with no income limit, built for combat pay, PCS moves, and multistate situations, plus free tax-pro consultations."),
+           ("Do deployed troops get a tax deadline extension?","Yes - serving in a combat zone gives an automatic extension of at least 180 days after leaving the zone, with no form required."),
+           ("What is the MSRRA spouse residency rule?","The Military Spouses Residency Relief Act lets a spouse keep the servicemember's state of legal residence for tax purposes, which can keep their income tax-free in a no-tax home state.")],
+      related=[("States that don't tax military pay","/blog/states-that-dont-tax-military-pay.html"),
+               ("Combat zone tax exclusion","/blog/combat-zone-tax-exclusion.html"),
+               ("Military bonuses & taxes","/blog/military-bonuses-taxes.html")],
+      blurb="Free MilTax filing, automatic combat-zone extensions, and the MSRRA spouse-residency tax break.")
 
 # ===================== POLICY / NEWS INTERPRETATION PAGES =====================
 NEWS_DATE = "2026-06-10"
