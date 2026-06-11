@@ -1637,6 +1637,138 @@ write("military-total-compensation-vs-civilian.html",
                ("Military retirement: BRS vs High-3","/blog/military-retirement-brs-vs-high3.html")],
       blurb=f"A mid-career E-5 family's full package &asymp; {money(_tctotal)}/yr &mdash; the honest civilian comparison.")
 
+# ===================== TRANSITION / VA / FAMILY BATCH =====================
+# --- VA disability compensation (2026 rates) ---
+_VA = [("10%","$180.42"),("20%","$356.66"),("30%","$552.47"),("40%","$795.84"),("50%","$1,132.90"),
+       ("60%","$1,435.02"),("70%","$1,808.45"),("80%","$2,102.15"),("90%","$2,362.30"),("100%","$3,938.58")]
+_varows = "".join(f"<tr><td>{r}</td><td>{a}</td></tr>" for r,a in _VA)
+body = f'''<h1>2026 VA Disability Compensation Rates: The Complete Pay Chart</h1>
+<p class="meta">Updated {_D2} &middot; Rates effective December 1, 2025</p>
+<p class="lead">VA disability compensation is a <strong>monthly, tax-free</strong> payment for veterans with service-connected
+conditions. For 2026 the rates rose <strong>2.8%</strong> (matching the Social Security COLA), ranging from
+<strong>$180.42/month at 10%</strong> to <strong>$3,938.58/month at 100%</strong> for a veteran with no dependents.</p>
+<h2>2026 VA disability rates (veteran alone, no dependents)</h2>
+<div class="tablewrap"><table class="pay"><thead><tr><th>Rating</th><th>Monthly payment</th></tr></thead><tbody>{_varows}</tbody></table></div>
+<p class="callout">These payments are <strong>completely tax-free</strong> &mdash; federal and state. A 100% rating is worth
+about <strong>$47,000/year tax-free</strong>, equivalent to a much larger taxable salary.</p>
+<h2>How dependents change it</h2>
+<p>At <strong>30% and above</strong>, you receive extra for a spouse, children, and dependent parents. At 10% and 20% the
+rate is flat regardless of dependents. A 100%-rated veteran with a spouse and two children receives noticeably more than
+the single-veteran figure above.</p>
+<h2>The "VA math" nobody expects</h2>
+<p>VA ratings <strong>don't add</strong> &mdash; they combine using "whole-person" math. Two 50% conditions don't make
+100%; they combine to 75% (rounded to the nearest 10 &rarr; 80%). This is why veterans with several mid-size ratings
+often land lower than they expect. Use a combined-ratings calculator before assuming a total.</p>
+<h2>How it relates to military retirement</h2>
+<p>VA disability is <strong>separate from</strong> military retired pay. Historically the two were offset, but
+<strong>Concurrent Retirement and Disability Pay (CRDP)</strong> now lets many 20-year retirees with a 50%+ rating receive
+<em>both</em> in full &mdash; a major boost to <a href="/blog/military-retirement-brs-vs-high3.html">retirement income</a>.</p>
+{cta("Planning your transition? Estimate your active-duty pay now and VA later.", "/")}
+'''
+write("2026-va-disability-rates.html",
+      "2026 VA Disability Compensation Rates: Complete Tax-Free Pay Chart",
+      "2026 VA disability rates rose 2.8%: from $180.42/month at 10% to $3,938.58 at 100% (veteran alone), all tax-free. Full chart, how dependents and CRDP work, and VA combined-ratings math.",
+      "VA Disability", body,
+      faq=[("How much is 100% VA disability in 2026?","$3,938.58 per month for a veteran with no dependents — about $47,000 per year, completely tax-free. More with a spouse or children."),
+           ("Is VA disability pay taxable?","No. VA disability compensation is exempt from both federal and state income tax."),
+           ("Do VA ratings add together?","No. Multiple ratings combine using whole-person math, not simple addition — two 50% conditions combine to roughly 80%, not 100%.")],
+      related=[("Military retirement: BRS vs High-3","/blog/military-retirement-brs-vs-high3.html"),
+               ("Military separation & severance pay","/blog/military-separation-severance-pay.html"),
+               ("Military total compensation vs civilian","/blog/military-total-compensation-vs-civilian.html")],
+      blurb="2026 VA disability: $180/mo (10%) to $3,939/mo (100%), tax-free &mdash; plus the combined-ratings catch.")
+
+# --- Separation / severance pay ---
+_sevb = BP["E-5"]["6"]
+_sev = _sevb * 12 * 0.10 * 6
+body = f'''<h1>Military Separation Pay &amp; Severance: What You Get When You Leave Early</h1>
+<p class="meta">Updated {_D2}</p>
+<p class="lead">Leave the military before 20 years and, depending on <em>how</em> you separate, you may receive a lump-sum
+<strong>separation or severance payment</strong>. The amounts reach into the tens of thousands &mdash; but the rules,
+taxes, and recoupment traps catch people off guard.</p>
+<h2>The main types</h2>
+<ul>
+<li><strong>Involuntary Separation Pay (ISP):</strong> for members involuntarily separated (e.g., not selected for
+retention) with 6+ years. <em>Full</em> ISP = <strong>10% &times; years of service &times; 12 &times; monthly basic pay</strong>.</li>
+<li><strong>Disability Severance Pay:</strong> a lump sum for members separated for a disability rated under 30% and not
+eligible to retire &mdash; 2 months of basic pay per year of service (minimums apply).</li>
+<li><strong>Voluntary Separation Pay (VSP):</strong> offered during drawdowns to encourage voluntary departure.</li>
+</ul>
+<h2>A worked example</h2>
+<p>An <a href="/blog/how-much-does-an-e5-make-2026.html">E-5 with 6 years</a> ({money(_sevb)}/month basic) involuntarily
+separated with full ISP would receive about:</p>
+<p style="font-size:1.1rem"><strong>10% &times; 6 years &times; 12 &times; {money(_sevb)} = {money(_sev)}</strong> (lump sum, before taxes).</p>
+<h2>The catches</h2>
+<ul>
+<li><strong>It's taxable</strong> &mdash; withheld at the 22% supplemental rate, though combat-zone-earned portions follow
+the <a href="/blog/combat-zone-tax-exclusion.html">CZTE</a>.</li>
+<li><strong>VA recoupment:</strong> if you later receive VA disability or military retired pay, the government often
+<strong>recoups</strong> separation pay from those future benefits &mdash; you don't always keep both.</li>
+<li><strong>Half rate:</strong> some separations qualify only for <em>half</em> ISP, and a service obligation in the
+Reserves is usually attached.</li>
+</ul>
+{cta("Know your monthly basic pay — it drives every separation formula.", "/")}
+'''
+write("military-separation-severance-pay.html",
+      "Military Separation & Severance Pay: Amounts, Taxes & Recoupment",
+      f"Involuntary Separation Pay = 10% x years x 12 x monthly basic. An E-5 with 6 years gets about {money(_sev)}. How disability severance, taxes, and VA recoupment work.",
+      "Separation Pay", body,
+      faq=[("How is military separation pay calculated?","Full Involuntary Separation Pay = 10% x years of service x 12 x monthly basic pay. An E-5 with 6 years receives roughly "+money(_sev)+", before taxes."),
+           ("Is separation pay taxable?","Yes — it's withheld at the 22% supplemental rate, except portions earned in a combat zone, which follow the combat-zone tax exclusion."),
+           ("Will I have to pay back separation pay?","Often partially — if you later receive VA disability or military retired pay, the government typically recoups separation pay from those benefits.")],
+      related=[("2026 VA disability rates","/blog/2026-va-disability-rates.html"),
+               ("Military retirement: BRS vs High-3","/blog/military-retirement-brs-vs-high3.html"),
+               ("Combat zone tax exclusion","/blog/combat-zone-tax-exclusion.html")],
+      blurb=f"Involuntary Separation Pay &asymp; {money(_sev)} for an E-5/6yr &mdash; and the VA recoupment trap.")
+
+# --- Military family allowances ---
+body = f'''<h1>Military Family Money: Allowances &amp; Programs Beyond BAH</h1>
+<p class="meta">Updated {_D2}</p>
+<p class="lead">Beyond <a href="/blog/2026-bah-rates-explained.html">BAH</a> and BAS, military families can tap a stack of
+allowances and programs that quietly add up &mdash; for child care, special-needs care, spouse careers, and family
+separation. Here's the field guide.</p>
+<h2>Direct pay for families</h2>
+<ul>
+<li><strong>Family Separation Allowance (FSA):</strong> <strong>$300/month</strong> when duty keeps you away from
+dependents 30+ days &mdash; see the <a href="/blog/military-special-pays-guide.html">special pays guide</a>.</li>
+<li><strong>BAH "with dependents" rate:</strong> a higher housing allowance the moment you have a spouse or child &mdash;
+how it works in <a href="/blog/bah-with-vs-without-dependents.html">with vs without dependents</a>.</li>
+<li><strong>Basic Needs Allowance:</strong> a monthly top-up for lower-income families &mdash; the
+<a href="/blog/basic-needs-allowance-explained.html">BNA</a>.</li>
+</ul>
+<h2>Child care help</h2>
+<ul>
+<li><strong>Military Child Care Fee Assistance:</strong> subsidies that offset the cost of off-base child care when a CDC
+slot isn't available &mdash; often hundreds of dollars a month.</li>
+<li><strong>CDC subsidized rates:</strong> on-base Child Development Centers charge on an income-based sliding scale.</li>
+</ul>
+<h2>Special-needs families (EFMP)</h2>
+<p>The <strong>Exceptional Family Member Program</strong> coordinates assignments and care for families with special
+medical or educational needs, and can unlock respite care hours &mdash; not cash, but real dollar value.</p>
+<h2>Spouse careers</h2>
+<ul>
+<li><strong>MyCAA:</strong> up to <strong>$4,000</strong> in tuition assistance for eligible military spouses pursuing
+licenses, certifications, or associate degrees in portable career fields.</li>
+<li><strong>SECO &amp; the Military Spouse Employment Partnership</strong> connect spouses to remote- and
+relocation-friendly employers.</li>
+<li><strong>MSRRA</strong> keeps a spouse's tax residency with the servicemember &mdash; see the
+<a href="/blog/military-tax-filing-guide.html">tax filing guide</a>.</li>
+</ul>
+<p class="callout">None of these show up in a basic pay chart, but for a family they can be worth thousands of dollars a
+year on top of cash compensation.</p>
+{cta("Start with your cash pay — basic, BAH and BAS — then layer family programs on top.", "/")}
+'''
+write("military-family-allowances-guide.html",
+      "Military Family Money: Allowances & Programs Beyond BAH (2026)",
+      "Beyond BAH and BAS: Family Separation Allowance ($300/mo), child care fee assistance, EFMP, MyCAA ($4,000 spouse tuition), and the Basic Needs Allowance — the family money field guide.",
+      "Family Money", body,
+      faq=[("What allowances do military families get?","Beyond BAH and BAS: Family Separation Allowance ($300/month), the higher with-dependents BAH rate, the Basic Needs Allowance, child care fee assistance, EFMP support, and MyCAA spouse tuition."),
+           ("What is MyCAA?","My Career Advancement Account provides up to $4,000 in tuition assistance for eligible military spouses pursuing licenses, certifications, or associate degrees."),
+           ("Is there help with military child care costs?","Yes — Military Child Care Fee Assistance subsidizes off-base care when an on-base CDC slot isn't available, and CDCs charge on an income-based sliding scale.")],
+      related=[("BAH with vs without dependents","/blog/bah-with-vs-without-dependents.html"),
+               ("Basic Needs Allowance explained","/blog/basic-needs-allowance-explained.html"),
+               ("Special pays guide (incl. FSA)","/blog/military-special-pays-guide.html")],
+      blurb="FSA, child-care fee assistance, EFMP, MyCAA &mdash; the family money beyond BAH and BAS.")
+
 # ===================== POLICY / NEWS INTERPRETATION PAGES =====================
 NEWS_DATE = "2026-06-10"
 
