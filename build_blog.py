@@ -1904,6 +1904,128 @@ write("national-guard-pay-explained.html",
                ("Deployment pay explained","/blog/deployment-pay-explained.html")],
       blurb=f"Guard drill = Reserve (~{money(_ngperp)}/period), but Title 32/10/SAD change everything when activated.")
 
+# ===================== BRANCH / AVIATION / SEA BATCH =====================
+# --- Branch pay comparison ---
+body = f'''<h1>Does Military Pay Differ by Branch? Army vs Navy vs Air Force vs Marines</h1>
+<p class="meta">Updated {_D2}</p>
+<p class="lead">Short answer: <strong>no</strong>. Base pay, BAH, and BAS are identical across the Army, Navy, Air Force,
+Marine Corps, Space Force, and Coast Guard. A 2026 <a href="/blog/how-much-does-an-e5-make-2026.html">E-5 with 4 years</a>
+earns <strong>{money(BP["E-5"]["4"])}/month</strong> in basic pay whether they're a Soldier, Sailor, Airman, Marine,
+Guardian, or Coast Guardsman.</p>
+<h2>What's identical across all branches</h2>
+<ul>
+<li><strong>Basic pay</strong> &mdash; set DoD-wide by pay grade and years of service (see the
+<a href="/blog/2026-military-pay-chart.html">2026 pay chart</a>).</li>
+<li><strong>BAH</strong> &mdash; set by ZIP code, grade, and dependents &mdash; not by branch.</li>
+<li><strong>BAS</strong> &mdash; $476.95 enlisted / $328.48 officer in 2026.</li>
+<li><strong>Most special pays, allowances, retirement, and Tricare.</strong></li>
+</ul>
+<h2>Where branches actually differ</h2>
+<p>Total pay can differ not because of the branch, but because of <strong>what you do and where you go</strong>:</p>
+<ul>
+<li><strong>Job-specific special pays:</strong> sea pay and sub pay are common in the Navy and Coast Guard; jump pay in
+the Army and Marines; flight pay across services for aviators. See the
+<a href="/blog/military-special-pays-guide.html">special pays guide</a>.</li>
+<li><strong>Deployment frequency</strong> drives <a href="/blog/combat-zone-tax-exclusion.html">tax-free combat pay</a>,
+FSA, and danger pay &mdash; which varies by mission, not service emblem.</li>
+<li><strong>Bonuses</strong> are set per critical job, so a high-demand rating in one branch can out-pay a common MOS in
+another &mdash; same pay table, different <a href="/blog/military-bonuses-taxes.html">bonus</a>.</li>
+<li><strong>Promotion speed</strong> varies by branch and career field, which changes how fast you climb the same chart.</li>
+</ul>
+<p class="callout">So "Army pay vs Air Force pay" really comes down to your job, deployments, bonuses, and promotion
+timing &mdash; not a different paycheck for the same rank.</p>
+{cta("Pick your rank, years, and ZIP — the same calculator works for every branch.", "/")}
+'''
+write("does-military-pay-differ-by-branch.html",
+      "Does Military Pay Differ by Branch? Army vs Navy vs Air Force vs Marines",
+      f"No — basic pay, BAH, and BAS are identical across all branches. A 2026 E-5 earns {money(BP['E-5']['4'])}/month regardless of service. What actually changes total pay: job, deployments, and bonuses.",
+      "Branch Pay", body,
+      faq=[("Does the Air Force pay more than the Army?","No. Basic pay, BAH, and BAS are identical across all U.S. military branches for the same rank and years of service. Differences come from job-specific special pays, bonuses, deployments, and promotion speed."),
+           ("Do Marines get paid less than other branches?","No — Marines earn the same base pay and allowances as every other branch for the same grade and time in service."),
+           ("Why do people say one branch pays more?","Because total pay varies by job (special pays), bonuses for critical skills, deployment frequency, and how fast you promote — not the branch itself.")],
+      related=[("2026 military pay chart","/blog/2026-military-pay-chart.html"),
+               ("Special pays guide","/blog/military-special-pays-guide.html"),
+               ("How much does an E-5 make in 2026?","/blog/how-much-does-an-e5-make-2026.html")],
+      blurb="Pay is identical across branches &mdash; what really differs is job, deployments, and bonuses.")
+
+# --- Aviation / flight pay ---
+body = f'''<h1>Military Flight Pay: ACIP, Aviation Bonus &amp; What Pilots Make</h1>
+<p class="meta">Updated {_D2}</p>
+<p class="lead">Military pilots earn the same <a href="/blog/2026-military-pay-chart.html">basic pay</a> as any other
+officer at their rank &mdash; then stack <strong>Aviation Career Incentive Pay (ACIP)</strong> and, often, a large
+<strong>Aviation Bonus</strong> on top. Together these can add tens of thousands of dollars a year.</p>
+<h2>Aviation Career Incentive Pay (ACIP) &mdash; "flight pay"</h2>
+<p>ACIP is monthly continuous pay for rated officers, scaling with <strong>years of aviation service</strong>:</p>
+<div class="tablewrap"><table class="pay"><thead><tr><th>Years of aviation service</th><th>Monthly ACIP (officer)</th></tr></thead><tbody>
+<tr><td>2 or fewer</td><td>$150</td></tr>
+<tr><td>Over 6</td><td>$700</td></tr>
+<tr><td>Over 10</td><td>up to $1,000</td></tr>
+<tr><td>14&ndash;22 (peak)</td><td>$1,000 (max)</td></tr>
+<tr><td>Over 24</td><td>tapers back down</td></tr>
+</tbody></table></div>
+<p>Enlisted aircrew receive <strong>Career Enlisted Flyer Incentive Pay (CEFIP)</strong>, roughly $150&ndash;$400/month
+by years of service.</p>
+<h2>The Aviation Bonus (the big one)</h2>
+<p>To retain pilots, the services offer an <strong>Aviation Bonus (AvB)</strong> &mdash; an annual contract payment for
+committing additional years. Amounts vary by airframe and need but commonly run <strong>$15,000&ndash;$35,000 per year</strong>,
+with the highest rates for fighter and other hard-to-retain communities. It's taxable (and combat-zone excludable).</p>
+<h2>Putting it together</h2>
+<p>An O-3 aviator with ~8 years might earn O-3 basic pay ({money(BP["O-3"]["8"])}/month) + ACIP (~$840) + a prorated
+Aviation Bonus &mdash; plus tax-free BAH and BAS. Flight pay is taxable; the allowances are not.</p>
+{cta("Add your flight pay and bonus amounts in the calculator's special-pay fields.", "/")}
+'''
+write("military-flight-pay-acip-aviation-bonus.html",
+      "Military Flight Pay: ACIP, Aviation Bonus & What Pilots Make (2026)",
+      "Military pilots earn basic pay plus Aviation Career Incentive Pay (up to $1,000/month) and an Aviation Bonus of $15,000–$35,000/year. How flight pay scales and what aviators really make.",
+      "Flight Pay", body,
+      faq=[("How much is military flight pay?","Aviation Career Incentive Pay scales from $150/month early to a $1,000/month maximum at peak years for officers; enlisted aircrew get $150–$400/month. A separate Aviation Bonus adds $15,000–$35,000/year."),
+           ("How much do military pilots make?","Basic pay for their rank plus ACIP (up to $1,000/month), often a large Aviation Bonus, and tax-free BAH and BAS — frequently well over $120,000/year in total compensation for a mid-career pilot."),
+           ("Is flight pay taxable?","Yes — ACIP and the Aviation Bonus are taxable, except portions earned in a combat zone. BAH and BAS remain tax-free.")],
+      related=[("Special pays guide","/blog/military-special-pays-guide.html"),
+               ("How much does an O-3 make in 2026?","/blog/how-much-does-an-o3-make-2026.html"),
+               ("Warrant officer pay 2026","/blog/warrant-officer-pay-2026.html")],
+      blurb="ACIP up to $1,000/mo + a $15k&ndash;$35k/yr Aviation Bonus &mdash; what pilots really make.")
+
+# --- Sea pay & sub pay ---
+body = f'''<h1>Career Sea Pay &amp; Submarine Duty Pay: The Navy's Extra Money</h1>
+<p class="meta">Updated {_D2}</p>
+<p class="lead">Sailors and Coast Guardsmen who serve at sea &mdash; and submariners in particular &mdash; earn special
+pays that surface members don't. <strong>Career Sea Pay</strong> and <strong>Submarine Duty Pay</strong> can add several
+hundred dollars a month, and they grow with experience.</p>
+<h2>Career Sea Pay (CSP)</h2>
+<ul>
+<li>Paid to members <strong>assigned to a ship or ship-based unit</strong>, scaling with pay grade and
+<strong>cumulative years of sea duty</strong> &mdash; the more sea time over a career, the higher the rate.</li>
+<li>Rates run from modest amounts up to roughly <strong>$800/month</strong> for senior, sea-heavy careers.</li>
+<li>A <strong>Career Sea Pay Premium</strong> adds extra after long consecutive periods at sea.</li>
+</ul>
+<h2>Submarine Duty Pay</h2>
+<ul>
+<li>Paid to qualified submariners, scaling by <strong>grade and years of service</strong> &mdash; commonly
+<strong>$75&ndash;$600+/month</strong>.</li>
+<li>Reflects the demanding, isolated nature of submarine deployments.</li>
+<li>Nuclear-trained personnel may <em>also</em> draw nuclear-field special pays and bonuses on top.</li>
+</ul>
+<h2>How it stacks</h2>
+<p>A Navy <a href="/blog/how-much-does-an-e6-make-2026.html">E-6</a> on sea duty could draw E-6 basic pay
+({money(BP["E-6"]["10"])}/month at 10 years) + Career Sea Pay + (if a submariner) Sub Duty Pay + tax-free BAH and BAS.
+These special pays are <strong>taxable</strong>, but combat-zone deployments can exclude them.</p>
+<p class="callout">Sea and sub pay are why two E-6s with identical rank and time in service can take home very different
+amounts &mdash; it's the <a href="/blog/military-special-pays-guide.html">special pays</a>, not the base pay.</p>
+{cta("Enter your sea pay and sub pay in the calculator to see your real take-home.", "/")}
+'''
+write("career-sea-pay-submarine-duty-pay.html",
+      "Career Sea Pay & Submarine Duty Pay: The Navy's Extra Money (2026)",
+      "Career Sea Pay (up to ~$800/month) and Submarine Duty Pay ($75–$600+/month) reward Navy and Coast Guard members at sea, scaling with grade and years of sea duty. How they stack and are taxed.",
+      "Sea Pay", body,
+      faq=[("How much is Navy sea pay?","Career Sea Pay scales with pay grade and cumulative years of sea duty, from modest amounts up to roughly $800/month for senior, sea-heavy careers, plus a premium for long stretches at sea."),
+           ("How much is submarine duty pay?","Submarine Duty Pay commonly runs $75–$600+ per month by grade and years of service; nuclear-trained submariners may also receive nuclear special pays."),
+           ("Is sea pay taxable?","Yes — Career Sea Pay and Submarine Duty Pay are taxable, except portions earned in a designated combat zone.")],
+      related=[("Special pays guide","/blog/military-special-pays-guide.html"),
+               ("How much does an E-6 make in 2026?","/blog/how-much-does-an-e6-make-2026.html"),
+               ("Does military pay differ by branch?","/blog/does-military-pay-differ-by-branch.html")],
+      blurb="Career Sea Pay (up to ~$800/mo) and Sub Duty Pay ($75&ndash;$600+) &mdash; the Navy's extra money.")
+
 # ===================== POLICY / NEWS INTERPRETATION PAGES =====================
 NEWS_DATE = "2026-06-10"
 
