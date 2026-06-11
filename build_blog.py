@@ -96,6 +96,12 @@ def article_ld(title, desc, slug):
             "publisher":{"@type":"Organization","name":"militarypaytool.com",
                          "logo":{"@type":"ImageObject","url":f"{SITE}/favicon.svg"}}}
 
+def breadcrumb_ld(slug, crumb):
+    return {"@type":"BreadcrumbList","itemListElement":[
+        {"@type":"ListItem","position":1,"name":"Home","item":SITE+"/"},
+        {"@type":"ListItem","position":2,"name":"Military Pay Guides","item":SITE+"/blog/"},
+        {"@type":"ListItem","position":3,"name":crumb,"item":f"{SITE}/blog/{slug}"}]}
+
 def foot(related):
     items = "".join(f'<li><a href="{href}">{txt}</a></li>' for txt,href in related)
     return (f'</article>\n<div class="related"><h2>Related guides</h2><ul>{items}</ul></div>\n</main>\n'
@@ -107,11 +113,11 @@ os.makedirs("blog", exist_ok=True)
 ARTICLES = []  # (slug, title, desc, cardblurb)
 
 def write(slug, title, desc, crumb, body_html, faq=None, related=None, blurb=""):
-    ld = [article_ld(title, desc, slug)]
+    ld = [article_ld(title, desc, slug), breadcrumb_ld(slug, crumb)]
     body = body_html
     if faq:
         fh, fl = faq_block(faq); body += fh; ld.append(fl)
-    jsonld = ld[0] if len(ld)==1 else {"@context":"https://schema.org","@graph":ld}
+    jsonld = {"@context":"https://schema.org","@graph":ld}
     html = head(title, desc, slug, crumb, jsonld) + body + foot(related or [])
     open(f"blog/{slug}", "w").write(html)
     ARTICLES.append((slug, title, desc, blurb or desc))

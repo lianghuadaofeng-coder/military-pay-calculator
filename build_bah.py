@@ -155,7 +155,11 @@ for code, name, city, st, slug in entries:
               "datePublished":DATE,"dateModified":DATE,"mainEntityOfPage":f"{SITE}/bah/{slug}.html",
               "image":f"{SITE}/og-image.png","author":{"@type":"Organization","name":"militarypaytool.com"},
               "publisher":{"@type":"Organization","name":"militarypaytool.com","logo":{"@type":"ImageObject","url":f"{SITE}/favicon.svg"}}}
-    jsonld = {"@context":"https://schema.org","@graph":[art_ld, faq_ld]}
+    bc_ld = {"@type":"BreadcrumbList","itemListElement":[
+        {"@type":"ListItem","position":1,"name":"Home","item":SITE+"/"},
+        {"@type":"ListItem","position":2,"name":"BAH Rates","item":SITE+"/bah/"},
+        {"@type":"ListItem","position":3,"name":place,"item":f"{SITE}/bah/{slug}.html"}]}
+    jsonld = {"@context":"https://schema.org","@graph":[art_ld, faq_ld, bc_ld]}
     body = f'''<div class="crumb"><a href="/">Home</a> &rsaquo; <a href="/bah/">BAH Rates</a> &rsaquo; {place}</div>
 <article>
 <h1>{place} BAH Rates ({YEAR})</h1>
@@ -193,7 +197,11 @@ DoD BAH lookup. Learn more in our <a href="/blog/2026-bah-rates-explained.html">
 bystate = {}
 for slug,city,st,name,code in pages:
     bystate.setdefault(st, []).append((city, slug))
-hub_ld = {"@context":"https://schema.org","@type":"CollectionPage","name":f"{YEAR} BAH Rates by Location","url":f"{SITE}/bah/"}
+hub_ld = {"@context":"https://schema.org","@graph":[
+    {"@type":"CollectionPage","name":f"{YEAR} BAH Rates by Location","url":f"{SITE}/bah/"},
+    {"@type":"BreadcrumbList","itemListElement":[
+        {"@type":"ListItem","position":1,"name":"Home","item":SITE+"/"},
+        {"@type":"ListItem","position":2,"name":"BAH Rates","item":SITE+"/bah/"}]}]}
 sections = ""
 for st in sorted(bystate, key=lambda s: STATE_FULL.get(s, s)):
     cities = sorted(bystate[st])
