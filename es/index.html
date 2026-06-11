@@ -1,23 +1,23 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <script>try{if(new URLSearchParams(location.search).has("embed"))document.documentElement.classList.add("embed");}catch(e){}</script>
-<title>U.S. Military Pay Calculator 2026 — Active Duty & Reserve Take-Home Pay</title>
-<meta name="description" content="Free 2026 U.S. military pay calculator. Estimate monthly and annual take-home pay — basic pay, BAH by ZIP code, BAS, special pays, COLA, federal/FICA/state tax, TSP and SGLI. Supports active duty and Reserve/National Guard drill pay and retirement points." />
+<title>Calculadora de Paga Militar de EE. UU. 2026 — Servicio Activo y Reserva</title>
+<meta name="description" content="Calculadora gratuita de paga militar de EE. UU. 2026. Calcula el neto mensual y anual: paga básica, BAH por código postal, BAS, pagas especiales, COLA, impuestos federales/FICA/estatales, TSP y SGLI. Incluye paga de instrucción de Reserva/Guardia Nacional y puntos de retiro." />
 <meta name="keywords" content="military pay calculator, 2026 military pay, BAH calculator, drill pay, reserve pay, BAS, military take home pay, military tax calculator" />
 <meta name="theme-color" content="#0b2545" />
-<link rel="canonical" href="https://militarypaytool.com/" />
+<link rel="canonical" href="https://militarypaytool.com/es/" />
 <link rel="alternate" hreflang="en" href="https://militarypaytool.com/" />
 <link rel="alternate" hreflang="es" href="https://militarypaytool.com/es/" />
 <link rel="alternate" hreflang="x-default" href="https://militarypaytool.com/" />
-<link rel="icon" type="image/svg+xml" href="favicon.svg" />
+<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 <!-- Open Graph / social share -->
 <meta property="og:type" content="website" />
 <meta property="og:title" content="U.S. Military Pay Calculator 2026 — Active Duty & Reserve" />
 <meta property="og:description" content="Estimate your 2026 monthly & annual military take-home pay: basic pay, BAH (by ZIP), BAS, special pays, taxes, TSP, SGLI — active duty and reserve drill pay." />
-<meta property="og:url" content="https://militarypaytool.com/" />
+<meta property="og:url" content="https://militarypaytool.com/es/" />
 <meta property="og:site_name" content="U.S. Military Pay Calculator" />
 <meta property="og:image" content="https://militarypaytool.com/og-image.png" />
 <meta property="og:image:width" content="1200" />
@@ -196,12 +196,12 @@
   <div class="wrap">
     <div class="seal">★</div>
     <div>
-      <h1>U.S. Military Pay Calculator</h1>
-      <p>Estimate your monthly &amp; annual military compensation and take-home pay</p>
+      <h1>Calculadora de Paga Militar de EE. UU.</h1>
+      <p>Calcula tu paga militar mensual y anual y el neto a cobrar</p>
     </div>
-    <span class="langsw" style="margin-left:auto;font-size:.82rem;color:#c7d2e3"><a href="/" style="color:#fff;font-weight:700;text-decoration:none" aria-current="page">EN</a> · <a href="/es/" style="color:#c7d2e3;text-decoration:none">ES</a></span>
-    <a href="/blog/" style="margin-left:14px;color:#fff;text-decoration:none;font-weight:600;font-size:.85rem;border:1px solid rgba(255,255,255,.35);padding:6px 13px;border-radius:20px">Guides</a>
-    <div class="badge" id="yearBadge" style="margin-left:10px">2026 RATES</div>
+    <span class="langsw" style="margin-left:auto;font-size:.82rem;color:#c7d2e3"><a href="/" style="color:#c7d2e3;text-decoration:none">EN</a> · <a href="/es/" style="color:#fff;font-weight:700;text-decoration:none" aria-current="page">ES</a></span>
+    <a href="/blog/" style="margin-left:14px;color:#fff;text-decoration:none;font-weight:600;font-size:.85rem;border:1px solid rgba(255,255,255,.35);padding:6px 13px;border-radius:20px">Guías</a>
+    <div class="badge" id="yearBadge" style="margin-left:10px">2026 TARIFAS</div>
   </div>
 </header>
 
@@ -209,190 +209,190 @@
   <!-- LEFT: inputs -->
   <section class="inputs">
     <div class="card">
-      <h2><span class="n">1</span> Service Profile</h2>
+      <h2><span class="n">1</span> Perfil de servicio</h2>
       <div class="body">
         <div class="field">
-          <label>Duty status</label>
-          <div class="seg" id="modeSeg" role="group" aria-label="Duty status">
-            <button type="button" data-mode="active" class="on">Active Duty</button>
-            <button type="button" data-mode="reserve">Reserve / National Guard</button>
+          <label>Situación de servicio</label>
+          <div class="seg" id="modeSeg" role="group" aria-label="Situación de servicio">
+            <button type="button" data-mode="active" class="on">Servicio activo</button>
+            <button type="button" data-mode="reserve">Reserva / Guardia Nacional</button>
           </div>
         </div>
         <div class="row">
           <div class="field">
-            <label for="grade">Pay grade</label>
+            <label for="grade">Grado/rango</label>
             <select id="grade"></select>
           </div>
           <div class="field">
-            <label for="yos">Years of service <span class="hint">(total active)</span></label>
+            <label for="yos">Años de servicio <span class="hint">(activo total)</span></label>
             <input type="number" id="yos" min="0" max="40" step="1" value="4" />
           </div>
         </div>
         <div class="field" id="e1mWrap" style="display:none">
           <label class="checkrow" style="border:0;padding:0">
             <input type="checkbox" id="e1m" />
-            <span class="lbl">E-1 with less than 4 months of service (lower rate)</span>
+            <span class="lbl">E-1 con menos de 4 meses de servicio (tasa menor)</span>
           </label>
         </div>
         <div class="field">
-          <label>Dependent status <span class="hint">(affects BAH)</span></label>
+          <label>Estado de dependientes <span class="hint">(afecta el BAH)</span></label>
           <div class="seg" id="depSeg" role="group" aria-label="Dependent status">
-            <button type="button" data-dep="with" class="on">With dependents</button>
-            <button type="button" data-dep="without">Without dependents</button>
+            <button type="button" data-dep="with" class="on">Con dependientes</button>
+            <button type="button" data-dep="without">Sin dependientes</button>
           </div>
         </div>
       </div>
     </div>
 
     <div class="card" id="reserveCard" style="display:none">
-      <h2><span class="n">R</span> Reserve / Guard Service</h2>
+      <h2><span class="n">R</span> Servicio de reserva / guardia</h2>
       <div class="body">
         <div class="row">
           <div class="field">
-            <label for="drillsMonth">Drill periods / month <span class="hint">(weekend = 4)</span></label>
+            <label for="drillsMonth">Períodos de instrucción / mes <span class="hint">(fin de semana = 4)</span></label>
             <input type="number" id="drillsMonth" min="0" max="20" step="1" value="4" />
           </div>
           <div class="field">
-            <label for="drillsYear">Drill periods / year <span class="hint">(typical 48)</span></label>
+            <label for="drillsYear">Períodos de instrucción / año <span class="hint">(típico 48)</span></label>
             <input type="number" id="drillsYear" min="0" max="130" step="1" value="48" />
           </div>
         </div>
         <div class="row">
           <div class="field">
-            <label for="atDays">Annual Training days <span class="hint">(typical 14)</span></label>
+            <label for="atDays">Días de entrenamiento anual <span class="hint">(típico 14)</span></label>
             <input type="number" id="atDays" min="0" max="365" step="1" value="14" />
           </div>
           <div class="field">
-            <label>AT housing basis</label>
+            <label>Base de vivienda del EA</label>
             <div class="seg" id="atBahSeg" role="group" aria-label="Annual Training housing basis">
-              <button type="button" data-at="rct" class="on">Orders &lt; 30 days</button>
-              <button type="button" data-at="locality">≥ 30 days</button>
+              <button type="button" data-at="rct" class="on">Órdenes &lt; 30 días</button>
+              <button type="button" data-at="locality">≥ 30 días</button>
             </div>
           </div>
         </div>
         <div class="row">
           <div class="field">
-            <label for="civIncome">Other annual income <span class="hint">(civilian)</span></label>
+            <label for="civIncome">Otro ingreso anual <span class="hint">(civil)</span></label>
             <input type="number" id="civIncome" min="0" step="1000" value="0" />
           </div>
           <div class="field">
-            <label for="careerPoints">Career points so far <span class="hint">(optional)</span></label>
+            <label for="careerPoints">Puntos de carrera hasta ahora <span class="hint">(opcional)</span></label>
             <input type="number" id="careerPoints" min="0" step="1" placeholder="0" />
           </div>
         </div>
-        <div class="note">Reserve pay is taxed on top of civilian income — enter your civilian gross so the
-          federal tax estimate uses your real marginal bracket. "Career points so far" projects your
-          retirement-point total (÷360 = equivalent years of service for age-60 retired pay).</div>
+        <div class="note">La paga de reserva se grava sobre tu ingreso civil — ingresa tu bruto civil para que la estimación
+          de impuestos use tu tramo marginal real. "Puntos de carrera hasta ahora" proyecta tu total de
+          puntos de retiro (÷360 = años equivalentes de servicio para el retiro a los 60).</div>
         <div class="note">
-          One drill period (4 hrs) pays <b>1/30 of monthly basic pay</b>; a normal drill weekend is 4 periods.
-          Drills pay basic pay only (no BAH/BAS). Annual Training is paid like active duty (basic + BAS + BAH).
-          AT under 30 days uses the BAH RC/Transit table; 30+ days uses your locality BAH (enter a ZIP below).
+          Un período de instrucción (4 h) paga <b>1/30 de la paga básica mensual</b>; un fin de semana son 4 períodos.
+          La instrucción paga solo la básica (sin BAH/BAS). El Entrenamiento Anual se paga como servicio activo (básica + BAS + BAH).
+          El EA de menos de 30 días usa la tabla BAH RC/Tránsito; 30+ días usa tu BAH local (ingresa un código postal abajo).
         </div>
       </div>
     </div>
 
     <div class="card">
-      <h2><span class="n">2</span> Housing (BAH) &amp; Subsistence (BAS)</h2>
+      <h2><span class="n">2</span> Vivienda (BAH) y alimentación (BAS)</h2>
       <div class="body">
         <div class="row">
           <div class="field" style="flex:0 0 150px">
-            <label for="zipInput">ZIP code</label>
+            <label for="zipInput">Código postal</label>
             <input type="text" id="zipInput" inputmode="numeric" maxlength="5" placeholder="e.g. 92101" autocomplete="off" />
           </div>
           <div class="field">
-            <label for="mhaInput">or search by city / base <span class="hint">(optional)</span></label>
-            <input type="text" id="mhaInput" list="mhaList" placeholder="e.g. San Diego, Fort Liberty…" autocomplete="off" />
+            <label for="mhaInput">o buscar por ciudad / base <span class="hint">(opcional)</span></label>
+            <input type="text" id="mhaInput" list="mhaList" placeholder="p. ej. San Diego, Fort Liberty…" autocomplete="off" />
             <datalist id="mhaList"></datalist>
           </div>
         </div>
-        <div class="note" id="mhaNote">Enter your residence ZIP code — BAH is set by where you live.</div>
-        <div class="note" style="margin-top:4px">Or browse <a href="/bah/">BAH rates for 300+ locations</a>.</div>
+        <div class="note" id="mhaNote">Ingrese su código postal de residencia — el BAH depende de dónde vive.</div>
+        <div class="note" style="margin-top:4px">O explora <a href="/bah/">tasas de BAH para 300+ ubicaciones</a>.</div>
         <div class="field">
-          <span class="toggle-link" id="bahManualToggle">Don't see your area, or want exact rate? Enter BAH manually ▾</span>
+          <span class="toggle-link" id="bahManualToggle">¿No ve su zona o quiere la tasa exacta? Ingrese el BAH manualmente ▾</span>
           <div id="bahManualWrap" style="display:none;margin-top:8px">
-            <label for="bahManual">Monthly BAH (from the official DoD BAH calculator)</label>
-            <input type="number" id="bahManual" min="0" step="1" placeholder="e.g. 2850" />
-            <div class="note">Look up your exact rate at travel.dod.mil → BAH Rate Lookup, then paste it here.</div>
+            <label for="bahManual">BAH mensual (de la calculadora oficial de BAH del DoD)</label>
+            <input type="number" id="bahManual" min="0" step="1" placeholder="p. ej. 2850" />
+            <div class="note">Busca tu tasa exacta en travel.dod.mil → BAH Rate Lookup y pégala aquí.</div>
           </div>
         </div>
         <div class="warn" id="bahYearWarn">
-          BAH rates below are the official <b>2025</b> DoD rates (the latest complete dataset publicly downloadable).
-          All other figures use <b>2026</b> rates. 2026 BAH averages ~4.2% higher — use the manual field for an exact 2026 amount.
+          Las tasas de BAH son las oficiales del DoD de <b>2025</b> (el último conjunto completo descargable públicamente).
+          Las demás cifras usan tasas de <b>2026</b>. El BAH de 2026 sube ~4.2% en promedio — usa el campo manual para un monto exacto de 2026.
         </div>
         <div class="field" style="margin-top:14px">
           <label class="checkrow" style="border:0;padding:0">
             <input type="checkbox" id="basOn" checked />
-            <span class="lbl">Receive BAS (Basic Allowance for Subsistence) <small id="basNote"></small></span>
+            <span class="lbl">Recibir BAS (asignación de alimentación) <small id="basNote"></small></span>
           </label>
         </div>
       </div>
     </div>
 
     <div class="card" id="specialCard">
-      <h2><span class="n">3</span> Special &amp; Incentive Pays <span style="font-weight:400;text-transform:none;letter-spacing:0;color:var(--muted);font-size:.74rem">(optional)</span></h2>
+      <h2><span class="n">3</span> Pagas especiales y de incentivo <span style="font-weight:400;text-transform:none;letter-spacing:0;color:var(--muted);font-size:.74rem">(opcional)</span></h2>
       <div class="body" id="specialBody"></div>
     </div>
 
     <div class="card" id="colaCard">
-      <h2><span class="n">4</span> COLA (Cost-of-Living Allowance)</h2>
+      <h2><span class="n">4</span> COLA (ajuste por costo de vida)</h2>
       <div class="body">
         <div class="field">
-          <label for="cola">Monthly COLA <span class="hint">(CONUS or OCONUS, if any)</span></label>
+          <label for="cola">COLA mensual <span class="hint">(CONUS u OCONUS, si aplica)</span></label>
           <input type="number" id="cola" min="0" step="1" value="0" />
-          <div class="note">COLA is location/grade/dependent-specific and <b>tax-free</b>. Look up your amount on the
-            DTMO CONUS or Overseas COLA calculator and enter the monthly total here.</div>
+          <div class="note">El COLA depende de ubicación/grado/dependientes y es <b>libre de impuestos</b>. Busca tu monto en la
+            calculadora COLA (CONUS o en el extranjero) del DTMO e ingresa el total mensual aquí.</div>
         </div>
       </div>
     </div>
 
     <div class="card">
-      <h2><span class="n">5</span> Deductions &amp; Taxes</h2>
+      <h2><span class="n">5</span> Deducciones e impuestos</h2>
       <div class="body">
         <div class="row">
           <div class="field">
-            <label for="filing">Federal filing status</label>
+            <label for="filing">Estado civil fiscal federal</label>
             <select id="filing">
-              <option value="single">Single</option>
-              <option value="mfj">Married filing jointly</option>
-              <option value="hoh">Head of household</option>
-              <option value="mfs">Married filing separately</option>
+              <option value="single">Soltero/a</option>
+              <option value="mfj">Casado/a declaración conjunta</option>
+              <option value="hoh">Cabeza de familia</option>
+              <option value="mfs">Casado/a declaración separada</option>
             </select>
           </div>
           <div class="field">
-            <label for="stateSel">State of legal residence</label>
+            <label for="stateSel">Estado de residencia legal</label>
             <select id="stateSel"></select>
           </div>
         </div>
         <div class="field" id="stateRateField">
-          <label for="stateRate">State income tax <span class="hint">(your effective %)</span></label>
+          <label for="stateRate">Impuesto estatal <span class="hint">(tu % efectivo)</span></label>
           <input type="number" id="stateRate" min="0" max="20" step="0.1" value="0" />
           <div class="note" id="stateNote" style="margin-top:6px">
-            Many states fully exempt active-duty military pay — enter <b>0</b> if yours does.
+            Muchos estados exoneran totalmente la paga militar en servicio activo — escriba <b>0</b> si el suyo lo hace.
           </div>
         </div>
 
         <div class="field">
-          <label>TSP contribution <span class="hint">(% of basic pay)</span></label>
+          <label>Aporte al TSP <span class="hint">(% de la paga básica)</span></label>
           <div class="row">
             <input type="number" id="tspPct" min="0" max="100" step="1" value="5" />
             <div class="seg" id="tspTypeSeg" role="group" aria-label="TSP contribution type" style="max-width:200px">
-              <button type="button" data-tsp="trad" class="on">Traditional</button>
+              <button type="button" data-tsp="trad" class="on">Tradicional</button>
               <button type="button" data-tsp="roth">Roth</button>
             </div>
           </div>
-          <div class="note">Traditional lowers taxable income; Roth does not. Capped at the 2026 elective limit.</div>
+          <div class="note">La tradicional reduce el ingreso imponible; la Roth no. Tope: el límite electivo de 2026.</div>
         </div>
 
         <div class="field">
-          <label for="sgli">SGLI life insurance coverage</label>
+          <label for="sgli">Cobertura de seguro de vida SGLI</label>
           <select id="sgli"></select>
         </div>
 
         <div class="field">
           <label class="checkrow" style="border:0;padding:0">
             <input type="checkbox" id="czte" />
-            <span class="lbl">Combat Zone Tax Exclusion (CZTE)
-              <small>Basic pay &amp; most special pays become federally tax-free (officers capped). FICA still applies.</small></span>
+            <span class="lbl">Exclusión fiscal por zona de combate (CZTE)
+              <small>La paga básica y la mayoría de pagas especiales quedan libres de impuesto federal (oficiales con tope). FICA sigue aplicando.</small></span>
           </label>
         </div>
       </div>
@@ -402,14 +402,14 @@
   <!-- RIGHT: results -->
   <section class="results">
     <div class="toolbar" id="toolbar">
-      <button type="button" id="shareBtn">🔗 Copy share link</button>
-      <button type="button" id="printBtn">🖨 Print / Save PDF</button>
-      <button type="button" id="themeBtn" title="Toggle dark mode" aria-label="Toggle dark mode">🌙</button>
-      <button type="button" id="resetBtn" title="Reset all inputs">↺ Reset</button>
+      <button type="button" id="shareBtn">🔗 Copiar enlace</button>
+      <button type="button" id="printBtn">🖨 Imprimir / Guardar PDF</button>
+      <button type="button" id="themeBtn" title="Cambiar modo oscuro" aria-label="Cambiar modo oscuro">🌙</button>
+      <button type="button" id="resetBtn" title="Reiniciar todo">↺ Reiniciar</button>
     </div>
     <div class="card" style="margin-bottom:18px">
       <div class="net">
-        <div class="lab" id="netLab">Estimated Monthly Take-Home</div>
+        <div class="lab" id="netLab">Cobro mensual estimado</div>
         <div class="big" id="netMonthly" aria-live="polite">$0</div>
         <div class="sub" id="netSub">Gross entitlements <span id="grossMonthly">$0</span> · Deductions <span id="dedMonthly">$0</span></div>
         <div class="annual" id="netAnnualLine">Annual take-home: <b id="netAnnual">$0</b> &nbsp;·&nbsp; Annual gross: <b id="grossAnnual">$0</b></div>
@@ -421,10 +421,10 @@
     </div>
 
     <div class="card">
-      <h2 id="bdTitle">Monthly Breakdown</h2>
+      <h2 id="bdTitle">Desglose mensual</h2>
       <div class="body">
         <table class="bd" id="breakdown"></table>
-        <div class="pill" id="effRate">Effective tax + FICA rate: —</div>
+        <div class="pill" id="effRate">Tasa efectiva de impuestos + FICA: —</div>
         <div class="insight" id="insight"></div>
       </div>
     </div>
@@ -432,98 +432,98 @@
 </main>
 
 <div id="embedCredit">
-  ★ Free calculator by <a href="https://militarypaytool.com" target="_blank" rel="noopener">militarypaytool.com</a> — 2026 U.S. military pay, active duty &amp; reserve
+  ★ Calculadora gratuita de <a href="https://militarypaytool.com" target="_blank" rel="noopener">militarypaytool.com</a> — paga militar de EE. UU. 2026, servicio activo y reserva
 </div>
 
 <section class="content">
   <div class="card" style="margin-bottom:18px">
-    <h2 style="padding:16px 18px 0">Embed this calculator</h2>
+    <h2 style="padding:16px 18px 0">Inserta esta calculadora</h2>
     <div class="body">
-      <p class="lead">Run a military blog or unit page? Drop this calculator into your site — free, no attribution required (but appreciated):</p>
+      <p class="lead">¿Tienes un blog militar o página de unidad? Inserta esta calculadora en tu sitio — gratis, sin atribución requerida (pero se agradece):</p>
       <div class="embedbox">
         <code id="embedCode">&lt;iframe src="https://militarypaytool.com/?embed=1" width="100%" height="1400" style="border:0;max-width:760px" title="U.S. Military Pay Calculator" loading="lazy"&gt;&lt;/iframe&gt;</code>
-        <button type="button" id="embedCopyBtn">Copy</button>
+        <button type="button" id="embedCopyBtn">Copiar</button>
       </div>
     </div>
   </div>
   <div class="card">
-    <h2 style="padding:16px 18px 0">2026 Military Pay — Common Questions</h2>
+    <h2 style="padding:16px 18px 0">Paga Militar 2026 — Preguntas frecuentes</h2>
     <div class="body">
-      <p class="lead">A quick guide to how U.S. military compensation works in 2026, for active duty and Reserve/National Guard.
-        For rank-by-rank pay charts and deeper guides, see our <a href="/blog/">2026 military pay articles</a>.</p>
+      <p class="lead">Una guía rápida de cómo funciona la paga militar de EE. UU. en 2026, para servicio activo y Reserva/Guardia Nacional.
+        Para tablas por rango y guías detalladas (en inglés), vea nuestros <a href="/blog/">artículos de paga militar 2026</a>.</p>
       <div class="faq">
         <details open>
-          <summary>How is military pay calculated?</summary>
-          <div class="ans">Your pay starts with <b>basic pay</b>, set by your pay grade (E-1 to O-10) and years of service.
-            On top of that you receive <b>allowances</b> — most importantly <b>BAH</b> (housing) and <b>BAS</b> (food) — plus any
-            <b>special &amp; incentive pays</b>. Basic pay and special pays are taxable; allowances are not. After federal/state
-            income tax, Social Security and Medicare (FICA), TSP and SGLI, what's left is your <b>take-home pay</b>.</div>
+          <summary>¿Cómo se calcula la paga militar?</summary>
+          <div class="ans">Tu paga empieza con la <b>paga básica</b>, según tu grado (E-1 a O-10) y años de servicio.
+            Además recibes <b>asignaciones</b> — sobre todo <b>BAH</b> (vivienda) y <b>BAS</b> (alimentación) — más cualquier
+            <b>paga especial o de incentivo</b>. La básica y las especiales son imponibles; las asignaciones no. Tras los impuestos
+            federales/estatales, el Seguro Social y Medicare (FICA), el TSP y el SGLI, lo que queda es tu <b>neto a cobrar</b>.</div>
         </details>
         <details>
-          <summary>How much does an E-5 make in 2026?</summary>
-          <div class="ans">In 2026 an <b>E-5 with 4 years</b> of service earns about <b>$3,947/month</b> in basic pay (~$47,400/year),
-            following the 3.8% pay raise. On top of that come tax-free <b>BAH</b> (varies by ZIP code and dependents) and
-            <b>$476.95/month BAS</b>. Total compensation commonly lands around <b>$5,000–$8,500/month</b> depending on duty location
-            and dependent status. Enter your grade and ZIP above for an exact estimate.</div>
+          <summary>¿Cuánto gana un E-5 en 2026?</summary>
+          <div class="ans">En 2026 un <b>E-5 con 4 años</b> de servicio gana unos <b>$3,947/mes</b> de paga básica (~$47,400/año),
+            tras el aumento del 3.8%. A eso se suma el <b>BAH</b> libre de impuestos (varía por código postal y dependientes) y
+            <b>$476.95/mes de BAS</b>. La compensación total suele rondar <b>$5,000–$8,500/mes</b> según la ubicación y
+            los dependientes. Ingresa tu grado y código postal arriba para una estimación exacta.</div>
         </details>
         <details>
-          <summary>What is BAH and how is it determined?</summary>
-          <div class="ans"><b>Basic Allowance for Housing</b> is a <b>tax-free</b> allowance based on three things: your <b>duty ZIP code</b>,
-            your <b>pay grade</b>, and whether you have <b>dependents</b>. It's meant to cover local rental housing costs, so it's much
-            higher in expensive areas. This calculator looks it up automatically from your ZIP.</div>
+          <summary>¿Qué es el BAH y cómo se determina?</summary>
+          <div class="ans">La <b>Asignación Básica de Vivienda (BAH)</b> es una asignación <b>libre de impuestos</b> basada en tres factores: tu <b>código postal</b>,
+            tu <b>grado</b> y si tienes <b>dependientes</b>. Cubre el costo local de alquiler, así que es mucho
+            mayor en zonas caras. Esta calculadora lo busca automáticamente por tu código postal.</div>
         </details>
         <details>
-          <summary>Is BAH (and BAS) taxable?</summary>
-          <div class="ans">No. <b>BAH, BAS, and most allowances are not subject to federal income tax.</b> That's why your real
-            take-home pay is higher than the basic-pay figure alone suggests — a large share of military compensation is tax-free.</div>
+          <summary>¿El BAH (y el BAS) es imponible?</summary>
+          <div class="ans">No. <b>El BAH, el BAS y la mayoría de asignaciones no pagan impuesto federal.</b> Por eso tu neto real
+            es mayor de lo que sugiere la paga básica sola — gran parte de la compensación militar es libre de impuestos.</div>
         </details>
         <details>
-          <summary>How is Reserve / National Guard drill pay calculated?</summary>
-          <div class="ans">Each 4-hour <b>drill period</b> pays <b>1/30 of your monthly basic pay</b>. A normal drill weekend is
-            <b>4 periods</b> (≈4 days of basic pay), and a typical year has about <b>48 drill periods</b> plus <b>~14 days of Annual
-            Training</b>. Drills pay basic pay only; Annual Training is paid like active duty (basic + BAS + BAH). Switch to
-            <b>Reserve / National Guard</b> mode above to estimate it.</div>
+          <summary>¿Cómo se calcula la paga de instrucción de Reserva/Guardia Nacional?</summary>
+          <div class="ans">Cada <b>período de instrucción</b> de 4 horas paga <b>1/30 de tu paga básica mensual</b>. Un fin de semana normal son
+            <b>4 períodos</b> (≈4 días de paga básica), y un año típico tiene unos <b>48 períodos</b> más <b>~14 días de Entrenamiento
+            Anual</b>. La instrucción paga solo la básica; el Entrenamiento Anual se paga como servicio activo (básica + BAS + BAH). Cambia al
+            modo <b>Reserva / Guardia Nacional</b> arriba para estimarlo.</div>
         </details>
         <details>
-          <summary>What is a "good year" for reserve retirement?</summary>
-          <div class="ans">A <b>"good year"</b> is any anniversary year in which you earn at least <b>50 retirement points</b>. You earn
-            <b>1 point per drill period</b>, <b>1 point per Annual Training day</b>, and <b>15 membership points</b> per year. Twenty good
-            years generally qualify you for Reserve retired pay (starting around age 60). Total career points ÷ 360 ≈ your equivalent
-            years of service for the pension formula.</div>
+          <summary>¿Qué es un "buen año" para el retiro de reserva?</summary>
+          <div class="ans">Un <b>"buen año"</b> es cualquier año aniversario en el que ganes al menos <b>50 puntos de retiro</b>. Ganas
+            <b>1 punto por período de instrucción</b>, <b>1 punto por día de Entrenamiento Anual</b> y <b>15 puntos por membresía</b> al año. Veinte buenos
+            años suelen darte derecho al retiro de Reserva (a partir de los 60). Puntos de carrera totales ÷ 360 ≈ tus años
+            equivalentes de servicio para la fórmula de la pensión.</div>
         </details>
         <details>
-          <summary>How much of military pay goes to taxes?</summary>
-          <div class="ans">Only <b>basic pay and taxable special pays</b> are taxed — not BAH/BAS. You'll see <b>federal income tax</b>,
-            <b>Social Security (6.2%</b> up to the wage base) and <b>Medicare (1.45%)</b>. Many states fully exempt active-duty military pay.
-            Pay earned in a designated <b>combat zone</b> can be excluded from federal income tax (FICA still applies).</div>
+          <summary>¿Cuánto de la paga militar se va en impuestos?</summary>
+          <div class="ans">Solo <b>la paga básica y las pagas especiales imponibles</b> tributan — no el BAH/BAS. Verás <b>impuesto federal</b>,
+            <b>Seguro Social (6.2%</b> hasta la base salarial) y <b>Medicare (1.45%)</b>. Muchos estados exoneran totalmente la paga militar activa.
+            La paga ganada en una <b>zona de combate</b> designada puede excluirse del impuesto federal (FICA sigue aplicando).</div>
         </details>
         <details>
-          <summary>What deductions come out of each paycheck?</summary>
-          <div class="ans">Common deductions are <b>federal &amp; state income tax</b>, <b>FICA</b> (Social Security + Medicare),
-            your optional <b>TSP</b> retirement contribution, and <b>SGLI</b> life insurance (about <b>$26/month</b> for the maximum
-            $500,000 of coverage). This calculator subtracts all of these to show your net take-home.</div>
+          <summary>¿Qué deducciones salen de cada cheque?</summary>
+          <div class="ans">Las deducciones comunes son <b>impuesto federal y estatal</b>, <b>FICA</b> (Seguro Social + Medicare),
+            tu aporte opcional de retiro al <b>TSP</b> y el seguro de vida <b>SGLI</b> (unos <b>$26/mes</b> por la cobertura máxima
+            de $500,000). Esta calculadora resta todo esto para mostrar tu neto a cobrar.</div>
         </details>
       </div>
-      <p class="lead" style="margin-top:10px">Estimates only — your Leave and Earnings Statement (LES) is the official source. Not affiliated with the U.S. Government or DoD.</p>
+      <p class="lead" style="margin-top:10px">Solo estimaciones — tu Hoja de Pagos (LES) es la fuente oficial. No afiliado al Gobierno de EE. UU. ni al DoD.</p>
     </div>
   </div>
 </section>
 
 <footer>
   <div class="disc">
-    <h3>Data sources &amp; important notes</h3>
+    <h3>Fuentes de datos y notas importantes</h3>
     <ul>
-      <li><b>Basic Pay:</b> 2026 DFAS pay table (3.8% raise), rounded to the nearest dollar; senior officers capped at Executive Schedule Level II ($18,808.20/mo).</li>
-      <li><b>BAS:</b> 2026 — Enlisted $476.95, Officer $328.48.</li>
-      <li><b>BAH:</b> Official DoD 2025 rates (latest complete public dataset). ZIP→location mapping covers ~98.8% of U.S. ZIP codes; assignments can shift over time, so verify the resolved city. For an exact 2026 amount use the manual field and the official BAH Rate Lookup at travel.dod.mil.</li>
-      <li><b>Taxes:</b> 2026 IRS brackets &amp; standard deduction (post-OBBBA). Federal figure is an estimated annual tax liability divided by 12 — not exact W-4 withholding. BAH, BAS and COLA are non-taxable.</li>
-      <li><b>FICA:</b> Social Security 6.2% up to $184,500; Medicare 1.45% (+0.9% over $200k). Applies to basic &amp; special pay even in a combat zone.</li>
-      <li><b>SGLI:</b> $0.05 per $1,000/mo + $1.00 TSGLI.</li>
-      <li><b>Reserve / Guard:</b> Drill pay = 1/30 of monthly basic pay per 4-hour drill period (weekend = 4 periods); drills pay basic only. Annual Training is paid like active duty (basic + BAS + BAH); under 30 days uses the 2025 BAH RC/Transit table, 30+ days uses locality BAH. Reserve federal tax is estimated as the marginal tax stacked on the civilian income you enter.</li>
+      <li><b>Paga básica:</b> tabla DFAS 2026 (aumento 3.8%), redondeada al dólar; oficiales superiores con tope en el Nivel II del Executive Schedule ($18,808.20/mes).</li>
+      <li><b>BAS:</b> 2026 — Tropa $476.95, Oficial $328.48.</li>
+      <li><b>BAH:</b> tasas oficiales del DoD de 2025 (último conjunto público completo). El mapeo código postal→ubicación cubre ~98.8% de los códigos de EE. UU.; las asignaciones cambian con el tiempo, verifica la ciudad. Para un monto exacto de 2026 usa el campo manual y el BAH Rate Lookup oficial en travel.dod.mil.</li>
+      <li><b>Impuestos:</b> tramos del IRS 2026 y deducción estándar (post-OBBBA). La cifra federal es una obligación anual estimada dividida entre 12 — no la retención exacta del W-4. BAH, BAS y COLA no tributan.</li>
+      <li><b>FICA:</b> Seguro Social 6.2% hasta $184,500; Medicare 1.45% (+0.9% sobre $200k). Aplica a paga básica y especial incluso en zona de combate.</li>
+      <li><b>SGLI:</b> $0.05 por $1,000/mes + $1.00 TSGLI.</li>
+      <li><b>Reserva / Guardia:</b> paga de instrucción = 1/30 de la paga básica mensual por período de 4 horas (fin de semana = 4 períodos); la instrucción paga solo la básica. El Entrenamiento Anual se paga como servicio activo (básica + BAS + BAH); menos de 30 días usa la tabla BAH RC/Tránsito 2025, 30+ días usa el BAH local. El impuesto federal de reserva se estima como el impuesto marginal sobre el ingreso civil que ingresas.</li>
     </ul>
-    <p style="margin:8px 0 0"><b>Disclaimer:</b> This is an unofficial estimate for planning only and is not affiliated with the U.S. Government or DoD.
-    Your actual Leave and Earnings Statement (LES) is the authoritative source. State tax treatment and individual circumstances vary.</p>
-    <p style="margin:10px 0 0"><b>Guides:</b>
+    <p style="margin:8px 0 0"><b>Aviso:</b> esto es una estimación no oficial solo para planificación y no está afiliado al Gobierno de EE. UU. ni al DoD.
+    Tu Hoja de Pagos (LES) real es la fuente autoritativa. El trato fiscal estatal y las circunstancias individuales varían.</p>
+    <p style="margin:10px 0 0"><b>Guías:</b>
       <a href="/blog/">All articles</a> ·
       <a href="/blog/2026-military-pay-chart.html">2026 pay chart</a> ·
       <a href="/blog/how-much-does-an-e5-make-2026.html">E-5 pay</a> ·
@@ -558,29 +558,15 @@
   ]
 }
 </script>
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  "mainEntity": [
-    {"@type":"Question","name":"How is military pay calculated?","acceptedAnswer":{"@type":"Answer","text":"Military pay starts with basic pay (set by pay grade and years of service), plus tax-free allowances such as BAH (housing) and BAS (food), plus any special and incentive pays. Basic and special pays are taxable; allowances are not. Take-home pay is what remains after federal/state income tax, Social Security and Medicare (FICA), TSP, and SGLI."}},
-    {"@type":"Question","name":"How much does an E-5 make in 2026?","acceptedAnswer":{"@type":"Answer","text":"In 2026 an E-5 with 4 years of service earns about $3,947 per month in basic pay (about $47,400 per year) after the 3.8% raise, plus tax-free BAH (varies by ZIP code and dependents) and $476.95 per month BAS. Total compensation commonly falls around $5,000 to $8,500 per month depending on location and dependents."}},
-    {"@type":"Question","name":"What is BAH and how is it determined?","acceptedAnswer":{"@type":"Answer","text":"Basic Allowance for Housing (BAH) is a tax-free allowance based on your duty ZIP code, pay grade, and whether you have dependents. It covers local rental housing costs, so it is higher in expensive areas."}},
-    {"@type":"Question","name":"Is BAH taxable?","acceptedAnswer":{"@type":"Answer","text":"No. BAH, BAS, and most military allowances are not subject to federal income tax, which is why real take-home pay is higher than the basic-pay figure alone suggests."}},
-    {"@type":"Question","name":"How is Reserve or National Guard drill pay calculated?","acceptedAnswer":{"@type":"Answer","text":"Each 4-hour drill period pays 1/30 of monthly basic pay. A normal drill weekend is 4 periods, and a typical year has about 48 drill periods plus around 14 days of Annual Training. Drills pay basic pay only; Annual Training is paid like active duty with basic pay, BAS, and BAH."}},
-    {"@type":"Question","name":"What is a good year for reserve retirement?","acceptedAnswer":{"@type":"Answer","text":"A good year is an anniversary year with at least 50 retirement points. You earn 1 point per drill period, 1 point per Annual Training day, and 15 membership points per year. Twenty good years generally qualify you for Reserve retired pay around age 60."}},
-    {"@type":"Question","name":"How much of military pay goes to taxes?","acceptedAnswer":{"@type":"Answer","text":"Only basic pay and taxable special pays are taxed, not BAH or BAS. Deductions include federal income tax, Social Security (6.2% up to the wage base), and Medicare (1.45%). Many states fully exempt active-duty military pay, and combat-zone pay can be excluded from federal income tax."}}
-  ]
-}
-</script>
-<script src="data/basic_pay_2026.js"></script>
-<script src="data/bah_2025.js"></script>
-<script src="data/zip_mha.js"></script>
-<script src="data/reserve_2025.js"></script>
-<script src="data/rates_2026.js"></script>
-<script>window.LANG="en";</script>
-<script src="i18n.js"></script>
-<script src="app.js"></script>
+
+<script src="/data/basic_pay_2026.js"></script>
+<script src="/data/bah_2025.js"></script>
+<script src="/data/zip_mha.js"></script>
+<script src="/data/reserve_2025.js"></script>
+<script src="/data/rates_2026.js"></script>
+<script>window.LANG="es";</script>
+<script src="/i18n.js"></script>
+<script src="/app.js"></script>
 <!-- Cloudflare Web Analytics (privacy-friendly, no cookies) -->
 <script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "c43478f52cc24acbba0aa708dac34c10"}'></script>
 <!-- End Cloudflare Web Analytics -->

@@ -3091,7 +3091,7 @@ open("blog/index.html","w").write(idx)
 print("wrote blog/index.html")
 
 # ===================== SITEMAP =====================
-urls = [("/","1.0"),("/blog/","0.9")] + [(f"/blog/{s}","0.8") for s,_,_,_ in ARTICLES]
+urls = [("/","1.0"),("/es/","0.8"),("/blog/","0.9")] + [(f"/blog/{s}","0.8") for s,_,_,_ in ARTICLES]
 sm = '<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'
 for loc,pri in urls:
     sm += f'  <url><loc>{SITE}{loc}</loc><lastmod>{DATE}</lastmod><priority>{pri}</priority></url>\n'
