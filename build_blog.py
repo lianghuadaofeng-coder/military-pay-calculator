@@ -2026,6 +2026,127 @@ write("career-sea-pay-submarine-duty-pay.html",
                ("Does military pay differ by branch?","/blog/does-military-pay-differ-by-branch.html")],
       blurb="Career Sea Pay (up to ~$800/mo) and Sub Duty Pay ($75&ndash;$600+) &mdash; the Navy's extra money.")
 
+# ===================== PRACTICAL MONEY BATCH =====================
+# --- PPM / DITY move ---
+body = f'''<h1>PPM (DITY) Moves: How to Make Money on a Military Move</h1>
+<p class="meta">Updated {_D2}</p>
+<p class="lead">When you PCS, the government will move you &mdash; or pay <em>you</em> to do it yourself. A
+<strong>Personally Procured Move (PPM</strong>, formerly DITY) reimburses you <strong>95% of what the government would
+have paid</strong> a contractor. Move efficiently and the leftover is profit &mdash; often <strong>thousands of dollars</strong>.</p>
+<h2>How the money works</h2>
+<ul>
+<li>The military calculates the <strong>Government Constructive Cost (GCC)</strong> &mdash; what a contracted move of your
+authorized weight would cost.</li>
+<li>You're paid <strong>95% of the GCC</strong> as your PPM incentive, regardless of what you actually spend.</li>
+<li>Your <strong>profit = 95% of GCC &minus; your real costs</strong> (truck rental, fuel, boxes, labor, tolls).</li>
+</ul>
+<h2>A realistic example</h2>
+<p>Say your GCC for a mid-distance move of 8,000 lbs is $6,000. Your PPM incentive is <strong>$5,700</strong>. Rent a
+truck and do it yourself for $2,200 and you keep about <strong>$3,500</strong> &mdash; though part of the
+<em>incentive</em> is taxable income (the portion above your documented expenses). Keep every receipt.</p>
+<h2>Don't leave these on the table</h2>
+<ul>
+<li><strong>Advance Operating Allowance:</strong> request up to 60% of your estimated incentive upfront to cover truck and supplies.</li>
+<li><strong>Weight tickets:</strong> empty and full certified weigh tickets are mandatory &mdash; no tickets, no payment.</li>
+<li><strong>Pro-gear:</strong> professional gear and a spouse's pro-gear don't count against your weight allowance.</li>
+<li><strong>Partial PPM:</strong> let the government move the heavy stuff and PPM the rest &mdash; you still profit on your portion.</li>
+</ul>
+<h2>How it fits your PCS money</h2>
+<p>PPM profit stacks with your tax-free <a href="/blog/dislocation-allowance-dla-2026.html">Dislocation Allowance</a>,
+travel per diem, and mileage &mdash; a well-run PCS can net <strong>$5,000&ndash;$10,000+</strong> in combined
+entitlements and PPM profit.</p>
+{cta("Heading to a new duty station? Look up your new BAH before you sign a lease.", "/")}
+'''
+write("ppm-dity-move-make-money.html",
+      "PPM (DITY) Moves: How to Make Money on a Military PCS",
+      "A Personally Procured Move pays you 95% of the government's move cost — do it cheaply and keep the difference, often thousands. How the GCC, advance, weight tickets, and taxes work.",
+      "PPM Move", body,
+      faq=[("How much can you make on a PPM/DITY move?","You're paid 95% of what the government would pay a contractor; profit is that amount minus your real costs (truck, fuel, supplies) — commonly a few thousand dollars on a typical move."),
+           ("Is PPM money taxable?","The portion of your incentive above your documented moving expenses is taxable income — keep all receipts to minimize the taxable amount."),
+           ("Do I need weight tickets for a PPM?","Yes — certified empty and full weigh tickets are mandatory; without them you won't be paid.")],
+      related=[("Dislocation Allowance (DLA) 2026","/blog/dislocation-allowance-dla-2026.html"),
+               ("2026 BAH rates explained","/blog/2026-bah-rates-explained.html"),
+               ("BAH rates by location","/bah/")],
+      blurb="A PPM pays 95% of the government move cost &mdash; do it cheap and pocket thousands.")
+
+# --- Selling leave / terminal leave ---
+_slb = BP["E-5"]["6"]; _slday = _slb/30
+body = f'''<h1>Selling Military Leave vs Terminal Leave: What 30 Days Is Worth</h1>
+<p class="meta">Updated {_D2}</p>
+<p class="lead">When you separate or retire, accrued leave is money. You can <strong>sell it back</strong> for cash or burn
+it as <strong>terminal leave</strong> &mdash; and for most people, terminal leave is worth noticeably more. Here's the math.</p>
+<h2>What a day of leave is worth</h2>
+<p>Selling leave pays <strong>1 day of basic pay per day of leave</strong> &mdash; basic pay only, no BAH or BAS. For a
+2026 <a href="/blog/how-much-does-an-e5-make-2026.html">E-5 with 6 years</a> ({money(_slb)}/month basic):</p>
+<div class="tablewrap"><table class="pay"><thead><tr><th>Leave sold</th><th>Cash (basic pay only, taxable)</th></tr></thead><tbody>
+<tr><td>1 day</td><td>{money(_slday)}</td></tr>
+<tr><td>10 days</td><td>{money(_slday*10)}</td></tr>
+<tr><td>30 days</td><td>{money(_slday*30)}</td></tr>
+<tr><td>60 days (career cap)</td><td>{money(_slday*60)}</td></tr>
+</tbody></table></div>
+<h2>Why terminal leave usually wins</h2>
+<p>On <strong>terminal leave</strong>, you stay on active duty and keep drawing your <em>full</em> paycheck &mdash; basic
+pay <strong>plus tax-free BAH and BAS</strong> &mdash; while you're already done working (often job-hunting or starting a
+civilian job). Selling leave only pays the basic-pay portion. For our E-5 with BAH, 30 days of terminal leave is worth
+hundreds more than selling the same 30 days, because you keep the allowances.</p>
+<h2>The rules and limits</h2>
+<ul>
+<li><strong>60-day career cap</strong> on selling leave (war-time exceptions aside) &mdash; sell beyond that and it's lost.</li>
+<li>Sold leave is <strong>taxable</strong> (22% withholding); terminal-leave allowances stay tax-free.</li>
+<li>You can <strong>combine</strong>: take terminal leave and sell whatever you can't burn before your separation date.</li>
+<li>Don't lose leave to <strong>use/lose</strong> each October &mdash; see <a href="/blog/how-to-read-your-les.html">how to read your LES</a>.</li>
+</ul>
+{cta("Know your basic pay — it sets exactly what each leave day is worth.", "/")}
+'''
+write("selling-military-leave-terminal-leave.html",
+      "Selling Military Leave vs Terminal Leave: What 30 Days Is Worth",
+      f"Selling leave pays 1 day of basic pay per day (60-day career cap) — {money(_slday*30)} for an E-5's 30 days. Why terminal leave usually wins by keeping tax-free BAH and BAS.",
+      "Selling Leave", body,
+      faq=[("How much is military leave worth?",f"Selling leave pays one day of basic pay per day of leave (basic pay only). For a 2026 E-5 with 6 years, 30 days is about {money(_slday*30)}, before taxes."),
+           ("Is it better to sell leave or take terminal leave?","Terminal leave usually wins — you keep drawing full pay including tax-free BAH and BAS while on leave, whereas selling leave pays only the basic-pay portion."),
+           ("How many days of leave can I sell?","Up to 60 days over a career (outside special wartime authorities); leave sold is taxed at the 22% supplemental rate.")],
+      related=[("How to read your LES","/blog/how-to-read-your-les.html"),
+               ("Military separation & severance pay","/blog/military-separation-severance-pay.html"),
+               ("How much does an E-5 make in 2026?","/blog/how-much-does-an-e5-make-2026.html")],
+      blurb=f"Selling leave = 1 day basic pay/day ({money(_slday*30)} for 30 days) &mdash; but terminal leave usually wins.")
+
+# --- Paycheck troubleshooting ---
+body = f'''<h1>Why Is My Military Paycheck Different This Month? 9 Common Reasons</h1>
+<p class="meta">Updated {_D2}</p>
+<p class="lead">Your deposit looked smaller (or bigger) than usual and nothing obvious changed. Military pay shifts for
+a handful of predictable reasons &mdash; here's how to diagnose it from your <a href="/blog/how-to-read-your-les.html">LES</a>.</p>
+<h2>Common reasons your pay changed</h2>
+<ol>
+<li><strong>Mid-month vs end-of-month split.</strong> You're paid twice a month; the two halves aren't always equal,
+especially the month a change takes effect. See the <a href="/blog/military-pay-dates-2026.html">2026 pay calendar</a>.</li>
+<li><strong>A pay started or stopped.</strong> FSA, flight pay, sea pay, or hardship pay beginning/ending with orders is the
+#1 cause &mdash; check the ENTITLEMENTS and REMARKS sections.</li>
+<li><strong>Years-of-service step.</strong> Hitting your 2/3/4/6-year mark bumps basic pay (driven by your PEBD).</li>
+<li><strong>Promotion (or reduction).</strong> A new rank changes both basic pay and BAH.</li>
+<li><strong>BAH change.</strong> A PCS, a dependency change (marriage, new child), or moving on/off base all change BAH.</li>
+<li><strong>Tax-withholding change.</strong> A new W-4, a state-of-residence change, or crossing a wage threshold.</li>
+<li><strong>TSP change.</strong> Adjusting your contribution %, or hitting the annual limit (contributions stop, pay rises).</li>
+<li><strong>A debt or allotment.</strong> A new allotment, a tuition-assistance recoupment, or a pay debt collection.</li>
+<li><strong>Leave sold or advance pay.</strong> Selling leave, taking advance pay, or a PPM advance shows up as a one-time swing.</li>
+</ol>
+<h2>How to diagnose it in 60 seconds</h2>
+<p>Pull this month's and last month's LES side by side and compare line by line. The difference is almost always a single
+new or missing ENTITLEMENT or DEDUCTION &mdash; the <strong>REMARKS</strong> block usually explains starts, stops, and debts.
+If a special pay stopped that shouldn't have, see your finance office with your orders.</p>
+{cta("Compare your LES against an independent estimate of what you should be paid.", "/")}
+'''
+write("why-is-my-military-paycheck-different.html",
+      "Why Is My Military Paycheck Different This Month? 9 Reasons",
+      "Military pay changes for predictable reasons: mid/end-month split, a special pay starting or stopping, a years-of-service step, BAH change, tax or TSP changes, or a new debt/allotment. How to diagnose it.",
+      "Paycheck Changed", body,
+      faq=[("Why is my military paycheck smaller this month?","Most often a special pay stopped (FSA, flight, sea pay), a new deduction or debt started, a TSP/tax change, or simply the mid-month vs end-of-month split. Compare this and last month's LES line by line."),
+           ("Why did my pay go up?","Common causes: a years-of-service pay step, a promotion, a BAH increase from a PCS or dependency change, or hitting your TSP annual limit so contributions stopped."),
+           ("Where do I see what changed on my LES?","The ENTITLEMENTS and DEDUCTIONS lines show what's different; the REMARKS section explains starts, stops, and debts.")],
+      related=[("How to read your LES","/blog/how-to-read-your-les.html"),
+               ("2026 military pay dates","/blog/military-pay-dates-2026.html"),
+               ("Special pays guide","/blog/military-special-pays-guide.html")],
+      blurb="9 predictable reasons your deposit changed &mdash; and how to diagnose it from your LES.")
+
 # ===================== POLICY / NEWS INTERPRETATION PAGES =====================
 NEWS_DATE = "2026-06-10"
 
