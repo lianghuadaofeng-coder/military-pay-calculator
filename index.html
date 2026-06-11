@@ -3,6 +3,7 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<script>try{if(new URLSearchParams(location.search).has("embed"))document.documentElement.classList.add("embed");}catch(e){}</script>
 <title>U.S. Military Pay Calculator 2026 — Active Duty & Reserve Take-Home Pay</title>
 <meta name="description" content="Free 2026 U.S. military pay calculator. Estimate monthly and annual take-home pay — basic pay, BAH by ZIP code, BAS, special pays, COLA, federal/FICA/state tax, TSP and SGLI. Supports active duty and Reserve/National Guard drill pay and retirement points." />
 <meta name="keywords" content="military pay calculator, 2026 military pay, BAH calculator, drill pay, reserve pay, BAS, military take home pay, military tax calculator" />
@@ -151,6 +152,17 @@
   .toolbar button:hover{background:var(--soft)}
   .toolbar #resetBtn{flex:0 0 76px;color:var(--muted)}
   .toolbar #themeBtn{flex:0 0 46px;font-size:1rem}
+  /* embed mode: strip chrome, show only the calculator + a credit link */
+  #embedCredit{display:none}
+  html.embed header.top, html.embed footer, html.embed .content, html.embed .toolbar{display:none!important}
+  html.embed main{margin-top:14px}
+  html.embed #embedCredit{display:block;text-align:center;padding:12px 16px 22px;font-size:.8rem;color:var(--muted)}
+  html.embed #embedCredit a{color:var(--brand);font-weight:700;text-decoration:none}
+  .embedbox{display:flex;gap:8px;align-items:stretch;margin-top:8px}
+  .embedbox code{flex:1;background:var(--soft);border:1px solid var(--line);border-radius:8px;
+    padding:10px 12px;font-size:.72rem;color:var(--ink);overflow:auto;white-space:nowrap;font-family:ui-monospace,Menlo,Consolas,monospace}
+  .embedbox button{flex:0 0 96px;border:1px solid var(--line);background:var(--input-bg);border-radius:8px;
+    color:var(--brand);font-weight:600;font-size:.8rem;cursor:pointer}
   .content{max-width:1120px;margin:0 auto 26px;padding:0 16px}
   .content .card .body{padding:6px 18px 14px}
   .content h2{font-size:1.15rem;color:var(--brand);margin:0 0 4px}
@@ -413,7 +425,21 @@
   </section>
 </main>
 
+<div id="embedCredit">
+  ★ Free calculator by <a href="https://militarypaytool.com" target="_blank" rel="noopener">militarypaytool.com</a> — 2026 U.S. military pay, active duty &amp; reserve
+</div>
+
 <section class="content">
+  <div class="card" style="margin-bottom:18px">
+    <h2 style="padding:16px 18px 0">Embed this calculator</h2>
+    <div class="body">
+      <p class="lead">Run a military blog or unit page? Drop this calculator into your site — free, no attribution required (but appreciated):</p>
+      <div class="embedbox">
+        <code id="embedCode">&lt;iframe src="https://militarypaytool.com/?embed=1" width="100%" height="1400" style="border:0;max-width:760px" title="U.S. Military Pay Calculator" loading="lazy"&gt;&lt;/iframe&gt;</code>
+        <button type="button" id="embedCopyBtn">Copy</button>
+      </div>
+    </div>
+  </div>
   <div class="card">
     <h2 style="padding:16px 18px 0">2026 Military Pay — Common Questions</h2>
     <div class="body">

@@ -697,6 +697,15 @@
     } else prompt("Copy this link:", url);
   });
   $("printBtn").addEventListener("click", function () { window.print(); });
+  (function () {
+    var eb = $("embedCopyBtn"); if (!eb) return;
+    eb.addEventListener("click", function () {
+      var code = $("embedCode").textContent, btn = this;
+      function ok() { var t = btn.textContent; btn.textContent = "✓ Copied"; setTimeout(function () { btn.textContent = t; }, 1600); }
+      if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(code).then(ok, function () { prompt("Copy embed code:", code); });
+      else prompt("Copy embed code:", code);
+    });
+  })();
   $("resetBtn").addEventListener("click", function () {
     try { localStorage.removeItem("milpay"); } catch (e) {}
     location.hash = ""; location.reload();
