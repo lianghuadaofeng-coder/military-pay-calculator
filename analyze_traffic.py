@@ -13,6 +13,7 @@ Needs a Cloudflare API token scoped to **Account Analytics: Read** (the DNS-edit
 token used for setup does NOT have this permission).
 """
 import os, sys, json, datetime, urllib.request
+from datetime import timezone
 
 ACCOUNT_ID = "7b9408ee5277084a04365803847d2e16"
 SITE_TAG   = "c43478f52cc24acbba0aa708dac34c10"   # Cloudflare Web Analytics beacon site tag
@@ -49,7 +50,7 @@ def category_for(path):
     return "Other"
 
 def fetch(token, days):
-    to   = datetime.datetime.utcnow()
+    to   = datetime.datetime.now(timezone.utc)
     frm  = to - datetime.timedelta(days=days)
     q = """
     query($acct:String!,$site:String!,$from:Time!,$to:Time!){
