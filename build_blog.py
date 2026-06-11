@@ -323,6 +323,208 @@ write("reserve-drill-pay-explained.html",
                ("How much does an E-5 make in 2026?","/blog/how-much-does-an-e5-make-2026.html")],
       blurb="How Reserve/Guard drill pay works — 1/30 of basic pay per period, plus retirement points.")
 
+# ===================== RANK ARTICLE HELPER =====================
+DEFAULT_RELATED = [("2026 military pay chart (all ranks)","/blog/2026-military-pay-chart.html"),
+                   ("2026 BAH rates explained","/blog/2026-bah-rates-explained.html"),
+                   ("2026 military pay raise (3.8%)","/blog/2026-military-pay-raise.html")]
+
+def rank_article(grade, name, slug, cols, ex_col, branch, related=None):
+    vals=[BP[grade][c] for c in cols if BP[grade].get(c) is not None]
+    lo,hi=money(min(vals)),money(max(vals))
+    ex=BP[grade][ex_col]; exyr=int(round(ex*12))
+    an="an" if name[0].upper() in "AEIOU" else "a"
+    bas = "$476.95/month (enlisted)" if grade[0]=="E" else "$328.48/month (officer)"
+    excol_lbl = "less than 2 years" if ex_col=="<2" else f"{ex_col} years"
+    body=f'''<h1>How Much Does {name} ({grade}) Make in 2026?</h1>
+<p class="meta">Updated {DATE}</p>
+<p class="lead">In 2026 <strong>{name} ({grade})</strong> earns between <strong>{lo} and {hi} per month</strong> in
+basic pay, depending on years of service &mdash; plus tax-free BAH and BAS that raise real take-home pay further.</p>
+<p>{branch}</p>
+<h2>2026 {grade} basic pay by years of service</h2>
+{rank_table(grade, cols)}
+<p>{an.capitalize()} {grade} with {excol_lbl} of service earns <strong>{money(ex)}/month</strong> in basic pay
+(about ${exyr:,}/year) before allowances.</p>
+{cta(f"See your exact {grade} take-home pay &mdash; pre-filled for {grade}, just add your ZIP.", deep(grade))}
+<h2>{grade} pay beyond basic pay</h2>
+<p>Basic pay is only part of the paycheck. Most {grade}s also receive tax-free <strong>BAH</strong> (housing &mdash;
+varies by ZIP code and dependents) and <strong>BAS</strong> ({bas}). Because allowances are not taxed, a {grade}'s real
+take-home pay is noticeably higher than the basic-pay figure alone.</p>
+'''
+    first=name.split("/")[0].strip()
+    faq=[(f"How much does {grade} make in 2026?",
+          f"{an.capitalize()} {grade} ({first}) earns <b>{lo} to {hi} per month</b> in basic pay in 2026, plus tax-free BAH and BAS."),
+         (f"How much does a {grade} make with {ex_col if ex_col!='<2' else 'under 2'} years?",
+          f"About <b>{money(ex)} per month</b> in basic pay, plus allowances.")]
+    write(slug, f"How Much Does {name} ({grade}) Make in 2026?",
+          f"A 2026 {grade} ({first}) earns {lo}-{hi}/month basic pay plus tax-free BAH and BAS. Full {grade} pay by years of service and take-home.",
+          f"{grade} Pay", body, faq=faq, related=related or DEFAULT_RELATED,
+          blurb=f"A 2026 {grade} ({first}) makes {lo}&ndash;{hi}/mo basic pay, plus BAH &amp; BAS.")
+
+# ===================== 6 RANK ARTICLES =====================
+rank_article("E-1","a Private / Airman Basic / Seaman Recruit","how-much-does-an-e1-make-2026.html",
+             ["<2"], "<2",
+             "E-1 is the entry rank you hold in basic training and your first months of service. E-1 pay is a single flat rate that does not change with years of service.")
+rank_article("E-3","a Private First Class / Lance Corporal / Airman First Class","how-much-does-an-e3-make-2026.html",
+             ["<2","2","3","4"], "2",
+             "E-3 is typically reached within the first year or two of service.")
+rank_article("E-6","a Staff Sergeant / Petty Officer First Class","how-much-does-an-e6-make-2026.html",
+             ["<2","2","4","6","8","10","12","14","16","18","20"], "8",
+             "E-6 is a senior non-commissioned officer (NCO) grade, usually reached after 6&ndash;10 years.")
+rank_article("E-7","a Sergeant First Class / Gunnery Sergeant / Chief Petty Officer","how-much-does-an-e7-make-2026.html",
+             ["<2","2","4","6","8","10","12","14","16","18","20","22","24"], "12",
+             "E-7 is a senior NCO grade and a major career milestone, typically reached after 10&ndash;14 years.")
+rank_article("O-1","a Second Lieutenant / Ensign","how-much-does-an-o1-make-2026.html",
+             ["<2","2","3"], "<2",
+             "O-1 is the entry commissioned-officer grade for new lieutenants and ensigns straight out of commissioning. O-1 basic pay stops increasing after 3 years (most officers promote to O-2 well before then).")
+rank_article("O-3","a Captain / Lieutenant","how-much-does-an-o3-make-2026.html",
+             ["<2","2","3","4","6","8","10","12","14"], "4",
+             "O-3 (Army/Air Force/Marine Captain or Navy Lieutenant) is the rank most company-grade officers hold for several years.")
+
+# ===================== 7. PAY RAISE =====================
+def inc(g,c):
+    v=BP[g][c]; return v - v/1.038
+body=f'''<h1>2026 Military Pay Raise: 3.8% Increase Explained</h1>
+<p class="meta">Updated {DATE} &middot; Effective January 1, 2026</p>
+<p class="lead">Military basic pay rose <strong>3.8% for 2026</strong>, effective January 1, 2026. The increase applies to
+every rank and shows up on the mid-January paycheck.</p>
+<h2>What the 3.8% raise means in dollars</h2>
+<p>The percentage is the same for everyone, but the dollar amount depends on your basic pay. A few examples (per month):</p>
+<div class="tablewrap"><table class="pay"><thead><tr><th>Rank (years)</th><th>2026 basic pay</th><th>Monthly raise</th></tr></thead><tbody>
+<tr><td>E-4 (over 4)</td><td>{money(BP["E-4"]["4"])}</td><td>+{money(inc("E-4","4"))}</td></tr>
+<tr><td>E-5 (over 6)</td><td>{money(BP["E-5"]["6"])}</td><td>+{money(inc("E-5","6"))}</td></tr>
+<tr><td>E-7 (over 12)</td><td>{money(BP["E-7"]["12"])}</td><td>+{money(inc("E-7","12"))}</td></tr>
+<tr><td>O-3 (over 6)</td><td>{money(BP["O-3"]["6"])}</td><td>+{money(inc("O-3","6"))}</td></tr>
+</tbody></table></div>
+<h2>How the military pay raise is set</h2>
+<p>By law, the annual military pay raise is tied to the <strong>Employment Cost Index (ECI)</strong>, which tracks
+private-sector wage growth. Congress and the President can approve a different figure, but 3.8% is the 2026 increase to
+basic pay.</p>
+<h2>What about BAH and BAS?</h2>
+<p>Allowances change on their own schedules. <strong>BAH</strong> is updated each January based on local housing costs
+(up about 4.2% on average for 2026), and <strong>BAS</strong> rose 2.4% (to $476.95 enlisted / $328.48 officer). So your
+total raise can differ from 3.8% depending on where you live.</p>
+{cta("See your 2026 pay with the new rates applied.", "/")}
+'''
+write("2026-military-pay-raise.html",
+      "2026 Military Pay Raise: 3.8% Increase Explained",
+      "The 2026 military pay raise is 3.8%, effective January 1, 2026. See what the increase means in dollars by rank, plus BAH and BAS changes.",
+      "Pay Raise", body,
+      faq=[("How much is the 2026 military pay raise?","Basic pay increased <b>3.8%</b> for 2026."),
+           ("When does the 2026 pay raise start?","It took effect <b>January 1, 2026</b> and appears on the mid-January paycheck."),
+           ("Did BAH and BAS also increase?","Yes. BAH rose about 4.2% on average and BAS rose 2.4% to $476.95 (enlisted) and $328.48 (officer).")],
+      related=[("2026 military pay chart (all ranks)","/blog/2026-military-pay-chart.html"),
+               ("2026 BAS rates explained","/blog/2026-bas-rates.html"),
+               ("2026 BAH rates explained","/blog/2026-bah-rates-explained.html")],
+      blurb="The 2026 raise is 3.8% — see the dollar increase by rank.")
+
+# ===================== 8. BAS =====================
+body=f'''<h1>2026 BAS Rates: Basic Allowance for Subsistence</h1>
+<p class="meta">Updated {DATE}</p>
+<p class="lead">For 2026, <strong>Basic Allowance for Subsistence (BAS)</strong> is <strong>$476.95/month for enlisted</strong>
+members and <strong>$328.48/month for officers</strong> &mdash; a 2.4% increase over 2025. BAS is tax-free.</p>
+<h2>2026 BAS rates</h2>
+<div class="tablewrap"><table class="pay"><thead><tr><th>Category</th><th>2026 monthly BAS</th></tr></thead><tbody>
+<tr><td>Enlisted</td><td>$476.95</td></tr>
+<tr><td>Officer</td><td>$328.48</td></tr>
+</tbody></table></div>
+<h2>What BAS is for</h2>
+<p>BAS is meant to offset the cost of a service member's own meals. Unlike BAH, it does <strong>not</strong> vary by rank
+(every enlisted member gets the same rate; every officer gets the same rate) or by location, and it is the same whether or
+not you have dependents.</p>
+<h2>Is BAS taxable?</h2>
+<p>No &mdash; like BAH, <strong>BAS is not subject to federal income tax</strong>. It appears as a separate tax-free line
+on your Leave and Earnings Statement (LES).</p>
+<h2>Who receives BAS?</h2>
+<p>Most active-duty members receive full BAS. Some enlisted members in certain meal situations (for example, those required
+to eat in a government dining facility) may have BAS partially offset. Officers always receive the officer rate.</p>
+{cta("See your full 2026 pay including BAS, BAH, and taxes.", "/")}
+'''
+write("2026-bas-rates.html",
+      "2026 BAS Rates: Basic Allowance for Subsistence ($476.95 / $328.48)",
+      "2026 BAS rates: $476.95/month for enlisted and $328.48/month for officers, up 2.4%. BAS is tax-free and does not vary by rank or location.",
+      "BAS Rates", body,
+      faq=[("What is the 2026 BAS rate?","$476.95/month for enlisted members and $328.48/month for officers."),
+           ("Is BAS taxable?","No. BAS is not subject to federal income tax."),
+           ("Does BAS change with rank?","No. All enlisted members receive the same BAS rate, and all officers receive the same rate, regardless of grade or location.")],
+      related=[("2026 military pay chart (all ranks)","/blog/2026-military-pay-chart.html"),
+               ("2026 BAH rates explained","/blog/2026-bah-rates-explained.html"),
+               ("2026 military pay raise (3.8%)","/blog/2026-military-pay-raise.html")],
+      blurb="2026 BAS: $476.95 enlisted, $328.48 officer — tax-free.")
+
+# ===================== 9. BAH with vs without dependents =====================
+body=f'''<h1>BAH With vs Without Dependents: What's the Difference?</h1>
+<p class="meta">Updated {DATE}</p>
+<p class="lead">Every BAH rate comes in two versions: <strong>with dependents</strong> and <strong>without dependents</strong>.
+The with-dependents rate is higher &mdash; often <strong>$200&ndash;$600+ more per month</strong> &mdash; but it does not
+change based on how many dependents you have.</p>
+<h2>How the two rates work</h2>
+<p>For each pay grade and location, the Department of Defense publishes one "with dependents" rate and one "without
+dependents" rate. If you have <em>any</em> qualifying dependent (a spouse or child), you receive the higher rate. Having
+three children pays the same BAH as having one.</p>
+<h2>How much more is the with-dependents rate?</h2>
+<p>The gap varies by grade and location, but the with-dependents rate is typically a few hundred dollars per month higher.
+Junior enlisted members usually see the largest percentage difference. Enter your ZIP code and toggle dependent status in
+the <a href="/">calculator</a> to see the exact difference for your situation.</p>
+{cta("Compare your BAH with and without dependents by ZIP code.", "/")}
+<h2>Special situations</h2>
+<ul>
+<li><strong>Dual-military couples:</strong> rules determine who claims the with-dependents rate; both generally cannot claim
+the same dependent.</li>
+<li><strong>Geographic bachelor:</strong> if your family lives apart from your duty station, special rules may apply.</li>
+<li><strong>Single with no dependents:</strong> you receive the without-dependents rate, and junior members may live in
+the barracks and not receive BAH at all.</li>
+</ul>
+<p>BAH is tax-free either way &mdash; see our <a href="/blog/2026-bah-rates-explained.html">2026 BAH guide</a> for the basics.</p>
+'''
+write("bah-with-vs-without-dependents.html",
+      "BAH With vs Without Dependents: What's the Difference?",
+      "The with-dependents BAH rate is higher than without dependents — often $200–$600+/month more — but it doesn't change with the number of dependents. Compare by ZIP.",
+      "BAH Dependents", body,
+      faq=[("How much more is BAH with dependents?","It varies by grade and location, but the with-dependents rate is typically a few hundred dollars per month higher than the without-dependents rate."),
+           ("Does BAH increase with more children?","No. BAH pays the same with-dependents rate whether you have one dependent or several."),
+           ("Is BAH taxable?","No. BAH is tax-free for both the with- and without-dependents rates.")],
+      related=[("2026 BAH rates explained","/blog/2026-bah-rates-explained.html"),
+               ("2026 military pay chart (all ranks)","/blog/2026-military-pay-chart.html"),
+               ("How much does an E-5 make in 2026?","/blog/how-much-does-an-e5-make-2026.html")],
+      blurb="With-dependents BAH is higher — but doesn't scale with number of dependents.")
+
+# ===================== 10. States that don't tax military pay =====================
+body=f'''<h1>States That Don't Tax Military Pay (2026)</h1>
+<p class="meta">Updated {DATE}</p>
+<p class="lead">Where you claim <strong>legal residence</strong> determines whether your military pay is taxed by a state.
+Nine states have <strong>no state income tax at all</strong>, and many more fully exempt active-duty military pay.</p>
+<h2>States with no income tax (military pay included)</h2>
+<p>These nine states do not tax wage income, so military pay is state-tax-free:</p>
+<ul>
+<li>Alaska</li><li>Florida</li><li>Nevada</li><li>New Hampshire</li><li>South Dakota</li>
+<li>Tennessee</li><li>Texas</li><li>Washington</li><li>Wyoming</li>
+</ul>
+<p class="callout tip">Because of this, many service members establish <strong>legal residence</strong> in a no-tax state
+(such as Texas or Florida) while stationed elsewhere &mdash; legal under the Servicemembers Civil Relief Act (SCRA).</p>
+<h2>States that exempt active-duty military pay</h2>
+<p>Beyond the nine no-tax states, a large and growing number of states <strong>fully exempt active-duty military pay</strong>
+from income tax even though they tax other income. The exact list and conditions change over time, so confirm with your
+state's current rules or a base legal/tax office.</p>
+<h2>How "state of legal residence" works</h2>
+<p>Thanks to the SCRA, you keep your <strong>state of legal residence (SLR / home of record domicile)</strong> when you move
+on military orders &mdash; you are not forced to switch to the state where you're stationed. Your SLR is the state that taxes
+your military pay (or doesn't).</p>
+{cta("Set your state in the calculator to see your real take-home pay.", "/")}
+<p style="margin-top:14px"><em>This is general information, not tax advice. Verify your situation with a qualified tax
+professional or your installation's legal office.</em></p>
+'''
+write("states-that-dont-tax-military-pay.html",
+      "States That Don't Tax Military Pay (2026)",
+      "Nine states have no income tax (Alaska, Florida, Nevada, New Hampshire, South Dakota, Tennessee, Texas, Washington, Wyoming), and many more exempt active-duty military pay.",
+      "State Taxes", body,
+      faq=[("Which states don't tax military pay?","Nine states have no income tax at all: Alaska, Florida, Nevada, New Hampshire, South Dakota, Tennessee, Texas, Washington, and Wyoming. Many other states also fully exempt active-duty military pay."),
+           ("Can I keep a no-tax state as my residence while stationed elsewhere?","Yes. Under the Servicemembers Civil Relief Act (SCRA) you keep your state of legal residence when you move on military orders."),
+           ("Is military pay taxed federally?","Yes, basic pay and taxable special pays are subject to federal income tax, but BAH and BAS are tax-free.")],
+      related=[("2026 military pay chart (all ranks)","/blog/2026-military-pay-chart.html"),
+               ("How much does an E-5 make in 2026?","/blog/how-much-does-an-e5-make-2026.html"),
+               ("2026 BAH rates explained","/blog/2026-bah-rates-explained.html")],
+      blurb="The 9 no-income-tax states + how military state residence (SCRA) works.")
+
 # ===================== BLOG INDEX =====================
 cards = ""
 for slug,title,desc,blurb in ARTICLES:
