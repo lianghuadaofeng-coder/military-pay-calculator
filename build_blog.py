@@ -695,6 +695,152 @@ write("sgli-cost-2026.html",
                ("2026 military pay raise","/blog/2026-military-pay-raise.html")],
       blurb="SGLI: $26/mo for $500k — 2026 premium table by coverage level.")
 
+# ===================== POLICY / NEWS INTERPRETATION PAGES =====================
+NEWS_DATE = "2026-06-10"
+
+def t27(g, c, pct):
+    return BP[g][c] * (1 + pct)
+
+# --- 1. 2027 pay raise tracker (flagship news page) ---
+rows27 = ""
+for g, c, pct in [("E-3","2",.07),("E-4","4",.07),("E-5","4",.07),("E-5","6",.07),
+                  ("E-6","8",.06),("E-7","12",.06),("O-1","2",.06),("O-3","6",.06),
+                  ("O-4","10",.05),("O-5","16",.05)]:
+    yos = "&lt;2" if c=="<2" else c
+    rows27 += (f"<tr><td>{g} (over {yos} yrs)</td><td>{int(pct*100)}%</td>"
+               f"<td>{money(BP[g][c])}</td><td>{money(t27(g,c,pct))}</td>"
+               f"<td>+{money(t27(g,c,pct)-BP[g][c])}</td></tr>")
+body = f'''<h1>2027 Military Pay Raise: 7% / 6% / 5% Tiered Proposal (Tracker)</h1>
+<p class="meta">Updated {NEWS_DATE} &middot; Status: <strong>proposal &mdash; not yet law</strong></p>
+<p class="lead">The proposed <strong>2027 military pay raise is tiered</strong>: <strong>7% for E-5 and below, 6% for
+E-6 through O-3, and 5% for O-4 and above</strong>, effective January 1, 2027. The House Armed Services Committee
+approved it on <strong>June 5, 2026</strong> as part of the $1.15&nbsp;trillion FY2027 National Defense Authorization
+Act (NDAA) &mdash; the next step is a House floor vote expected in mid-July.</p>
+<p class="callout"><strong>Status tracker:</strong> White House budget request (April 2026) &rarr; ✅ House Armed
+Services Committee markup passed (June 5, 2026) &rarr; ⏳ House floor vote (expected mid-July) &rarr; ⏳ Senate version
+&rarr; ⏳ Conference &amp; President's signature (typically <strong>December 2026</strong>). Numbers can still change.</p>
+<h2>Who gets which raise</h2>
+<ul>
+<li><strong>7%</strong> &mdash; junior enlisted, <strong>E-1 through E-5</strong></li>
+<li><strong>6%</strong> &mdash; <strong>E-6 through O-3</strong> (senior enlisted and company-grade officers)</li>
+<li><strong>5%</strong> &mdash; <strong>O-4 and above</strong> (field-grade and flag officers)</li>
+</ul>
+<p>This is the second time in recent years Congress has targeted bigger raises at junior troops, and it would
+comfortably beat the across-the-board <a href="/blog/2026-military-pay-raise.html">3.8% raise of 2026</a>.</p>
+<h2>What the proposal would mean in dollars (monthly basic pay)</h2>
+<div class="tablewrap"><table class="pay"><thead><tr><th>Rank (years)</th><th>Proposed raise</th>
+<th>2026 basic pay</th><th>Est. 2027 basic pay</th><th>Monthly gain</th></tr></thead><tbody>{rows27}</tbody></table></div>
+<p class="callout">Estimates apply the proposed tier to the 2026 pay table and assume the same years-of-service steps.
+Final 2027 tables will be published after the NDAA is signed; exact treatment of warrant officers will be confirmed in
+the final law.</p>
+{cta("See your current 2026 take-home pay while the 2027 raise works through Congress.", "/")}
+<h2>When will it be final?</h2>
+<p>The NDAA usually becomes law in <strong>late December</strong>, with the raise taking effect <strong>January 1,
+2027</strong> and appearing on the mid-January paycheck. We'll update this page as the bill moves. Bookmark it or check
+the <a href="/blog/fy2027-ndaa-pay-benefits.html">full FY2027 NDAA benefits roundup</a>.</p>
+'''
+write("2027-military-pay-raise-tracker.html",
+      "2027 Military Pay Raise: 7%/6%/5% Tiered Proposal (Tracker & Charts)",
+      "The proposed 2027 military pay raise is tiered: 7% for E-5 and below, 6% for E-6–O-3, 5% for O-4+. Passed House committee June 5, 2026. See estimated 2027 pay by rank.",
+      "2027 Raise", body,
+      faq=[("How much is the 2027 military pay raise?","The current proposal is tiered: <b>7% for E-5 and below, 6% for E-6 through O-3, and 5% for O-4 and above</b>, effective January 1, 2027. It is not yet law."),
+           ("Is the 2027 pay raise approved?","Not yet. The House Armed Services Committee approved it on June 5, 2026; it still needs the House floor, the Senate, and the President's signature — typically completed in December."),
+           ("Why do junior enlisted get a bigger raise?","Congress has prioritized junior-enlisted pay to address recruiting, retention, and food-insecurity concerns among the most junior troops.")],
+      related=[("FY2027 NDAA: every pay & benefits change","/blog/fy2027-ndaa-pay-benefits.html"),
+               ("2026 military pay chart (current rates)","/blog/2026-military-pay-chart.html"),
+               ("2026 military pay raise (3.8%)","/blog/2026-military-pay-raise.html")],
+      blurb="Proposed: 7% (E-5 &amp; below), 6% (E-6&ndash;O-3), 5% (O-4+) &mdash; tracker with estimated 2027 pay.")
+
+# --- 2. FY2027 NDAA benefits roundup ---
+body = f'''<h1>FY2027 NDAA: Every Pay &amp; Benefits Change That Affects Your Wallet</h1>
+<p class="meta">Updated {NEWS_DATE} &middot; Based on the House Armed Services Committee bill passed June 5, 2026</p>
+<p class="lead">The House Armed Services Committee approved the <strong>fiscal 2027 National Defense Authorization Act</strong>
+on June 5, 2026 &mdash; a $1.15&nbsp;trillion bill packed with pay and quality-of-life provisions. Here's what's in it for
+service members and families, in plain English. <em>Everything below is proposed, not yet law.</em></p>
+<h2>1. Tiered pay raise: 7% / 6% / 5%</h2>
+<p>The headline item: <strong>7% for E-5 and below, 6% for E-6 through O-3, 5% for O-4 and above</strong>, effective
+January 1, 2027. Full details and estimated pay tables in our
+<a href="/blog/2027-military-pay-raise-tracker.html">2027 pay raise tracker</a>.</p>
+<h2>2. BAH no longer counts against food assistance (Basic Needs Allowance)</h2>
+<p>The bill would <strong>remove BAH from the income calculation for the Basic Needs Allowance (BNA)</strong> &mdash; the
+food-assistance benefit for low-income military families. Today, counting tax-free housing allowance as "income" pushes
+many families above the eligibility line. Excluding it would make <strong>far more junior families eligible</strong>.
+The same provision passed the House last year but was dropped from the final FY2026 bill &mdash; advocates are pushing
+to keep it in this time.</p>
+<h2>3. Bereavement leave for pregnancy loss</h2>
+<p>Active-duty and reserve members would receive <strong>bereavement leave after a miscarriage or stillbirth</strong> —
+a first for the military leave system.</p>
+<h2>4. Health care access</h2>
+<ul>
+<li><strong>Physical therapy without a referral</strong> &mdash; direct access instead of waiting on a PCM referral.</li>
+<li><strong>Tricare fixes</strong> &mdash; faster complaint processing and pharmacy audits.</li>
+</ul>
+<h2>5. Child care</h2>
+<p>Expanded options, including allowing <strong>au pairs</strong> &mdash; aimed at the long waitlists at base CDCs.</p>
+<h2>6. Bigger force</h2>
+<p>End strength would grow by <strong>40,100 active-duty members</strong> across the services &mdash; relevant if you're
+watching promotion timing and retention bonuses.</p>
+<p class="callout"><strong>What happens next:</strong> House floor vote expected mid-July &rarr; Senate writes its own
+version &rarr; the two are reconciled &rarr; signed into law, usually <strong>December 2026</strong>. Provisions can be
+added or dropped at any stage &mdash; we'll keep this page updated.</p>
+{cta("Calculate your current 2026 take-home pay while Congress finalizes 2027.", "/")}
+'''
+write("fy2027-ndaa-pay-benefits.html",
+      "FY2027 NDAA: Every Pay & Benefits Change for Service Members",
+      "The FY2027 NDAA passed House committee June 5, 2026: tiered 7%/6%/5% pay raise, BAH excluded from Basic Needs Allowance, bereavement leave, PT without referral, child care expansion.",
+      "FY27 NDAA", body,
+      faq=[("What is in the FY2027 NDAA for military pay?","A tiered raise (7% E-5 and below, 6% E-6–O-3, 5% O-4+), removing BAH from Basic Needs Allowance income calculations, bereavement leave for pregnancy loss, direct-access physical therapy, and expanded child care."),
+           ("Is the FY2027 NDAA law yet?","No. The House Armed Services Committee passed it June 5, 2026. It still needs the full House, the Senate, and the President's signature — typically by late December."),
+           ("What is the Basic Needs Allowance change?","The bill would stop counting tax-free BAH as income when determining eligibility for the Basic Needs Allowance, making many more junior enlisted families eligible for the food-assistance benefit.")],
+      related=[("2027 pay raise tracker (7%/6%/5%)","/blog/2027-military-pay-raise-tracker.html"),
+               ("BAH reform: from 95% back to 100%?","/blog/bah-reform-95-to-100.html"),
+               ("2026 military pay chart","/blog/2026-military-pay-chart.html")],
+      blurb="Plain-English breakdown of the June 5, 2026 House bill: raise, BNA fix, leave, health care.")
+
+# --- 3. BAH reform: 95% -> 100% ---
+body = f'''<h1>BAH Reform: From 95% Back to 100% &mdash; What's Actually Changing</h1>
+<p class="meta">Updated {NEWS_DATE}</p>
+<p class="lead">Since 2019, BAH has covered only <strong>95% of estimated housing costs</strong> &mdash; service members
+absorb the other 5% out of pocket (about <strong>$93&ndash;$212 per month</strong> in 2026, depending on grade and
+location). Momentum is building in Washington to fix that, and real money has already moved.</p>
+<h2>Where things stand</h2>
+<ul>
+<li><strong>2026 rates:</strong> BAH rose <a href="/blog/2026-bah-rates-explained.html">about 4.2% on average</a> &mdash;
+a smaller bump than the 5.4% increases of 2024 and 2025 &mdash; and still covers 95% of calculated costs.</li>
+<li><strong>$2.9 billion supplemental:</strong> the 2025 "One Big Beautiful Bill" reconciliation package included
+$2.9&nbsp;billion in extra BAH funding &mdash; the first concrete step toward restoring the benefit toward 100%.</li>
+<li><strong>FY2026 NDAA study:</strong> Congress ordered a study on improving how BAH is calculated so rates keep up
+with actual rental markets.</li>
+<li><strong>Compensation review recommendations:</strong> the Pentagon's quadrennial compensation review recommended
+replacing the current BAH model with a more reliable one &mdash; including scrapping the six housing profiles in favor
+of a simpler bedroom-count standard.</li>
+</ul>
+<h2>Why the 5% matters</h2>
+<p>Five percent sounds small, but BAH is the second-largest piece of most paychecks. For an E-5 with dependents in a
+high-cost area, 5% of housing costs can be $150&ndash;$200+ every month &mdash; roughly an entire car payment over a year.
+Restoring 100% coverage is effectively a tax-free raise concentrated where housing is most expensive.</p>
+<h2>What it means for you right now</h2>
+<ul>
+<li>Nothing changes automatically &mdash; 2026 rates remain at 95% cost coverage.</li>
+<li>If the reform advances, expect it through an NDAA or budget bill &mdash; watch the
+<a href="/blog/fy2027-ndaa-pay-benefits.html">FY2027 NDAA</a>.</li>
+<li>Your individual rate still depends on ZIP code, grade, and dependents &mdash; check yours on the
+<a href="/bah/">BAH rates by location</a> pages or in the <a href="/">calculator</a>.</li>
+</ul>
+{cta("Look up your current BAH and full take-home pay by ZIP code.", "/")}
+'''
+write("bah-reform-95-to-100.html",
+      "BAH Reform: From 95% Back to 100% — What's Actually Changing",
+      "BAH covers only 95% of housing costs since 2019 — $93–$212/month out of pocket. A $2.9B funding boost, a congressional study, and Pentagon review recommendations point toward restoring 100%.",
+      "BAH Reform", body,
+      faq=[("Why does BAH only cover 95% of housing costs?","A 2019 cost-saving change set BAH at 95% of estimated local housing costs, leaving members to absorb the remaining 5% — about $93–$212 per month in 2026."),
+           ("Is BAH going back to 100%?","Not yet, but momentum is building: a $2.9 billion supplemental was funded in 2025, Congress ordered a study of the BAH formula, and the Pentagon's compensation review recommended a better model."),
+           ("How much is the 5% out-of-pocket in dollars?","Between roughly $93 and $212 per month in 2026, depending on pay grade and location.")],
+      related=[("2026 BAH rates explained","/blog/2026-bah-rates-explained.html"),
+               ("BAH rates by location (299 cities)","/bah/"),
+               ("FY2027 NDAA benefits roundup","/blog/fy2027-ndaa-pay-benefits.html")],
+      blurb="BAH has covered 95% since 2019 ($93&ndash;$212/mo out of pocket) &mdash; the push to restore 100%.")
+
 # ===================== BLOG INDEX =====================
 cards = ""
 for slug,title,desc,blurb in ARTICLES:

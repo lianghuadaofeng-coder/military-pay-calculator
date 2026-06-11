@@ -18,6 +18,12 @@ averages ~4.2% higher). Drill pay: one 4-hour drill period = 1/30 of monthly bas
 - [BAH rates by location](https://militarypaytool.com/bah/): rate tables for 299 military housing areas, every grade, with/without dependents
 - [All pay guides](https://militarypaytool.com/blog/): plain-English articles on military pay
 
+## Policy news & interpretation (updated June 2026)
+
+- [2027 military pay raise tracker](https://militarypaytool.com/blog/2027-military-pay-raise-tracker.html): proposed tiered raise — 7% for E-5 and below, 6% for E-6–O-3, 5% for O-4+; passed House committee June 5, 2026; not yet law
+- [FY2027 NDAA benefits roundup](https://militarypaytool.com/blog/fy2027-ndaa-pay-benefits.html): BAH excluded from Basic Needs Allowance, bereavement leave, direct-access physical therapy, child care expansion
+- [BAH reform 95%→100%](https://militarypaytool.com/blog/bah-reform-95-to-100.html): members absorb $93–$212/month since 2019; $2.9B supplemental funded in 2025
+
 ## Key guides
 
 - [2026 military pay chart](https://militarypaytool.com/blog/2026-military-pay-chart.html): full basic pay table for every rank
