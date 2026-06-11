@@ -1769,6 +1769,141 @@ write("military-family-allowances-guide.html",
                ("Special pays guide (incl. FSA)","/blog/military-special-pays-guide.html")],
       blurb="FSA, child-care fee assistance, EFMP, MyCAA &mdash; the family money beyond BAH and BAS.")
 
+# ===================== HOUSING / GUARD BATCH =====================
+# --- VA Home Loan & BAH ---
+_vlb = BP["E-5"]["6"]; _vlbah = bah_rate("CA038","E05","with"); _vlbas = 476.95
+_vl_income = (_vlb+_vlbah+_vlbas)*12
+body = f'''<h1>VA Home Loan &amp; BAH: How Your Housing Allowance Buys a House</h1>
+<p class="meta">Updated {_D2}</p>
+<p class="lead">The VA home loan is one of the most powerful benefits in the military &mdash; <strong>$0 down, no PMI</strong>,
+and competitive rates. The quiet superpower behind it: lenders count your tax-free <strong>BAH and BAS as income</strong>,
+which can dramatically boost how much house you qualify for.</p>
+<h2>Why BAH supercharges your application</h2>
+<p>Mortgage lenders qualify you on a debt-to-income ratio. Because BAH and BAS are
+<a href="/blog/2026-bah-rates-explained.html">tax-free</a>, many lenders "gross them up" &mdash; treating, say,
+{money(_vlbah)} of BAH as worth even more in equivalent taxable income. For an
+<a href="/blog/how-much-does-an-e5-make-2026.html">E-5 with 6 years</a> in San Diego, total qualifying income looks
+like:</p>
+<div class="tablewrap"><table class="pay"><thead><tr><th>Income source</th><th>Monthly</th><th>Annual</th></tr></thead><tbody>
+<tr><td>Basic pay</td><td>{money(_vlb)}</td><td>{money(_vlb*12)}</td></tr>
+<tr><td>BAH</td><td>{money(_vlbah)}</td><td>{money(_vlbah*12)}</td></tr>
+<tr><td>BAS</td><td>{money(_vlbas)}</td><td>{money(_vlbas*12)}</td></tr>
+<tr><td><strong>Total qualifying income</strong></td><td><strong>{money(_vlb+_vlbah+_vlbas)}</strong></td><td><strong>{money(_vl_income)}</strong></td></tr>
+</tbody></table></div>
+<h2>The VA loan advantages</h2>
+<ul>
+<li><strong>No down payment</strong> on most purchases &mdash; rare anywhere else.</li>
+<li><strong>No private mortgage insurance (PMI)</strong> &mdash; saves hundreds a month versus a low-down conventional loan.</li>
+<li><strong>A one-time VA funding fee</strong> (financed into the loan; waived for veterans with a
+<a href="/blog/2026-va-disability-rates.html">service-connected disability rating</a>).</li>
+<li><strong>Reusable</strong> &mdash; the benefit isn't one-and-done.</li>
+</ul>
+<h2>The BAH "house hack"</h2>
+<p>Buy with a VA loan and your BAH can effectively cover the mortgage. Buy a duplex/multi-unit (VA allows up to 4 units if
+you live in one) and rent the others, and BAH plus rental income can <strong>pay the whole note</strong> &mdash; a common
+way service members build wealth on a single enlistment.</p>
+<p class="callout">Run the numbers first: BAH covers 95% of <em>rental</em> cost by design, not a mortgage with taxes,
+insurance, and maintenance. Use the <a href="/">calculator</a> to confirm your exact BAH before house-shopping.</p>
+{cta("Look up your BAH by ZIP — it's the number lenders will use.", "/")}
+'''
+write("va-home-loan-and-bah.html",
+      "VA Home Loan & BAH: How Your Housing Allowance Buys a House",
+      f"Lenders count tax-free BAH and BAS as income on a VA loan — an E-5 in San Diego shows {money(_vl_income)}/year qualifying income. $0 down, no PMI, and the BAH house-hack explained.",
+      "VA Loan", body,
+      faq=[("Does BAH count as income for a VA loan?","Yes — lenders count tax-free BAH and BAS as qualifying income, and often gross them up, which significantly increases how much house you qualify for."),
+           ("Do VA loans require a down payment?","No — most VA purchase loans require $0 down and charge no private mortgage insurance (PMI)."),
+           ("Can I use BAH to buy a rental property?","Yes — the VA allows up to a 4-unit property if you live in one unit; BAH plus rental income can cover the mortgage, a popular wealth-building move.")],
+      related=[("2026 BAH rates explained","/blog/2026-bah-rates-explained.html"),
+               ("BAH rates by location","/bah/"),
+               ("On-base vs off-base housing","/blog/on-base-vs-off-base-housing.html")],
+      blurb="Lenders count BAH/BAS as income &mdash; $0 down, no PMI, and the BAH house-hack.")
+
+# --- On-base vs off-base ---
+_obb = bah_rate("CA038","E05","with")
+body = f'''<h1>On-Base vs Off-Base Housing: The BAH Decision That Pays You</h1>
+<p class="meta">Updated {_D2}</p>
+<p class="lead">Choosing where to live isn't just about commute &mdash; it decides whether your
+<a href="/blog/2026-bah-rates-explained.html">BAH</a> lands in <em>your</em> pocket or goes straight back to housing.
+Here's the money math.</p>
+<h2>How the money flows</h2>
+<ul>
+<li><strong>On-base (government or privatized housing):</strong> you typically <strong>forfeit your entire BAH</strong> as
+rent &mdash; an automatic allotment equal to your with-dependents rate. Utilities are often included; it's simple and
+predictable, but you keep $0 of the allowance.</li>
+<li><strong>Off-base:</strong> you receive the <strong>full BAH</strong> and pay your own rent/mortgage. If you find
+housing for <em>less</em> than your BAH, you <strong>keep the difference</strong> &mdash; tax-free.</li>
+</ul>
+<h2>A quick example (E-5, San Diego, with dependents)</h2>
+<p>BAH of <strong>{money(_obb)}/month</strong>. Live on base &rarr; you keep $0 of it (rent + utilities covered). Rent off
+base for {money(_obb-400)} &rarr; you pocket <strong>{money(400)}/month tax-free</strong> &mdash; about
+{money(400*12)}/year &mdash; but you now manage utilities, deposits, and renter's insurance.</p>
+<h2>The honest trade-offs</h2>
+<div class="tablewrap"><table class="pay"><thead><tr><th>Factor</th><th>On base</th><th>Off base</th></tr></thead><tbody>
+<tr><td>Keep leftover BAH?</td><td>No</td><td>Yes (if rent &lt; BAH)</td></tr>
+<tr><td>Utilities</td><td>Usually included</td><td>You pay (often)</td></tr>
+<tr><td>Commute</td><td>Short</td><td>Varies</td></tr>
+<tr><td>Maintenance</td><td>Handled for you</td><td>Landlord/you</td></tr>
+<tr><td>Upfront costs</td><td>Minimal</td><td>Deposits, setup</td></tr>
+</tbody></table></div>
+<p class="callout">There's no universal winner: in pricey markets where rent &ge; BAH, on-base predictability can beat
+going off base; in cheaper markets, off-base members frequently keep a few hundred dollars a month.</p>
+{cta("Look up your exact BAH — then compare it to local rents before you decide.", "/")}
+'''
+write("on-base-vs-off-base-housing.html",
+      "On-Base vs Off-Base Housing: The BAH Decision That Pays You",
+      f"Live on base and you forfeit your full BAH as rent; live off base and you keep any BAH left over after rent — tax-free. The money math, with an E-5 San Diego example.",
+      "Housing Choice", body,
+      faq=[("Do you keep BAH if you live on base?","Generally no — on-base or privatized housing takes your full BAH as rent via allotment, though utilities are often included."),
+           ("Can you make money on BAH?","Yes — if you live off base and your rent is less than your BAH, you keep the difference tax-free."),
+           ("Is on-base or off-base housing better financially?","It depends on local rents: where rent meets or exceeds BAH, on-base predictability often wins; in cheaper markets, off-base members usually keep leftover BAH.")],
+      related=[("2026 BAH rates explained","/blog/2026-bah-rates-explained.html"),
+               ("VA home loan & BAH","/blog/va-home-loan-and-bah.html"),
+               ("BAH rates by location","/bah/")],
+      blurb="Live on base = forfeit BAH; off base = keep what's left of it, tax-free. The full trade-off.")
+
+# --- National Guard pay ---
+_ngperp = BP["E-5"]["4"]/30
+body = f'''<h1>National Guard Pay Explained: Drill, Title 32, Title 10 &amp; Activations</h1>
+<p class="meta">Updated {_D2}</p>
+<p class="lead">National Guard pay works like the Reserve for normal drilling &mdash; but the Guard has a twist civilians
+and reservists don't deal with: <strong>state activations</strong> under Title 32 and Title 10, which change how (and by
+whom) you're paid.</p>
+<h2>Normal drilling: same as the Reserve</h2>
+<p>For monthly drill, Guard pay is identical to <a href="/blog/reserve-drill-pay-explained.html">Reserve drill pay</a>:
+each 4-hour drill period pays <strong>1/30 of monthly basic pay</strong>. A 2026 E-5 with 4 years earns about
+<strong>{money(_ngperp)}/drill period</strong>, ~{money(_ngperp*4)} per drill weekend, plus Annual Training. You also earn
+<a href="/blog/reserve-drill-pay-explained.html">retirement points</a> toward a "good year."</p>
+<h2>The activation statuses that change your pay</h2>
+<div class="tablewrap"><table class="pay"><thead><tr><th>Status</th><th>Who controls / pays</th><th>Pay &amp; benefits</th></tr></thead><tbody>
+<tr><td>Drill (IDT)</td><td>State, federally funded</td><td>Basic pay per drill period only</td></tr>
+<tr><td>Annual Training</td><td>Federal</td><td>Active-duty pay + BAS + BAH (RC/Transit or locality)</td></tr>
+<tr><td>Title 32 (state, fed-funded)</td><td>Governor, federal money</td><td>Full active-duty pay &amp; allowances; can count toward benefits</td></tr>
+<tr><td>Title 10 (federal active)</td><td>President/SecDef</td><td>Full active-duty pay &amp; allowances; deployments, federal benefits</td></tr>
+<tr><td>State Active Duty (SAD)</td><td>Governor, state money</td><td>Paid under state rules (varies by state) &mdash; not federal pay</td></tr>
+</tbody></table></div>
+<h2>Why the status matters for your wallet</h2>
+<ul>
+<li><strong>Title 10 / Title 32 orders of 30+ days</strong> bring full <a href="/blog/2026-bah-rates-explained.html">BAH</a>,
+BAS, and often <a href="/blog/combat-zone-tax-exclusion.html">tax exclusions</a> if deployed &mdash; a big pay bump over drilling.</li>
+<li><strong>State Active Duty</strong> (hurricane, wildfire, civil response) pays under <em>state</em> law, which can be
+much less than federal active-duty pay &mdash; check your state's rate.</li>
+<li><strong>Healthcare &amp; retirement credit</strong> differ by status &mdash; 90+ days on federal orders can trigger
+post-9/11 GI Bill eligibility tiers and TRICARE.</li>
+</ul>
+{cta("On orders? Switch to reserve mode and add a ZIP to estimate activated pay.", deep(mode="reserve"))}
+'''
+write("national-guard-pay-explained.html",
+      "National Guard Pay: Drill, Title 32 vs Title 10, and Activations",
+      f"National Guard drill pay matches the Reserve (1/30 of basic per period, ~{money(_ngperp)} for an E-5), but Title 32, Title 10, and State Active Duty change your pay and benefits. Full breakdown.",
+      "Guard Pay", body,
+      faq=[("Is National Guard pay the same as the Reserve?","For monthly drill, yes — both pay 1/30 of monthly basic pay per drill period. The Guard differs when activated under Title 32, Title 10, or State Active Duty."),
+           ("What is the difference between Title 32 and Title 10?","Title 32 is state-controlled but federally funded duty; Title 10 is federal active duty (deployments). Both pay full active-duty pay and allowances; benefits eligibility can differ."),
+           ("Does State Active Duty pay the same as federal orders?","Not necessarily — State Active Duty is paid under state law and rates, which are often lower than federal active-duty pay.")],
+      related=[("Reserve drill pay explained","/blog/reserve-drill-pay-explained.html"),
+               ("2026 BAH rates explained","/blog/2026-bah-rates-explained.html"),
+               ("Deployment pay explained","/blog/deployment-pay-explained.html")],
+      blurb=f"Guard drill = Reserve (~{money(_ngperp)}/period), but Title 32/10/SAD change everything when activated.")
+
 # ===================== POLICY / NEWS INTERPRETATION PAGES =====================
 NEWS_DATE = "2026-06-10"
 
