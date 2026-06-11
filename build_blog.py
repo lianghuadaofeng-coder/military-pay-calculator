@@ -2147,6 +2147,91 @@ write("why-is-my-military-paycheck-different.html",
                ("Special pays guide","/blog/military-special-pays-guide.html")],
       blurb="9 predictable reasons your deposit changed &mdash; and how to diagnose it from your LES.")
 
+# ===================== MILITARY MONEY-MOVES BATCH =====================
+# --- Roth IRA vs TSP ---
+body = f'''<h1>Roth IRA vs TSP for Military: Where Should Your Money Go First?</h1>
+<p class="meta">Updated {_D2}</p>
+<p class="lead">Service members have access to two excellent retirement accounts &mdash; the
+<a href="/blog/military-tsp-explained.html">TSP</a> and a Roth IRA &mdash; and the order you fund them matters. For most
+members, the winning sequence is: <strong>TSP to the match, then a Roth IRA, then back to the TSP.</strong></p>
+<h2>The priority order (for most members)</h2>
+<ol>
+<li><strong>TSP up to 5%</strong> &mdash; capture the full BRS match first. It's an instant 100% return; never skip it.</li>
+<li><strong>Roth IRA up to the annual limit</strong> &mdash; broader investment choices and easier early access to
+contributions than the TSP.</li>
+<li><strong>Back to the TSP</strong> &mdash; up to the elective limit ($24,500 in 2026), especially the ultra-low-cost
+index funds.</li>
+</ol>
+<h2>How they compare</h2>
+<div class="tablewrap"><table class="pay"><thead><tr><th>&nbsp;</th><th>TSP</th><th>Roth IRA</th></tr></thead><tbody>
+<tr><td>2026 contribution limit</td><td>$24,500 (elective)</td><td>IRS IRA limit (separate)</td></tr>
+<tr><td>Employer match</td><td>Up to 5% (BRS)</td><td>None</td></tr>
+<tr><td>Investment choices</td><td>A handful of low-cost funds</td><td>Almost anything</td></tr>
+<tr><td>Fees</td><td>Among the lowest anywhere</td><td>Varies by broker</td></tr>
+<tr><td>Early access to contributions</td><td>Limited</td><td>Contributions withdrawable anytime</td></tr>
+</tbody></table></div>
+<h2>The deployed-Roth superpower</h2>
+<p>In a combat zone, money you contribute to the <strong>Roth TSP</strong> goes in tax-free <em>and</em> comes out
+tax-free &mdash; and combat-zone months let you exceed the normal elective limit. Deploying is the single best time to
+max Roth contributions. See the <a href="/blog/combat-zone-tax-exclusion.html">combat-zone tax exclusion</a>.</p>
+<p class="callout">Junior members usually favor <strong>Roth</strong> (you're in a low tax bracket now); higher earners may
+split or lean Traditional. Either way, get the 5% TSP match first.</p>
+{cta("Set your TSP percentage in the calculator and see the paycheck impact.", "/")}
+'''
+write("roth-ira-vs-tsp-military.html",
+      "Roth IRA vs TSP for Military: The Right Funding Order",
+      "For most service members: fund the TSP to the 5% match, then a Roth IRA, then back to the TSP ($24,500 limit in 2026). How they compare and the deployed-Roth tax superpower.",
+      "Roth vs TSP", body,
+      faq=[("Should I use the TSP or a Roth IRA first?","Fund the TSP up to 5% first to capture the full BRS match, then a Roth IRA for broader choices, then return to the TSP up to the $24,500 elective limit."),
+           ("Can I have both a TSP and a Roth IRA?","Yes — they have separate contribution limits, so you can fund both in the same year."),
+           ("Why is Roth good for junior military members?","Junior members are usually in a low tax bracket, so paying tax now (Roth) and withdrawing tax-free later is often the better deal — especially with combat-zone Roth contributions.")],
+      related=[("Military TSP explained","/blog/military-tsp-explained.html"),
+               ("Combat zone tax exclusion","/blog/combat-zone-tax-exclusion.html"),
+               ("Military retirement: BRS vs High-3","/blog/military-retirement-brs-vs-high3.html")],
+      blurb="Fund order: TSP to the 5% match &rarr; Roth IRA &rarr; back to TSP. Plus the deployed-Roth trick.")
+
+# --- SCRA financial protections ---
+body = f'''<h1>SCRA: The 6% Interest Cap and Money Protections You're Probably Not Using</h1>
+<p class="meta">Updated {_D2}</p>
+<p class="lead">The <strong>Servicemembers Civil Relief Act (SCRA)</strong> is one of the most underused financial benefits
+in the military. Its headline perk: a <strong>6% interest-rate cap</strong> on debts you took on <em>before</em> entering
+active duty &mdash; and that's just the start.</p>
+<h2>The 6% interest cap</h2>
+<ul>
+<li>Caps interest at <strong>6% APR</strong> on pre-service debts (credit cards, car loans, some student loans) for the
+duration of active duty.</li>
+<li>Interest above 6% is <strong>permanently forgiven</strong>, not deferred &mdash; the lender must reduce it.</li>
+<li>You request it in writing with a copy of your orders; the cap applies retroactively to your active-duty start date.</li>
+</ul>
+<h2>The other protections</h2>
+<ul>
+<li><strong>Lease termination:</strong> break a housing or auto lease penalty-free on PCS or deployment orders of 90+ days.</li>
+<li><strong>Foreclosure &amp; repossession protection:</strong> lenders generally need a court order to foreclose or
+repossess during service.</li>
+<li><strong>Default-judgment protection</strong> and the ability to <strong>stay (pause) civil proceedings.</strong></li>
+<li><strong>Tax residency:</strong> the SCRA (with <a href="/blog/states-that-dont-tax-military-pay.html">MSRRA</a>) lets
+you keep your home-state residency &mdash; see the <a href="/blog/military-tax-filing-guide.html">tax filing guide</a>.</li>
+</ul>
+<h2>Don't confuse it with the MLA</h2>
+<p>The <strong>Military Lending Act (MLA)</strong> is different: it caps <em>new</em> consumer loans taken while serving at
+a <strong>36% Military APR</strong>. SCRA covers <em>pre-service</em> debt at 6%; MLA covers <em>new</em> debt at 36%.
+Use both.</p>
+<p class="callout">Free, expert help is available at your installation's <strong>legal assistance office</strong> &mdash;
+they'll send the SCRA letters for you at no cost.</p>
+{cta("Free up cash flow — then put the savings toward your TSP or Roth.", "/")}
+'''
+write("scra-6-percent-interest-cap.html",
+      "SCRA Explained: The 6% Interest Cap & Military Financial Protections",
+      "The SCRA caps pre-service debt interest at 6% APR (excess is forgiven), allows penalty-free lease termination on orders, and blocks foreclosure/repossession. How to use it — and how it differs from the MLA.",
+      "SCRA", body,
+      faq=[("What is the SCRA 6% interest cap?","The Servicemembers Civil Relief Act caps interest at 6% APR on debts taken on before active duty; interest above 6% is permanently forgiven, not deferred. You request it in writing with your orders."),
+           ("Can I break a lease under the SCRA?","Yes — you can terminate a housing or auto lease without penalty on PCS or deployment orders of 90 or more days."),
+           ("What's the difference between SCRA and the MLA?","SCRA caps pre-service debt at 6%; the Military Lending Act caps new consumer loans taken while serving at a 36% Military APR.")],
+      related=[("States that don't tax military pay","/blog/states-that-dont-tax-military-pay.html"),
+               ("Military tax filing guide","/blog/military-tax-filing-guide.html"),
+               ("Roth IRA vs TSP for military","/blog/roth-ira-vs-tsp-military.html")],
+      blurb="The SCRA 6% cap forgives interest on pre-service debt &mdash; plus lease and foreclosure protections.")
+
 # ===================== POLICY / NEWS INTERPRETATION PAGES =====================
 NEWS_DATE = "2026-06-10"
 
@@ -2294,19 +2379,46 @@ write("bah-reform-95-to-100.html",
       blurb="BAH has covered 95% since 2019 ($93&ndash;$212/mo out of pocket) &mdash; the push to restore 100%.")
 
 # ===================== BLOG INDEX =====================
-cards = ""
+def _cat(slug):
+    order=[("Policy News (2027 & Reform)",["2027","fy2027","bah-reform"]),
+           ("Reserve & National Guard",["reserve","national-guard"]),
+           ("Pay Charts & Rank Pay",["how-much-does-an","2026-military-pay-chart","warrant-officer-pay","prior-enlisted","officer-vs-enlisted","basic-training-pay","does-military-pay-differ","promotion-value"]),
+           ("Special & Incentive Pays",["special-pays","flight-pay","sea-pay","submarine","deployment-pay","bonuses"]),
+           ("Taxes",["combat-zone","states-that-dont","tax-filing"]),
+           ("Retirement, Benefits & Total Comp",["tsp","retirement","sgli","roth","gi-bill","tricare","va-disability","separation-severance","total-compensation","civilian-equivalent-rmc"]),
+           ("Paychecks, Moves & Money Moves",["pay-dates","how-to-read","why-is-my","military-pay-raise","ppm","selling-military-leave","va-home-loan","scra","basic-needs"]),
+           ("Allowances, BAH & Family",["bah","bas-rates","cola","on-base","dual-military","dislocation","family-allowances","partial-bah"]),
+          ]
+    for name,subs in order:
+        if any(s in slug for s in subs): return name
+    return "More Guides"
+
+_DISPLAY = ["Pay Charts & Rank Pay","Allowances, BAH & Family","Special & Incentive Pays",
+            "Reserve & National Guard","Taxes","Retirement, Benefits & Total Comp",
+            "Paychecks, Moves & Money Moves","Policy News (2027 & Reform)","More Guides"]
+_buckets = {c:[] for c in _DISPLAY}
 for slug,title,desc,blurb in ARTICLES:
-    cards += f'<li><a href="/blog/{slug}"><strong>{title}</strong></a><br><span class="bl">{blurb}</span></li>'
+    _buckets[_cat(slug)].append((slug,title,blurb))
+import re as _re
+def _anchor(c): return _re.sub(r'[^a-z0-9]+','-',c.lower()).strip('-')
+_nav = " &middot; ".join(f'<a href="#{_anchor(c)}">{c}</a>' for c in _DISPLAY if _buckets[c])
+_sections = ""
+for c in _DISPLAY:
+    items = _buckets[c]
+    if not items: continue
+    lis = "".join(f'<li><a href="/blog/{s}"><strong>{t}</strong></a><br><span class="bl">{b}</span></li>' for s,t,b in items)
+    _sections += f'<h2 id="{_anchor(c)}">{c} <span style="color:var(--muted);font-weight:400;font-size:.9rem">({len(items)})</span></h2><ul class="bloglist">{lis}</ul>'
 idx_ld = {"@context":"https://schema.org","@type":"CollectionPage","name":"Military Pay Guides & 2026 Pay Charts",
           "url":f"{SITE}/blog/"}
 idx = head("Military Pay Guides & 2026 Pay Charts | militarypaytool.com",
-           "Free guides to 2026 U.S. military pay: pay charts by rank, BAH rates, drill pay, and take-home pay for active duty and reserve.",
+           "Free guides to 2026 U.S. military pay: pay charts by rank, BAH rates, drill pay, taxes, benefits, and take-home pay for active duty and reserve.",
            "", "Articles", idx_ld).replace('<div class="crumb"><a href="/">Home</a> &rsaquo; <a href="/blog/">Articles</a> &rsaquo; Articles</div>',
            '<div class="crumb"><a href="/">Home</a> &rsaquo; Articles</div>')
 idx += f'''<h1>Military Pay Guides</h1>
-<p class="lead">Free, plain-English guides to how U.S. military pay works in 2026 &mdash; for active duty and Reserve/National Guard.</p>
-<style>.bloglist{{list-style:none;padding:0}} .bloglist li{{padding:14px 0;border-bottom:1px solid var(--line)}} .bloglist .bl{{color:var(--muted);font-size:.9rem}}</style>
-<ul class="bloglist">{cards}</ul>
+<p class="lead">Free, plain-English guides to how U.S. military pay works in 2026 &mdash; for active duty and Reserve/National Guard. {len(ARTICLES)} guides, organized by topic.</p>
+<style>.bloglist{{list-style:none;padding:0;margin:0 0 8px}} .bloglist li{{padding:13px 0;border-bottom:1px solid var(--line)}} .bloglist .bl{{color:var(--muted);font-size:.9rem}} .catnav{{font-size:.85rem;line-height:2;margin:6px 0 18px}}</style>
+<div class="catnav">{_nav}</div>
+{_sections}
 {cta("Skip the reading — calculate your 2026 take-home pay now.", "/")}
 '''
 idx += foot([("2026 Military Pay Calculator (home)","/")])
