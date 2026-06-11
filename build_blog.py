@@ -695,6 +695,269 @@ write("sgli-cost-2026.html",
                ("2026 military pay raise","/blog/2026-military-pay-raise.html")],
       blurb="SGLI: $26/mo for $500k — 2026 premium table by coverage level.")
 
+# ===================== DEEP-DIVE PAY ARTICLES (batch: pay mechanics) =====================
+import datetime as _dt
+
+# --- 1. Military pay dates 2026 (computed) ---
+_HOLIDAYS_2026 = {(1,1),(1,19),(2,16),(5,25),(6,19),(7,3),(9,7),(10,12),(11,11),(11,26),(12,25)}
+def _is_biz(d):
+    return d.weekday() < 5 and (d.month, d.day) not in _HOLIDAYS_2026
+def _payday(d):
+    while not _is_biz(d):
+        d -= _dt.timedelta(days=1)
+    return d
+_rows = ""
+for m in range(1, 13):
+    mid = _payday(_dt.date(2026, m, 15))
+    if m == 12:
+        eom_target = _dt.date(2027, 1, 1); eom = _dt.date(2026, 12, 31)
+        while not _is_biz(eom): eom -= _dt.timedelta(days=1)
+    else:
+        eom_target = _dt.date(2026, m + 1, 1); eom = _payday(eom_target)
+    fmt = lambda d: d.strftime("%a, %b %-d")
+    note_mid = "" if mid.day == 15 else " (15th falls on a weekend/holiday)"
+    note_eom = "" if eom == eom_target else " (1st falls on a weekend/holiday)"
+    _rows += (f"<tr><td>{_dt.date(2026,m,1).strftime('%B')}</td>"
+              f"<td>{fmt(mid)}{note_mid}</td><td>{fmt(eom)}{note_eom}</td></tr>")
+body = f'''<h1>2026 Military Pay Dates: When You Actually Get Paid</h1>
+<p class="meta">Updated {DATE}</p>
+<p class="lead">Active-duty members are paid twice a month: <strong>mid-month (the 15th)</strong> and
+<strong>end of month (the 1st of the next month)</strong>. When a payday lands on a weekend or federal holiday,
+DFAS pays on the <strong>preceding business day</strong> &mdash; so some months you get paid early.</p>
+<h2>2026 payday calendar</h2>
+<div class="tablewrap"><table class="pay"><thead><tr><th>Month earned</th><th>Mid-month payday</th>
+<th>End-of-month payday</th></tr></thead><tbody>{_rows}</tbody></table></div>
+<p class="callout">Each deposit is roughly <strong>half of your monthly net pay</strong>. The end-of-month payment for
+December 2026 arrives <strong>December 31, 2026</strong> because January 1 is a holiday &mdash; which can shift taxable
+income between years.</p>
+<h2>Why your deposit may land a day later</h2>
+<p>These are the official DFAS pay dates. Some banks post the deposit the moment it arrives (and a few credit unions
+post military pay <em>one business day early</em>), while others wait until the official date &mdash; so two members with
+the same payday can see money on different days.</p>
+<h2>Reserve &amp; Guard pay timing</h2>
+<p>Drill pay doesn't follow the 1st/15th cycle &mdash; it's processed after your unit certifies the drill period,
+typically <strong>7&ndash;14 days after the drill weekend</strong>. See our
+<a href="/blog/reserve-drill-pay-explained.html">drill pay guide</a>.</p>
+{cta("See exactly how much lands in each deposit — calculate your take-home pay.", "/")}
+'''
+write("military-pay-dates-2026.html",
+      "2026 Military Pay Dates: Full Payday Calendar (1st & 15th Rules)",
+      "Active duty is paid on the 15th and the 1st — moved earlier when those fall on a weekend or holiday. Full 2026 military payday calendar with every adjusted date.",
+      "Pay Dates", body,
+      faq=[("When does the military get paid?","On the <b>15th</b> (mid-month) and the <b>1st of the following month</b> (end-of-month). If a payday falls on a weekend or federal holiday, you're paid the preceding business day."),
+           ("Is each military paycheck half a month's pay?","Yes — each of the two monthly deposits is roughly half of your monthly net pay."),
+           ("Why did my pay arrive early this month?","When the 1st or 15th lands on a weekend or holiday, DFAS pays on the prior business day, so the deposit arrives one to three days early.")],
+      related=[("How to read your LES","/blog/how-to-read-your-les.html"),
+               ("2026 military pay chart","/blog/2026-military-pay-chart.html"),
+               ("Reserve drill pay explained","/blog/reserve-drill-pay-explained.html")],
+      blurb="The full 2026 payday calendar — and why some deposits arrive early.")
+
+# --- 2. How to read your LES ---
+body = f'''<h1>How to Read Your LES (Leave and Earnings Statement)</h1>
+<p class="meta">Updated {DATE}</p>
+<p class="lead">Your <strong>LES</strong> is the military's pay stub, published monthly in myPay. Most pay problems are
+caught by members who read it &mdash; here's what every section means and the five things worth checking each month.</p>
+<h2>The three money columns</h2>
+<ul>
+<li><strong>ENTITLEMENTS</strong> &mdash; everything you earn: Basic Pay, BAH, BAS, special pays (FSA, HDIP, flight pay...).
+Each item is listed separately, which is how you confirm a new entitlement actually started.</li>
+<li><strong>DEDUCTIONS</strong> &mdash; everything taken out: federal taxes (FITW), <strong>FICA &mdash; Social Security</strong>
+and <strong>FICA &mdash; Medicare</strong>, state taxes (SITW), <strong>SGLI</strong>, mid-month pay (the money you already
+received on the 15th appears here as a deduction), TSP contributions, and any debt collections.</li>
+<li><strong>ALLOTMENTS</strong> &mdash; payments you set up voluntarily (insurance, savings, support payments).</li>
+</ul>
+<p class="callout">The math: <strong>Entitlements &minus; Deductions &minus; Allotments = End-of-month pay (=NET AMT)</strong>.
+Your mid-month deposit was an advance on the same month, which is why it shows as a deduction.</p>
+<h2>Other blocks worth understanding</h2>
+<ul>
+<li><strong>LEAVE</strong> &mdash; BF BAL (balance carried forward), ERND, USED, CR BAL (current balance), and
+<strong>USE/LOSE</strong> &mdash; days you forfeit on October 1 if not taken (the cap is generally 60 days).</li>
+<li><strong>FED TAXES / STATE TAXES</strong> &mdash; your filing status and the wage bases. <strong>WAGE YTD</strong> here is
+your <em>taxable</em> pay only &mdash; it's much lower than total compensation because BAH/BAS are tax-free.</li>
+<li><strong>TSP</strong> &mdash; your contribution percentages and YTD totals; BRS members should confirm
+<strong>Agency/Service contributions</strong> are posting (that's the match).</li>
+<li><strong>BAQ TYPE / DEPNS</strong> &mdash; your BAH category and dependent status; <strong>PEBD</strong> (pay entry base
+date) drives your years-of-service pay steps.</li>
+<li><strong>REMARKS</strong> &mdash; the fine print where starts/stops/debts are explained. Read it every month.</li>
+</ul>
+<h2>Five things to check every month</h2>
+<ol>
+<li>BAH rate and ZIP match where you actually live (<a href="/bah/">look yours up</a>).</li>
+<li>Years-of-service step &mdash; did your pay bump at your 2/3/4/6... year mark (check PEBD)?</li>
+<li>Special pays started/stopped when they should (deployments, flight status, etc.).</li>
+<li>TSP percentage and the 5% match (BRS) actually posting.</li>
+<li>USE/LOSE leave before the October 1 cutoff.</li>
+</ol>
+{cta("Cross-check your LES against an independent estimate of your pay.", "/")}
+'''
+write("how-to-read-your-les.html",
+      "How to Read Your LES: Every Section of the Military Pay Stub",
+      "A plain-English walkthrough of the Leave and Earnings Statement: entitlements, deductions, allotments, leave block, tax blocks, TSP, and the 5 things to verify every month.",
+      "LES Guide", body,
+      faq=[("What is an LES?","The Leave and Earnings Statement is the military's monthly pay stub, available in myPay. It lists entitlements, deductions, allotments, leave balance, taxes, and TSP."),
+           ("Why does mid-month pay show as a deduction?","Because the LES covers the whole month: the money you already received on the 15th is subtracted so the end-of-month deposit equals the remainder."),
+           ("What does USE/LOSE mean on my LES?","Leave days above the carryover cap that will be forfeited on October 1 if you don't use them.")],
+      related=[("2026 military pay dates","/blog/military-pay-dates-2026.html"),
+               ("2026 military pay chart","/blog/2026-military-pay-chart.html"),
+               ("Military TSP explained","/blog/military-tsp-explained.html")],
+      blurb="Every LES section decoded — and the 5 things to verify monthly.")
+
+# --- 3. Basic training pay ---
+e1m = BP.get("E-1m",{}).get("<2", 2226)
+body = f'''<h1>Basic Training Pay: What Recruits Earn in 2026</h1>
+<p class="meta">Updated {DATE}</p>
+<p class="lead">Yes, you're paid during basic training. In 2026 a brand-new recruit earns <strong>{money(e1m)}/month</strong>
+(E-1 with under 4 months of service), rising to <strong>{money(BP["E-1"]["<2"])}/month</strong> after 4 months. Many
+recruits enter at E-2 or E-3 and earn more from day one.</p>
+<h2>2026 pay during initial training</h2>
+<div class="tablewrap"><table class="pay"><thead><tr><th>Grade at entry</th><th>Monthly basic pay</th></tr></thead><tbody>
+<tr><td>E-1 (first 4 months)</td><td>{money(e1m)}</td></tr>
+<tr><td>E-1 (after 4 months)</td><td>{money(BP["E-1"]["<2"])}</td></tr>
+<tr><td>E-2 (enlistment program credit)</td><td>{money(BP["E-2"]["<2"])}</td></tr>
+<tr><td>E-3 (college credits / referrals / JROTC)</td><td>{money(BP["E-3"]["<2"])}</td></tr>
+</tbody></table></div>
+<p>Pay accrues from your <strong>first day of active duty</strong> (the day you ship), not from when paperwork catches up.</p>
+<h2>When the first paycheck arrives</h2>
+<p>Military pay lands on the <a href="/blog/military-pay-dates-2026.html">1st and 15th</a>. Your first deposit typically
+arrives on the <strong>first regular payday after in-processing</strong> &mdash; usually 2&ndash;4 weeks in &mdash; and it
+includes all back pay owed since day one. Direct deposit is mandatory, so open a bank account before you ship.</p>
+<h2>What you keep during basic</h2>
+<ul>
+<li><strong>Meals and housing are provided</strong>, so most of your basic pay is yours (no BAH/BAS at this stage for
+single recruits living in the barracks).</li>
+<li><strong>Recruits with dependents</strong> generally receive <a href="/blog/2026-bah-rates-explained.html">BAH</a>
+for the location where the family lives &mdash; a major difference worth verifying on your first LES.</li>
+<li>Expect small deductions: taxes, <a href="/blog/sgli-cost-2026.html">SGLI</a> ($26/month at full coverage), and
+initial uniform-related charges depending on branch.</li>
+</ul>
+{cta("Estimate a first-year paycheck — pick E-1, E-2 or E-3 and your situation.", deep("E-1"))}
+'''
+write("basic-training-pay-2026.html",
+      "Basic Training Pay 2026: What Recruits Earn (and When It Arrives)",
+      f"Recruits earn {money(e1m)}/month at E-1 in 2026 (first 4 months), more at E-2/E-3. When the first paycheck arrives, what's deducted, and BAH for recruits with families.",
+      "Recruit Pay", body,
+      faq=[("Do you get paid in basic training?",f"Yes. Pay starts your first day of active duty — {money(e1m)}/month for a new E-1 in 2026, more for E-2/E-3 entrants."),
+           ("When is the first military paycheck?","Usually on the first regular payday (1st or 15th) after in-processing — typically 2–4 weeks after shipping — including all back pay from day one."),
+           ("Do recruits with families get BAH?","Generally yes — recruits with dependents receive BAH based on where the family lives, even while the member is in the barracks.")],
+      related=[("How much does an E-1 make in 2026?","/blog/how-much-does-an-e1-make-2026.html"),
+               ("2026 military pay dates","/blog/military-pay-dates-2026.html"),
+               ("How to read your LES","/blog/how-to-read-your-les.html")],
+      blurb=f"Recruits earn {money(e1m)}/mo at E-1 — when the first deposit lands and what's deducted.")
+
+# --- 4. Warrant officer pay ---
+body = f'''<h1>Warrant Officer Pay 2026: W-1 to W-5 Charts</h1>
+<p class="meta">Updated {DATE}</p>
+<p class="lead">Warrant officers are the military's technical specialists, and their pay reflects it: in 2026 a
+<strong>W-1 starts at {money(BP["W-1"]["<2"])}/month</strong>, while a <strong>senior W-5 earns up to
+{money(BP["W-5"]["38"])}/month</strong> &mdash; plus the same tax-free BAH and BAS as other officers.</p>
+<h2>2026 warrant officer basic pay (monthly)</h2>
+{pay_table(["W-1","W-2","W-3","W-4","W-5"])}
+<p class="callout">W-5 pay begins at 20 years of service &mdash; chief warrant officers five are, by definition, deep-career
+specialists. Note that W-2 at 10 years ({money(BP["W-2"]["10"])}) out-earns an O-1 with the same time.</p>
+<h2>How warrant pay compares</h2>
+<ul>
+<li><strong>vs senior enlisted:</strong> a new W-1 ({money(BP["W-1"]["<2"])}) starts above an
+<a href="/blog/how-much-does-an-e6-make-2026.html">E-6 with 8 years</a> ({money(BP["E-6"]["8"])}).</li>
+<li><strong>vs commissioned officers:</strong> mid-career warrants (W-3/W-4) overlap with O-3/O-4 pay, and prior-enlisted
+warrants typically carry many years of service into the table &mdash; meaning they enter at a high column, not the left edge.</li>
+<li><strong>Allowances:</strong> warrant officers receive the <em>officer</em> BAS rate ($328.48 in 2026) and BAH at their
+own W-grade rates.</li>
+</ul>
+<h2>Flight pay for Army aviators</h2>
+<p>Most Army helicopter pilots are warrant officers and may receive Aviation Incentive Pay on top of basic pay &mdash;
+see our <a href="/blog/military-special-pays-guide.html">special pays guide</a>.</p>
+{cta("Calculate full warrant officer take-home — pick your W grade and ZIP.", deep("W-2"))}
+'''
+write("warrant-officer-pay-2026.html",
+      "Warrant Officer Pay 2026: W-1 to W-5 Charts & Comparisons",
+      f"2026 warrant officer pay: W-1 starts at {money(BP['W-1']['<2'])}/month, W-5 tops out at {money(BP['W-5']['38'])}. Full W-1–W-5 tables plus comparisons to enlisted and officer pay.",
+      "Warrant Pay", body,
+      faq=[("How much does a warrant officer make in 2026?",f"From {money(BP['W-1']['<2'])}/month for a new W-1 to {money(BP['W-5']['38'])}/month for a W-5 with 38 years, plus tax-free BAH and BAS."),
+           ("Do warrant officers get officer BAS?","Yes — warrant officers receive the officer BAS rate ($328.48/month in 2026) and BAH at their own W-grade rates."),
+           ("Do warrant officers out-earn enlisted?",f"Generally yes at the same point in a career — a starting W-1 ({money(BP['W-1']['<2'])}) earns more than an E-6 over 8 years ({money(BP['E-6']['8'])}).")],
+      related=[("Prior-enlisted officer pay (O-1E/O-2E/O-3E)","/blog/prior-enlisted-officer-pay.html"),
+               ("2026 military pay chart","/blog/2026-military-pay-chart.html"),
+               ("Special pays guide","/blog/military-special-pays-guide.html")],
+      blurb=f"W-1 starts at {money(BP['W-1']['<2'])}/mo; W-5 tops {money(BP['W-5']['38'])} &mdash; full tables.")
+
+# --- 5. Prior-enlisted officer pay ---
+body = f'''<h1>O-1E, O-2E, O-3E: Prior-Enlisted Officer Pay Explained (2026)</h1>
+<p class="meta">Updated {DATE}</p>
+<p class="lead">Commission after enlisted service and the military doesn't reset your paycheck. With <strong>over 4 years
+of prior enlisted (or warrant) service</strong>, you're paid on the special <strong>O-1E / O-2E / O-3E</strong> scales
+&mdash; worth <strong>several hundred dollars a month</strong> more than standard O-1/O-2/O-3 pay.</p>
+<h2>2026 prior-enlisted officer pay (monthly)</h2>
+{pay_table(["O-1E","O-2E","O-3E"], cols=["8","10","12","14","16","18","20","22"])}
+<h2>How much the "E" is worth</h2>
+<div class="tablewrap"><table class="pay"><thead><tr><th>Comparison (over 8 yrs)</th><th>Standard</th><th>Prior-enlisted</th><th>Monthly difference</th></tr></thead><tbody>
+<tr><td>O-1 vs O-1E</td><td>{money(BP["O-1"]["8"])}</td><td>{money(BP["O-1E"]["8"])}</td><td>+{money(BP["O-1E"]["8"]-BP["O-1"]["8"])}</td></tr>
+<tr><td>O-2 vs O-2E</td><td>{money(BP["O-2"]["8"])}</td><td>{money(BP["O-2E"]["8"])}</td><td>+{money(BP["O-2E"]["8"]-BP["O-2"]["8"])}</td></tr>
+<tr><td>O-3 vs O-3E</td><td>{money(BP["O-3"]["8"])}</td><td>{money(BP["O-3E"]["8"])}</td><td>+{money(BP["O-3E"]["8"]-BP["O-3"]["8"])}</td></tr>
+</tbody></table></div>
+<p class="callout">You also keep your full <strong>years of service</strong> for pay purposes &mdash; a prior E-5 who
+commissions at the 8-year mark starts as an O-1E in the "over 8" column, not at the left edge of the table.</p>
+<h2>Who qualifies</h2>
+<p>The E-scales require <strong>more than 4 years of active service as an enlisted member or warrant officer</strong>
+before commissioning. At O-4 and above the E-scales end &mdash; everyone merges onto the standard officer table (your
+years of service still carry over).</p>
+{cta("Model your commissioning jump — compare O-1E pay against your current enlisted pay.", deep("O-1E"))}
+'''
+write("prior-enlisted-officer-pay.html",
+      "O-1E / O-2E / O-3E: Prior-Enlisted Officer Pay Explained (2026)",
+      f"Officers with 4+ years of prior enlisted service earn the higher O-1E/O-2E/O-3E scales — an O-1E over 8 years makes {money(BP['O-1E']['8'])} vs {money(BP['O-1']['8'])} for a standard O-1.",
+      "O-1E Pay", body,
+      faq=[("What is O-1E pay?",f"O-1E is the pay scale for O-1s with more than 4 years of prior enlisted or warrant service. Over 8 years it pays {money(BP['O-1E']['8'])}/month versus {money(BP['O-1']['8'])} for a standard O-1."),
+           ("Who qualifies for the E pay scales?","Commissioned officers with more than 4 years of active enlisted or warrant officer service. The scales exist for O-1E, O-2E, and O-3E only."),
+           ("Do I keep my years of service when I commission?","Yes — your pay entry base date carries over, so you enter the officer table at your real years-of-service column.")],
+      related=[("Warrant officer pay 2026","/blog/warrant-officer-pay-2026.html"),
+               ("How much does an O-1 make in 2026?","/blog/how-much-does-an-o1-make-2026.html"),
+               ("How much does an O-3 make in 2026?","/blog/how-much-does-an-o3-make-2026.html")],
+      blurb=f"Prior-enlisted officers earn the E-scales: O-1E over 8 yrs = {money(BP['O-1E']['8'])} (+{money(BP['O-1E']['8']-BP['O-1']['8'])} vs O-1).")
+
+# --- 6. Special pays guide ---
+body = f'''<h1>Military Special &amp; Incentive Pays: The 2026 Guide</h1>
+<p class="meta">Updated {DATE}</p>
+<p class="lead">Beyond basic pay and allowances, dozens of <strong>special and incentive pays</strong> reward specific
+duties, skills, and hardships. Here are the ones most members actually see, with 2026 amounts.</p>
+<h2>The common ones</h2>
+<div class="tablewrap"><table class="pay"><thead><tr><th>Special pay</th><th>2026 monthly amount</th><th>Who gets it</th></tr></thead><tbody>
+<tr><td>Family Separation Allowance (FSA)</td><td>$300</td><td>Away from dependents 30+ consecutive days (deployment, unaccompanied tour)</td></tr>
+<tr><td>Hostile Fire / Imminent Danger Pay</td><td>up to $225</td><td>Designated danger areas; IDP prorated by qualifying days</td></tr>
+<tr><td>Hazardous Duty Incentive Pay (HDIP)</td><td>$150</td><td>Demolition, toxic fuels, flight deck and other hazardous duties</td></tr>
+<tr><td>Parachute (Jump) Pay</td><td>$150 / $225 HALO</td><td>Airborne-status members; higher rate for military free-fall</td></tr>
+<tr><td>Diving Duty Pay</td><td>up to $340</td><td>Qualified divers, by qualification level</td></tr>
+<tr><td>Aviation Incentive Pay (Flight Pay)</td><td>$125&ndash;$1,000</td><td>Rated officers by years of aviation service; career enlisted flyers $150&ndash;$400</td></tr>
+<tr><td>Career Sea Pay</td><td>up to ~$805</td><td>Assigned to sea duty, scales with grade and cumulative sea time</td></tr>
+<tr><td>Submarine Duty Pay</td><td>$75&ndash;$600</td><td>Submariners, by grade and years</td></tr>
+<tr><td>Foreign Language Proficiency Pay</td><td>up to ~$500</td><td>Tested proficiency in needed languages; more for multiple languages</td></tr>
+</tbody></table></div>
+<h2>Three rules that matter</h2>
+<ul>
+<li><strong>They're taxable</strong> &mdash; unlike BAH/BAS, special pays are subject to federal income tax and FICA...
+<em>unless</em> you're in a combat zone, where the <a href="/blog/combat-zone-tax-exclusion.html">CZTE</a> makes them
+federally tax-free (enlisted fully; officers capped).</li>
+<li><strong>They stack</strong> &mdash; a deployed airborne soldier can draw FSA + IDP + jump pay simultaneously
+($675/month on top of basic pay and allowances).</li>
+<li><strong>They start and stop with orders</strong> &mdash; check your <a href="/blog/how-to-read-your-les.html">LES</a>
+the month after any status change; missing start/stop actions are among the most common pay errors.</li>
+</ul>
+<h2>Bonuses are separate</h2>
+<p>Enlistment, reenlistment (SRB), and retention bonuses are lump-sum <em>bonuses</em>, not monthly special pays &mdash;
+they're also taxable (and also combat-zone excludable if earned in a qualifying month).</p>
+{cta("Add your special pays in the calculator and see the after-tax difference.", "/")}
+'''
+write("military-special-pays-guide.html",
+      "Military Special & Incentive Pays: 2026 Amounts (FSA, Jump, Sea, Flight…)",
+      "2026 special pay amounts: FSA $300, danger pay $225, jump pay $150–$225, dive up to $340, flight pay $125–$1,000, sea pay ~$805, language pay ~$500 — and the tax rules.",
+      "Special Pays", body,
+      faq=[("What is Family Separation Allowance?","FSA pays <b>$300/month</b> when you're away from your dependents for more than 30 consecutive days on orders — deployments, unaccompanied tours, or long TDYs."),
+           ("Are special pays taxable?","Yes — special and incentive pays are taxable (unlike BAH/BAS), except in a designated combat zone where the combat-zone tax exclusion applies."),
+           ("Can special pays stack?","Yes. Qualifying for several at once (e.g., FSA + danger pay + jump pay) pays all of them simultaneously.")],
+      related=[("Combat zone tax exclusion","/blog/combat-zone-tax-exclusion.html"),
+               ("How to read your LES","/blog/how-to-read-your-les.html"),
+               ("2026 military pay chart","/blog/2026-military-pay-chart.html")],
+      blurb="FSA $300, jump $150, flight up to $1,000 &mdash; every common special pay with 2026 amounts.")
+
 # ===================== POLICY / NEWS INTERPRETATION PAGES =====================
 NEWS_DATE = "2026-06-10"
 
