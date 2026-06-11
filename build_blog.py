@@ -958,6 +958,208 @@ write("military-special-pays-guide.html",
                ("2026 military pay chart","/blog/2026-military-pay-chart.html")],
       blurb="FSA $300, jump $150, flight up to $1,000 &mdash; every common special pay with 2026 amounts.")
 
+# ===================== PCS & FAMILY MONEY BATCH =====================
+_D2 = "2026-06-10"
+_b = open('data/bah_2025.js').read()
+_BAHD = json.loads(_b[_b.index('=')+1:_b.rstrip().rstrip(';').rfind('}')+1])
+_GI = _BAHD['meta']['grades']
+def bah_rate(mha, col, dep="with"):
+    return _BAHD[dep][mha][_GI.index(col)]
+
+# --- DLA ---
+body = f'''<h1>Dislocation Allowance (DLA): The PCS Money Nobody Tells You About</h1>
+<p class="meta">Updated {_D2}</p>
+<p class="lead">Every PCS move comes with a one-time, <strong>tax-free</strong> payment called the
+<strong>Dislocation Allowance</strong> &mdash; meant to cover the costs the government doesn't reimburse directly
+(deposits, curtains, that first grocery run). In 2026 it's worth <strong>thousands of dollars</strong>, and you usually
+have to know to ask for it.</p>
+<h2>2026 DLA amounts (examples)</h2>
+<div class="tablewrap"><table class="pay"><thead><tr><th>Grade</th><th>With dependents</th><th>Without dependents</th></tr></thead><tbody>
+<tr><td>E-1 through E-6</td><td>$3,548.02</td><td>$2,389.42 (E-5 rate; varies slightly by grade)</td></tr>
+</tbody></table></div>
+<p>Rates rise with pay grade (senior officers receive more) and are set each calendar year &mdash; the figures above are
+from the official 2026 DTMO table effective January 1, 2026. Look up your exact grade on the DTMO DLA page.</p>
+<h2>The rules that matter</h2>
+<ul>
+<li><strong>It's an entitlement, but payment isn't automatic</strong> &mdash; you typically request DLA through your
+travel claim (or as an advance before the move). Members miss it by not filing.</li>
+<li><strong>Tax-free</strong> &mdash; DLA is excluded from gross income, even if it exceeds what you actually spent.</li>
+<li><strong>One per move</strong> (with limited exceptions), and generally <strong>not payable</strong> for a first PCS
+from initial training to the first duty station, or on separation/retirement moves.</li>
+<li><strong>Dependent rate</strong> follows whether dependents relocate with you.</li>
+</ul>
+<h2>Stack it with the rest of your PCS money</h2>
+<p>DLA is separate from travel per diem, mileage (MALT), and Temporary Lodging Expense (TLE). A typical E-5 family PCS
+can put <strong>$4,000&ndash;$6,000+</strong> of combined entitlements in play &mdash; money that softens the
+out-of-pocket hit of <a href="/blog/bah-reform-95-to-100.html">housing costs</a> at the new duty station.</p>
+{cta("Moving this summer? Check your new BAH by ZIP before you sign a lease.", "/")}
+'''
+write("dislocation-allowance-dla-2026.html",
+      "Dislocation Allowance (DLA) 2026: The Tax-Free PCS Payment Explained",
+      "DLA pays E-1–E-6 families $3,548.02 tax-free per PCS move in 2026 ($2,389.42 single E-5). Who qualifies, when it's NOT paid, and how to claim it.",
+      "DLA", body,
+      faq=[("How much is DLA in 2026?","For E-1 through E-6 with dependents, $3,548.02; an E-5 without dependents receives $2,389.42. Rates rise with pay grade — check the official DTMO table for yours."),
+           ("Is DLA taxable?","No. DLA is excluded from gross income even if the payment exceeds your actual moving costs."),
+           ("Do I get DLA on my first move from basic training?","Generally no — DLA is not payable for the move from initial training to your first duty station, nor for separation or retirement moves.")],
+      related=[("2026 BAH rates explained","/blog/2026-bah-rates-explained.html"),
+               ("BAH rates by location","/bah/"),
+               ("How to read your LES","/blog/how-to-read-your-les.html")],
+      blurb="The tax-free PCS payment: $3,548 for an E-5 family in 2026 &mdash; and when it's NOT paid.")
+
+# --- BNA ---
+body = f'''<h1>Basic Needs Allowance (BNA): The Military's Food-Security Benefit</h1>
+<p class="meta">Updated {_D2}</p>
+<p class="lead">The <strong>Basic Needs Allowance</strong> is a monthly payment for service members whose gross household
+income falls below <strong>150% of the federal poverty guidelines</strong> for their household size. It exists because
+some junior enlisted families &mdash; especially large ones in high-cost areas &mdash; struggle with food costs.</p>
+<h2>How it works</h2>
+<ul>
+<li><strong>Screening is annual:</strong> the services screen members (and re-screen at major life changes) and notify
+those who appear to qualify; you can also apply through your finance office.</li>
+<li><strong>The allowance tops you up:</strong> BNA pays roughly the difference between household income and the
+150%-of-poverty threshold, spread across monthly payments.</li>
+<li><strong>It's taxable</strong> &mdash; unlike BAH/BAS, BNA counts as taxable income.</li>
+</ul>
+<h2>The BAH problem &mdash; and the proposed fix</h2>
+<p>Today's eligibility math counts <strong>tax-free BAH as income</strong>, which pushes most families above the
+threshold and is the main reason few members receive BNA. The
+<a href="/blog/fy2027-ndaa-pay-benefits.html">FY2027 NDAA</a> passed by the House Armed Services Committee in June 2026
+would <strong>remove BAH from the calculation</strong> &mdash; potentially making thousands more junior families
+eligible. We're tracking it on the <a href="/blog/2027-military-pay-raise-tracker.html">2027 pay tracker</a>.</p>
+<h2>Should you check?</h2>
+<p>If you're <strong>E-1 to E-4 with several dependents</strong>, it costs nothing to ask your finance office for a BNA
+screening &mdash; especially if the BAH exclusion becomes law in December.</p>
+{cta("Estimate your full pay picture — basic pay, BAH, BAS and take-home.", "/")}
+'''
+write("basic-needs-allowance-explained.html",
+      "Basic Needs Allowance (BNA): Who Qualifies and the BAH Fix Coming",
+      "BNA tops up military households below 150% of the federal poverty line. Counting tax-free BAH as income blocks most families — the FY2027 NDAA would change that.",
+      "BNA", body,
+      faq=[("What is the Basic Needs Allowance?","A monthly allowance for service members whose gross household income is below 150% of the federal poverty guidelines for their household size."),
+           ("Why do so few families get BNA?","Because BAH currently counts as income in the eligibility math, pushing most households over the threshold. The FY2027 NDAA proposes excluding BAH."),
+           ("Is BNA taxable?","Yes — unlike BAH and BAS, the Basic Needs Allowance is taxable income.")],
+      related=[("FY2027 NDAA benefits roundup","/blog/fy2027-ndaa-pay-benefits.html"),
+               ("How much does an E-4 make in 2026?","/blog/how-much-does-an-e4-make-2026.html"),
+               ("2026 BAH rates explained","/blog/2026-bah-rates-explained.html")],
+      blurb="The food-security top-up most families can't get yet &mdash; and the FY2027 fix.")
+
+# --- Dual military BAH ---
+sd_e5 = bah_rate("CA038","E05","without"); sd_e6 = bah_rate("CA038","E06","without"); sd_e6d = bah_rate("CA038","E06","with")
+body = f'''<h1>Dual-Military Couples: How BAH Actually Works When Both Serve</h1>
+<p class="meta">Updated {_D2}</p>
+<p class="lead">When two service members marry, the money rules change in their favor in one big way:
+<strong>each member keeps their own BAH</strong>. A dual-military couple usually banks <em>two</em> housing allowances
+against <em>one</em> rent payment.</p>
+<h2>The core rules</h2>
+<ul>
+<li><strong>No dependents:</strong> each member receives the <strong>without-dependents</strong> rate for their own grade.
+Example (San Diego rates): an E-5 ({money(sd_e5)}) married to an E-6 ({money(sd_e6)}) brings in
+<strong>{money(sd_e5+sd_e6)}/month</strong> combined &mdash; tax-free.</li>
+<li><strong>With children:</strong> one member &mdash; typically the senior &mdash; claims the
+<strong>with-dependents</strong> rate ({money(sd_e6d)} for an E-6 in San Diego); the other still draws their own
+without-dependents rate. The same child can't be claimed by both.</li>
+<li><strong>Stationed apart:</strong> each member draws BAH for their own duty location, and who claims the children
+follows the dependency determination.</li>
+</ul>
+<h2>Why this is such a strong financial position</h2>
+<p>Two BAHs + one rent = a structural savings engine. The couple above clears {money(sd_e5+sd_e6)}/month in tax-free
+housing money; renting at {money(3200)} would leave <strong>{money(sd_e5+sd_e6-3200)}/month</strong> to keep &mdash;
+on top of two basic pays, two BAS payments, and two TSP matches.</p>
+<p class="callout">BAH is payable when living off base. Dual-military couples in privatized base housing typically
+forfeit one BAH as rent &mdash; run the numbers before choosing base housing.</p>
+{cta("Run both of your pay profiles and compare living on vs off base.", "/")}
+'''
+write("dual-military-couples-bah.html",
+      "Dual-Military Couples & BAH: Two Allowances, One Rent",
+      f"Both members keep their own BAH: a San Diego E-5+E-6 couple draws {money(sd_e5+sd_e6)}/month tax-free. How the with-dependents rate works with kids, and stationed-apart rules.",
+      "Dual Military", body,
+      faq=[("Do dual-military couples both get BAH?","Yes. Each member receives BAH at their own grade — both at the without-dependents rate if there are no children."),
+           ("Who claims the with-dependents rate when we have kids?","One member (typically the senior) claims the with-dependents rate; the other keeps their own without-dependents rate. Both cannot claim the same dependent."),
+           ("What if we're stationed in different cities?","Each member draws BAH for their own duty location.")],
+      related=[("BAH with vs without dependents","/blog/bah-with-vs-without-dependents.html"),
+               ("BAH rates by location","/bah/"),
+               ("2026 BAH rates explained","/blog/2026-bah-rates-explained.html")],
+      blurb=f"Two BAHs, one rent: a SD E-5+E-6 couple banks {money(sd_e5+sd_e6)}/mo tax-free.")
+
+# --- RMC / civilian equivalent ---
+_b5=BP["E-5"]["4"]; _bah5=bah_rate("CA038","E05","with"); _bas=476.95
+_ann = (_b5+_bah5+_bas)*12
+body = f'''<h1>What's Your Military Pay Worth in Civilian Salary? (RMC Explained)</h1>
+<p class="meta">Updated {_D2}</p>
+<p class="lead">Comparing a job offer to military pay using basic pay alone is the classic mistake. The honest comparison
+is <strong>Regular Military Compensation (RMC)</strong>: basic pay + BAH + BAS <em>plus the tax advantage</em> of the
+allowances being tax-free.</p>
+<h2>A real example: E-5, 4 years, San Diego, with dependents</h2>
+<div class="tablewrap"><table class="pay"><thead><tr><th>Component</th><th>Monthly</th><th>Annual</th></tr></thead><tbody>
+<tr><td>Basic pay (taxable)</td><td>{money(_b5)}</td><td>{money(_b5*12)}</td></tr>
+<tr><td>BAH (tax-free)</td><td>{money(_bah5)}</td><td>{money(_bah5*12)}</td></tr>
+<tr><td>BAS (tax-free)</td><td>{money(_bas)}</td><td>{money(_bas*12)}</td></tr>
+<tr><td><strong>Cash compensation</strong></td><td><strong>{money(_b5+_bah5+_bas)}</strong></td><td><strong>{money(_ann)}</strong></td></tr>
+</tbody></table></div>
+<p>Because {money((_bah5+_bas)*12)} of that arrives <strong>tax-free</strong>, a civilian would need to earn meaningfully
+more than {money(_ann)} to take home the same amount &mdash; typically <strong>{money(_ann*1.06)}&ndash;{money(_ann*1.12)}</strong>
+depending on filing status and state. And that's before counting free health care, the TSP match, and the pension.</p>
+<h2>What RMC still leaves out</h2>
+<ul>
+<li><strong>Health care</strong> &mdash; Tricare for a family vs $6,000&ndash;$25,000/year in civilian premiums + deductibles.</li>
+<li><strong>Retirement</strong> &mdash; the <a href="/blog/military-retirement-brs-vs-high3.html">BRS pension + 5% TSP match</a>.</li>
+<li><strong>Special pays</strong>, <a href="/blog/dislocation-allowance-dla-2026.html">PCS entitlements</a>, and education benefits (GI Bill, tuition assistance).</li>
+</ul>
+<p class="callout">Location changes the math drastically: the same E-5 in a low-cost area draws far less BAH. Always
+compare offers against <em>your</em> ZIP code, not a national average.</p>
+{cta("Compute your own RMC — basic + BAH (by ZIP) + BAS, with taxes handled correctly.", "/")}
+'''
+write("military-pay-civilian-equivalent-rmc.html",
+      "What's Military Pay Worth in Civilian Salary? RMC Explained",
+      f"An E-5 with 4 years in San Diego earns {money(_ann)}/year in cash compensation — worth {money(_ann*1.06)}+ in civilian salary after the tax advantage, before health care and pension.",
+      "RMC", body,
+      faq=[("What is Regular Military Compensation?","RMC = basic pay + BAH + BAS + the federal tax advantage of the tax-free allowances. It's the honest baseline for comparing military pay to civilian salaries."),
+           ("How much civilian salary equals E-5 pay?",f"An E-5 over 4 years with dependents in San Diego receives about {money(_ann)}/year in cash; a civilian would typically need {money(_ann*1.06)}–{money(_ann*1.12)} to match the take-home, before benefits."),
+           ("Why is military take-home higher than it looks?","Because BAH and BAS are tax-free — a large slice of compensation never touches federal income tax.")],
+      related=[("How much does an E-5 make in 2026?","/blog/how-much-does-an-e5-make-2026.html"),
+               ("Military retirement: BRS vs High-3","/blog/military-retirement-brs-vs-high3.html"),
+               ("States that don't tax military pay","/blog/states-that-dont-tax-military-pay.html")],
+      blurb=f"E-5 in San Diego = {money(_ann)}/yr cash &mdash; what that's really worth in civilian salary.")
+
+# --- COLA ---
+body = f'''<h1>Military COLA Explained: CONUS vs Overseas (and the Tax Catch)</h1>
+<p class="meta">Updated {_D2}</p>
+<p class="lead"><strong>Cost-of-Living Allowance (COLA)</strong> offsets high day-to-day prices &mdash; groceries, gas,
+services &mdash; in expensive duty locations. It's separate from BAH (which only covers housing), and there are two very
+different flavors.</p>
+<h2>OCONUS COLA (overseas)</h2>
+<ul>
+<li>Paid in <strong>high-cost overseas locations</strong> (Japan, Germany, and similar; Hawaii and Alaska have their own version).</li>
+<li>Amount depends on <strong>location, grade, years of service, and dependents</strong>, and adjusts with exchange rates
+&mdash; it can change several times a year.</li>
+<li><strong>Tax-free.</strong></li>
+</ul>
+<h2>CONUS COLA (stateside)</h2>
+<ul>
+<li>Paid only in a <strong>small list of high-cost U.S. areas</strong> where local prices far exceed the national average.</li>
+<li>Typically <strong>much smaller</strong> than overseas COLA.</li>
+<li><strong>Taxable</strong> &mdash; the rare allowance that is, set by statute (unlike BAH/BAS).</li>
+</ul>
+<p class="callout">Quick rule: <strong>overseas COLA is tax-free; stateside (CONUS) COLA is taxable.</strong> If you're
+entering a COLA amount into a pay calculator, know which one you're getting.</p>
+<h2>How to find your rate</h2>
+<p>Rates are published by the Defense Travel Management Office (travel.dod.mil) with lookup tools for both programs.
+Enter the monthly amount into the <a href="/">calculator</a>'s COLA field to see the paycheck impact alongside your
+<a href="/bah/">BAH</a> and BAS.</p>
+{cta("Add your COLA and see your true monthly take-home.", "/")}
+'''
+write("military-cola-explained.html",
+      "Military COLA Explained: CONUS vs Overseas Rules (and Taxes)",
+      "COLA offsets high local prices — overseas COLA is tax-free and adjusts with exchange rates; stateside CONUS COLA is smaller and taxable. How rates are set and where to look yours up.",
+      "COLA", body,
+      faq=[("Is military COLA taxable?","Overseas (OCONUS) COLA is tax-free. Stateside (CONUS) COLA is taxable — it's the rare military allowance that is."),
+           ("What determines my COLA amount?","Location, pay grade, years of service, and number of dependents; overseas rates also adjust with currency exchange rates."),
+           ("Is COLA the same as BAH?","No. BAH covers housing; COLA offsets non-housing living costs like groceries and services in expensive areas.")],
+      related=[("2026 BAH rates explained","/blog/2026-bah-rates-explained.html"),
+               ("BAH rates by location","/bah/"),
+               ("What's military pay worth in civilian salary?","/blog/military-pay-civilian-equivalent-rmc.html")],
+      blurb="Overseas COLA is tax-free; CONUS COLA is taxable &mdash; the rules in plain English.")
+
 # ===================== POLICY / NEWS INTERPRETATION PAGES =====================
 NEWS_DATE = "2026-06-10"
 
