@@ -2488,6 +2488,128 @@ write("2025-vs-2026-military-pay.html",
                ("Military pay raise history","/blog/military-pay-raise-history.html")],
       blurb="2026 vs 2025: +3.8% basic, +2.4% BAS, +4.2% BAH &mdash; the increase by rank.")
 
+# ===================== RETIREMENT-PROTECTION / LEGAL BATCH =====================
+# --- Survivor Benefit Plan (SBP) ---
+body = f'''<h1>Survivor Benefit Plan (SBP): How It Protects Your Pension After Death</h1>
+<p class="meta">Updated {_D2}</p>
+<p class="lead">Military retired pay <strong>stops when you die</strong> &mdash; unless you elect the
+<strong>Survivor Benefit Plan</strong>. SBP turns your pension into a lifetime annuity for your spouse or children,
+paying up to <strong>55% of your retired pay</strong> for the rest of their life.</p>
+<h2>How SBP works</h2>
+<ul>
+<li>At retirement, you elect SBP coverage based on a chosen "base amount" (up to your full retired pay).</li>
+<li>You pay a monthly <strong>premium of 6.5% of the covered base amount</strong>, deducted from retired pay (pre-tax).</li>
+<li>If you die, your beneficiary receives <strong>55% of the base amount</strong> as a monthly annuity &mdash; with COLA
+adjustments &mdash; for life.</li>
+</ul>
+<h2>Why it's hard to beat with private insurance</h2>
+<p class="callout">SBP is <strong>inflation-protected, government-backed, and can't be outlived</strong>. Replicating a
+COLA-adjusted lifetime annuity with private life insurance is usually far more expensive &mdash; which is why financial
+counselors generally favor SBP for a spouse who'd depend on the pension.</p>
+<h2>Key decision points</h2>
+<ul>
+<li><strong>It's a one-time, mostly irrevocable election</strong> at retirement &mdash; declining requires spouse consent.</li>
+<li>Coverage can include a <strong>spouse, children, or former spouse</strong> (court-ordered in some
+<a href="/blog/military-divorce-retirement-pay.html">divorces</a>).</li>
+<li>SBP and <a href="/blog/2026-va-disability-rates.html">VA Dependency &amp; Indemnity Compensation (DIC)</a> interaction
+changed in recent years &mdash; the old offset was phased out.</li>
+</ul>
+<p>SBP applies to the <a href="/blog/military-retirement-brs-vs-high3.html">retired pay</a> you earn at 20+ years &mdash;
+estimate that pension first, then weigh the 6.5% premium against the protection it buys your family.</p>
+{cta("Estimate your career pay and pension, then plan SBP around it.", "/")}
+'''
+write("survivor-benefit-plan-sbp.html",
+      "Survivor Benefit Plan (SBP): Protect Your Military Pension After Death",
+      "SBP turns military retired pay into a lifetime, COLA-adjusted annuity paying survivors up to 55% of retired pay for a 6.5% premium. How it works and why it's hard to beat with private insurance.",
+      "SBP", body,
+      faq=[("What is the Survivor Benefit Plan?","SBP is an elected annuity that continues part of your military retired pay to a survivor after you die — up to 55% of your chosen base amount, adjusted for inflation, for their lifetime."),
+           ("How much does SBP cost?","The premium is 6.5% of the covered base amount, deducted pre-tax from retired pay."),
+           ("Is SBP worth it?","For a spouse who would depend on the pension, usually yes — it's inflation-protected, government-backed, and can't be outlived, which is expensive to replicate with private insurance.")],
+      related=[("Military retirement: BRS vs High-3","/blog/military-retirement-brs-vs-high3.html"),
+               ("CRDP & CRSC: concurrent receipt","/blog/crdp-crsc-concurrent-receipt.html"),
+               ("Military divorce & retirement pay","/blog/military-divorce-retirement-pay.html")],
+      blurb="SBP continues up to 55% of your pension to survivors for life (6.5% premium).")
+
+# --- CRDP / CRSC concurrent receipt ---
+body = f'''<h1>CRDP &amp; CRSC: Getting Both Military Retirement and VA Disability</h1>
+<p class="meta">Updated {_D2}</p>
+<p class="lead">For decades, military retirees had to <strong>waive part of their retired pay</strong> to receive
+<a href="/blog/2026-va-disability-rates.html">VA disability compensation</a> &mdash; a dollar-for-dollar offset. Two
+programs, <strong>CRDP</strong> and <strong>CRSC</strong>, now let many retirees receive <strong>both</strong>, adding
+hundreds to thousands of dollars a month.</p>
+<h2>The old problem: the VA offset</h2>
+<p>Retired pay is taxable; VA disability is tax-free. Historically, every dollar of VA compensation reduced retired pay by
+a dollar &mdash; you didn't truly receive both. CRDP and CRSC restore the offset amount.</p>
+<h2>CRDP &mdash; Concurrent Retirement and Disability Pay</h2>
+<ul>
+<li>For retirees with <strong>20+ years</strong> (longevity retirement) and a VA rating of <strong>50% or higher</strong>.</li>
+<li>Restores the offset so you receive <strong>full retired pay + full VA disability</strong>.</li>
+<li><strong>Automatic</strong> &mdash; no application needed; it's taxable (the restored retired-pay portion).</li>
+</ul>
+<h2>CRSC &mdash; Combat-Related Special Compensation</h2>
+<ul>
+<li>For disabilities that are <strong>combat-related</strong> (combat, training, hazardous duty, instrumentality of war).</li>
+<li>Available at <strong>any rating</strong> (10%+) and can apply to medical retirees, not just 20-year retirees.</li>
+<li><strong>Tax-free</strong>, but you must <strong>apply</strong> through your branch.</li>
+</ul>
+<p class="callout">You can't receive CRDP and CRSC at the same time &mdash; but you can choose the one that pays more and
+switch during the annual open season. For combat-related disabilities, CRSC is often the tax-free winner.</p>
+<p>Both build on your <a href="/blog/military-retirement-brs-vs-high3.html">retired pay</a> and
+<a href="/blog/2026-va-disability-rates.html">VA rating</a> &mdash; estimate those first.</p>
+{cta("Estimate your retired pay base — the foundation for CRDP and CRSC.", "/")}
+'''
+write("crdp-crsc-concurrent-receipt.html",
+      "CRDP & CRSC: Get Both Military Retirement and VA Disability",
+      "CRDP and CRSC restore the VA offset so retirees can receive both retired pay and VA disability. CRDP (20 years, 50%+, automatic, taxable) vs CRSC (combat-related, any rating, tax-free, apply).",
+      "CRDP/CRSC", body,
+      faq=[("Can you get military retirement and VA disability at the same time?","Yes, through CRDP or CRSC, which restore the old dollar-for-dollar offset. CRDP is for 20-year retirees rated 50%+ (automatic, taxable); CRSC is for combat-related disabilities at any rating (tax-free, must apply)."),
+           ("What is the difference between CRDP and CRSC?","CRDP restores retired pay for 20-year retirees with a 50%+ VA rating and is taxable; CRSC is tax-free but only for combat-related disabilities and requires an application. You can't receive both at once."),
+           ("Is CRSC tax-free?","Yes — Combat-Related Special Compensation is tax-free, unlike CRDP.")],
+      related=[("2026 VA disability rates","/blog/2026-va-disability-rates.html"),
+               ("Military retirement: BRS vs High-3","/blog/military-retirement-brs-vs-high3.html"),
+               ("Survivor Benefit Plan (SBP)","/blog/survivor-benefit-plan-sbp.html")],
+      blurb="CRDP & CRSC let retirees collect retired pay + VA disability &mdash; one taxable, one tax-free.")
+
+# --- Military divorce & pension ---
+body = f'''<h1>Military Divorce &amp; Retirement Pay: The 10/10 Rule and USFSPA Explained</h1>
+<p class="meta">Updated {_D2}</p>
+<p class="lead">A military pension is often the largest marital asset, and dividing it in divorce follows special federal
+rules. The <strong>Uniformed Services Former Spouses' Protection Act (USFSPA)</strong> &mdash; and the famous
+<strong>"10/10 rule"</strong> &mdash; govern how it works.</p>
+<h2>What USFSPA does</h2>
+<p>USFSPA lets state courts treat <strong>"disposable retired pay" as marital property</strong> that can be divided in a
+divorce. It does <em>not</em> automatically award a share &mdash; a court order does &mdash; but it permits the division.</p>
+<h2>The 10/10 rule (a payment rule, not an eligibility rule)</h2>
+<p class="callout">If the marriage overlapped with <strong>at least 10 years of creditable service</strong>, DFAS will pay
+the former spouse's share <strong>directly</strong>. With less than 10/10 overlap, the former spouse can still be awarded
+a share &mdash; but the <strong>retiree must pay it themselves</strong>; DFAS won't send it directly. The 10/10 rule is
+about <em>who cuts the check</em>, not whether a share exists.</p>
+<h2>Other rules people get wrong</h2>
+<ul>
+<li><strong>The "frozen benefit" rule:</strong> for divorces after December 2016, the former spouse's share is generally
+based on the member's rank and service <em>at the time of divorce</em>, not at retirement.</li>
+<li><strong>VA disability can't be divided:</strong> <a href="/blog/2026-va-disability-rates.html">VA compensation</a> and
+CRSC are not divisible as marital property; waiving retired pay for VA can reduce the divisible amount.</li>
+<li><strong>SBP for a former spouse:</strong> a court can order
+<a href="/blog/survivor-benefit-plan-sbp.html">SBP</a> coverage for an ex-spouse (former-spouse election).</li>
+<li><strong>The 20/20/20 rule</strong> (20 years married, 20 years service, 20 years overlap) preserves full military
+benefits &mdash; Tricare, commissary &mdash; for the former spouse.</li>
+</ul>
+<p><em>This is general information, not legal advice &mdash; consult a military-divorce attorney.</em></p>
+{cta("Estimate the retired pay at stake — the base for any division.", "/")}
+'''
+write("military-divorce-retirement-pay.html",
+      "Military Divorce & Retirement Pay: The 10/10 Rule and USFSPA",
+      "How military pensions are divided in divorce: USFSPA lets courts split disposable retired pay; the 10/10 rule decides whether DFAS pays the ex-spouse directly. Plus the frozen-benefit and 20/20/20 rules.",
+      "Military Divorce", body,
+      faq=[("What is the military 10/10 rule?","If the marriage overlapped at least 10 years of creditable service, DFAS pays the former spouse's awarded share of retired pay directly. With less overlap, a share can still be awarded but the retiree must pay it — it's about who pays, not eligibility."),
+           ("Can an ex-spouse get part of my military pension?","Yes — under USFSPA, a state court can divide disposable retired pay as marital property, typically based on rank and service at the time of divorce for post-2016 cases."),
+           ("Can VA disability be divided in a divorce?","No — VA disability compensation and CRSC are not divisible as marital property.")],
+      related=[("Survivor Benefit Plan (SBP)","/blog/survivor-benefit-plan-sbp.html"),
+               ("Military retirement: BRS vs High-3","/blog/military-retirement-brs-vs-high3.html"),
+               ("2026 VA disability rates","/blog/2026-va-disability-rates.html")],
+      blurb="Dividing a military pension: USFSPA + the 10/10 rule (who DFAS pays) explained.")
+
 # ===================== POLICY / NEWS INTERPRETATION PAGES =====================
 NEWS_DATE = "2026-06-10"
 
