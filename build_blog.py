@@ -1160,6 +1160,191 @@ write("military-cola-explained.html",
                ("What's military pay worth in civilian salary?","/blog/military-pay-civilian-equivalent-rmc.html")],
       blurb="Overseas COLA is tax-free; CONUS COLA is taxable &mdash; the rules in plain English.")
 
+# ===================== DEPLOYMENT / BONUS / HISTORY / PROMOTION BATCH =====================
+def _fed_single(annual_taxable):
+    ti = max(0, annual_taxable - 16100)
+    br = [(0,.10),(12400,.12),(50400,.22),(105700,.24),(201775,.32),(256225,.35),(640600,.37)]
+    tax = 0
+    for i,(lo,rt) in enumerate(br):
+        hi = br[i+1][0] if i+1 < len(br) else float("inf")
+        if ti > lo: tax += (min(ti,hi)-lo)*rt
+    return tax
+
+# deployment example: E-5 @4yrs, San Diego, with dependents, single filer, 5% trad TSP, SGLI max
+_db   = BP["E-5"]["4"]; _dbah = bah_rate("CA038","E05","with"); _dbas = 476.95
+_dtsp = _db*0.05
+_home_gross = _db+_dbah+_dbas
+_home_fed   = _fed_single((_db-_dtsp)*12)/12
+_home_ded   = _home_fed + _db*.062 + _db*.0145 + _dtsp + 26
+_home_net   = _home_gross - _home_ded
+_dep_specials = 300+225   # FSA + IDP
+_dep_gross  = _home_gross + _dep_specials
+_dep_fica   = (_db+_dep_specials)*.062 + (_db+_dep_specials)*.0145
+_dep_ded    = _dep_fica + _dtsp + 26
+_dep_net    = _dep_gross - _dep_ded
+_dep_gain   = _dep_net - _home_net
+
+body = f'''<h1>How Deployment Changes Your Paycheck: A Real Example</h1>
+<p class="meta">Updated {_D2}</p>
+<p class="lead">Deploy to a designated combat zone and three things hit your LES at once: <strong>new special pays
+start</strong>, <strong>federal income tax stops</strong>, and your allowances keep flowing. Here's the full math for a
+typical E-5 &mdash; deployed pay is often <strong>$700&ndash;$900/month higher</strong>, all of it saveable.</p>
+<h2>The example: E-5, 4 years, family in San Diego</h2>
+<div class="tablewrap"><table class="pay"><thead><tr><th>Monthly item</th><th>Home station</th><th>Deployed (combat zone)</th></tr></thead><tbody>
+<tr><td>Basic pay</td><td>{money(_db)}</td><td>{money(_db)}</td></tr>
+<tr><td>BAH (family stays put)</td><td>{money(_dbah)}</td><td>{money(_dbah)}</td></tr>
+<tr><td>BAS</td><td>{money(_dbas)}</td><td>{money(_dbas)}</td></tr>
+<tr><td>Family Separation Allowance</td><td>&mdash;</td><td>$300</td></tr>
+<tr><td>Hostile Fire / Imminent Danger Pay</td><td>&mdash;</td><td>$225</td></tr>
+<tr><td>Federal income tax</td><td>&minus;{money(_home_fed)}</td><td><strong>$0 (CZTE)</strong></td></tr>
+<tr><td>FICA (still applies)</td><td>&minus;{money(_db*.062+_db*.0145)}</td><td>&minus;{money(_dep_fica)}</td></tr>
+<tr><td>TSP (5%) + SGLI</td><td>&minus;{money(_dtsp+26)}</td><td>&minus;{money(_dtsp+26)}</td></tr>
+<tr><td><strong>Net take-home</strong></td><td><strong>{money(_home_net)}</strong></td><td><strong>{money(_dep_net)}</strong></td></tr>
+</tbody></table></div>
+<p>That's <strong>+{money(_dep_gain)}/month</strong> &mdash; roughly {money(_dep_gain*9)} over a nine-month deployment,
+before the spending drop that usually comes with deployed life.</p>
+<h2>Don't miss these two multipliers</h2>
+<ul>
+<li><strong>Savings Deposit Program (SDP):</strong> deployed members can deposit up to <strong>$10,000</strong> and earn
+a guaranteed <strong>10% annual interest</strong> while in theater &mdash; the best risk-free return available anywhere.</li>
+<li><strong>Roth TSP while tax-free:</strong> combat-zone pay contributed to <a href="/blog/military-tsp-explained.html">Roth TSP</a>
+goes in untaxed and comes out untaxed &mdash; a double exemption you can't get any other way.</li>
+</ul>
+<p class="callout">Officers: the <a href="/blog/combat-zone-tax-exclusion.html">CZTE is capped</a> at about $10,954/month
+in 2026 &mdash; pay above the cap is still taxed. Enlisted and warrant officers have no cap.</p>
+{cta("Toggle CZTE and add FSA/IDP in the calculator to model your own deployment.", "/")}
+'''
+write("deployment-pay-explained.html",
+      "How Deployment Changes Your Paycheck: Real E-5 Example (2026)",
+      f"Deployed to a combat zone, a typical E-5 takes home {money(_dep_net)}/month vs {money(_home_net)} at home — +{money(_dep_gain)}/month from CZTE, FSA and danger pay. Full math inside.",
+      "Deployment Pay", body,
+      faq=[("How much more do you make deployed?",f"For a typical E-5 with a family, about {money(_dep_gain)} more per month — federal tax stops (CZTE) and FSA ($300) plus danger pay ($225) start."),
+           ("Is all deployed pay tax-free?","Federal income tax stops for enlisted members (officers are capped near $10,954/month in 2026), but Social Security and Medicare are still withheld."),
+           ("What is the Savings Deposit Program?","Deployed members can deposit up to $10,000 into the SDP and earn a guaranteed 10% annual interest while deployed.")],
+      related=[("Combat zone tax exclusion","/blog/combat-zone-tax-exclusion.html"),
+               ("Special pays guide","/blog/military-special-pays-guide.html"),
+               ("Military TSP explained","/blog/military-tsp-explained.html")],
+      blurb=f"A deployed E-5 nets +{money(_dep_gain)}/mo &mdash; the full before/after LES math.")
+
+# --- bonuses & taxes ---
+body = f'''<h1>Military Bonuses and Taxes: What You Actually Keep</h1>
+<p class="meta">Updated {_D2}</p>
+<p class="lead">Enlistment and reenlistment bonuses are real money &mdash; tens of thousands of dollars &mdash; but the
+amount that hits your account is smaller than the number on the contract, unless you time it right.</p>
+<h2>The main bonus types</h2>
+<ul>
+<li><strong>Enlistment bonus</strong> &mdash; for shipping into critical jobs; amounts vary by service, MOS/rating, and
+contract length (commonly $5,000&ndash;$50,000 for the hardest-to-fill jobs).</li>
+<li><strong>Selective Reenlistment Bonus (SRB)</strong> &mdash; for staying in critical skills; calculated from monthly
+basic pay &times; years of additional service &times; a skill multiplier, often paid half upfront and the rest in
+annual installments.</li>
+<li><strong>Other incentives</strong> &mdash; officer retention, aviation/medical continuation pay, and similar programs.</li>
+</ul>
+<h2>How bonuses are taxed</h2>
+<ul>
+<li>Bonuses are <strong>taxable income</strong>, and DFAS withholds federal tax at the flat
+<strong>22% supplemental-wage rate</strong> up front (plus FICA, plus state where applicable).</li>
+<li>The 22% is <em>withholding</em>, not your final bill &mdash; many junior members whose real bracket is 10&ndash;12%
+get a chunk back at tax time.</li>
+<li><strong>The combat-zone play:</strong> a bonus earned in a month you're in a designated combat zone is covered by the
+<a href="/blog/combat-zone-tax-exclusion.html">CZTE</a> &mdash; <strong>reenlisting while deployed can make the entire
+bonus federally tax-free</strong>. This is the single biggest legal tax move available to enlisted members.</li>
+</ul>
+<h2>Installments and clawbacks</h2>
+<p>SRB installments are taxed in the year received. If you fail to complete the obligated service, unearned portions are
+<strong>recouped</strong> &mdash; the government bills you back. Read the contract's installment schedule before counting
+the full number.</p>
+{cta("Model your monthly pay with and without the new contract — see the real difference.", "/")}
+'''
+write("military-bonuses-taxes.html",
+      "Military Bonuses & Taxes: The 22% Withholding and the Combat-Zone Play",
+      "Enlistment and reenlistment bonuses are taxed at a flat 22% withholding — but a bonus earned in a combat zone is federally tax-free. How SRB installments, refunds, and clawbacks work.",
+      "Bonuses", body,
+      faq=[("How are military bonuses taxed?","As taxable income with a flat 22% federal withholding up front, plus FICA. If your real bracket is lower, you get the difference back at tax time."),
+           ("Are bonuses tax-free in a combat zone?","Yes — a bonus earned in a month you serve in a designated combat zone falls under the combat-zone tax exclusion. Reenlisting while deployed can make the whole bonus federally tax-free."),
+           ("What happens to my bonus if I separate early?","Unearned portions are recouped — the government claws back the prorated amount for service you didn't complete.")],
+      related=[("Combat zone tax exclusion","/blog/combat-zone-tax-exclusion.html"),
+               ("Deployment pay explained","/blog/deployment-pay-explained.html"),
+               ("How to read your LES","/blog/how-to-read-your-les.html")],
+      blurb="22% withholding, installment rules, clawbacks &mdash; and the deployed-reenlistment tax play.")
+
+# --- pay raise history ---
+_hist = [("2017","2.1%"),("2018","2.4%"),("2019","2.6%"),("2020","3.1%"),("2021","3.0%"),
+         ("2022","2.7%"),("2023","4.6%"),("2024","5.2%"),("2025","4.5% + targeted junior-enlisted raise (April)"),
+         ("2026","3.8%"),("2027","proposed 7% / 6% / 5% tiered")]
+_hrows = "".join(f"<tr><td>{y}</td><td>{r}</td></tr>" for y,r in _hist)
+body = f'''<h1>Military Pay Raise History: 2017&ndash;2027</h1>
+<p class="meta">Updated {_D2}</p>
+<p class="lead">Military raises are tied by law to the <strong>Employment Cost Index (ECI)</strong> &mdash; private-sector
+wage growth &mdash; unless Congress votes a different number. Here's the last decade, and where 2027 is heading.</p>
+<h2>Year-by-year raises</h2>
+<div class="tablewrap"><table class="pay"><thead><tr><th>Year</th><th>Basic pay raise</th></tr></thead><tbody>{_hrows}</tbody></table></div>
+<h2>The two big breaks from the pattern</h2>
+<ul>
+<li><strong>2025: the junior-enlisted catch-up.</strong> On top of the 4.5% January raise, Congress gave
+<strong>E-4s and below a targeted additional raise in April 2025</strong> (roughly 10% extra, ~14.5% combined) after years
+of reports on junior-enlisted food insecurity. It permanently lifted the bottom of the pay table.</li>
+<li><strong>2027: the tiered proposal.</strong> Instead of one number, the pending FY2027 NDAA uses
+<strong>7% / 6% / 5% tiers</strong> favoring junior troops &mdash; track it on our
+<a href="/blog/2027-military-pay-raise-tracker.html">2027 raise tracker</a>.</li>
+</ul>
+<h2>Raises compound</h2>
+<p>A raise isn't a one-year event &mdash; every future raise multiplies on top of it. From 2023 through 2026 alone, basic
+pay grew about <strong>19%</strong> compounded (4.6% &times; 5.2% &times; 4.5% &times; 3.8%), and pension math uses your
+final years' basic pay &mdash; so each raise also lifts <a href="/blog/military-retirement-brs-vs-high3.html">retired pay</a>.</p>
+{cta("See what the current pay table means for your exact rank and years.", "/")}
+'''
+write("military-pay-raise-history.html",
+      "Military Pay Raise History 2017–2027: Every Year's Increase",
+      "A decade of military raises: from 2.1% in 2017 to 5.2% in 2024, the 2025 junior-enlisted catch-up, 3.8% in 2026, and the proposed tiered 7%/6%/5% for 2027.",
+      "Raise History", body,
+      faq=[("How is the military pay raise determined?","By default it matches the Employment Cost Index (ECI) measure of private-sector wage growth; Congress can legislate a different figure."),
+           ("What was the biggest recent military raise?","2024's 5.2% was the largest across-the-board raise in over two decades; junior enlisted got an even larger targeted increase in April 2025."),
+           ("What is the 2027 military pay raise?","Still a proposal: 7% for E-5 and below, 6% for E-6 through O-3, and 5% for O-4 and above, pending the FY2027 NDAA.")],
+      related=[("2027 pay raise tracker","/blog/2027-military-pay-raise-tracker.html"),
+               ("2026 military pay raise (3.8%)","/blog/2026-military-pay-raise.html"),
+               ("2026 military pay chart","/blog/2026-military-pay-chart.html")],
+      blurb="2.1% (2017) &rarr; 5.2% (2024) &rarr; tiered 7/6/5 proposal (2027) &mdash; the full decade.")
+
+# --- promotion value ---
+_p56b = BP["E-6"]["8"] - BP["E-5"]["8"]
+_p56bah = bah_rate("CA038","E06","with") - bah_rate("CA038","E05","with")
+_p67b = BP["E-7"]["12"] - BP["E-6"]["12"]
+body = f'''<h1>What a Promotion Is Really Worth: E-5 to E-6 in Dollars</h1>
+<p class="meta">Updated {_D2}</p>
+<p class="lead">Promotions pay twice: a bigger basic-pay number today, and a higher pay <em>curve</em> for the rest of
+your career &mdash; plus a quieter bump most people forget: <strong>BAH goes up with your grade too</strong>.</p>
+<h2>The immediate raise: E-5 &rarr; E-6 at 8 years</h2>
+<div class="tablewrap"><table class="pay"><thead><tr><th>Monthly item</th><th>E-5 (over 8)</th><th>E-6 (over 8)</th><th>Gain</th></tr></thead><tbody>
+<tr><td>Basic pay</td><td>{money(BP["E-5"]["8"])}</td><td>{money(BP["E-6"]["8"])}</td><td>+{money(_p56b)}</td></tr>
+<tr><td>BAH (San Diego, w/ dependents)</td><td>{money(bah_rate("CA038","E05","with"))}</td><td>{money(bah_rate("CA038","E06","with"))}</td><td>+{money(_p56bah)} (tax-free)</td></tr>
+<tr><td><strong>Total monthly gain</strong></td><td></td><td></td><td><strong>+{money(_p56b+_p56bah)}</strong></td></tr>
+</tbody></table></div>
+<p>That's about <strong>{money((_p56b+_p56bah)*12)}/year</strong> &mdash; and because part of it is tax-free BAH, the
+take-home impact is bigger than a same-size civilian raise.</p>
+<h2>The career effect: the curve keeps climbing</h2>
+<p>E-5 basic pay <strong>stops growing at 12 years</strong> ({money(BP["E-5"]["12"])}); E-6 keeps stepping up to 20+
+years ({money(BP["E-6"]["20"])}), and E-7 to 26+. Staying an E-5 from year 12 to year 20 forfeits roughly
+<strong>{money((BP["E-6"]["20"]-BP["E-5"]["20"])*12*4 + (BP["E-6"]["14"]-BP["E-5"]["14"])*12*4)}</strong> in basic pay
+alone versus making E-6 &mdash; before counting BAH and the pension effect.</p>
+<h2>The retirement multiplier</h2>
+<p>Retired pay uses your <strong>highest 36 months of basic pay</strong>. Pinning on E-7 ({money(BP["E-7"]["12"])} at 12
+years, +{money(_p67b)} over E-6) in your final years raises the pension base for the rest of your life &mdash; see
+<a href="/blog/military-retirement-brs-vs-high3.html">how retired pay is calculated</a>.</p>
+{cta("Compare your current grade against the next one — same ZIP, same years.", "/")}
+'''
+write("promotion-value-e5-to-e6.html",
+      "What a Promotion Is Worth: E-5 to E-6 in Real Dollars",
+      f"E-5 to E-6 at 8 years is +{money(_p56b)}/month basic plus +{money(_p56bah)} tax-free BAH in San Diego — about {money((_p56b+_p56bah)*12)}/year, and the pay curve keeps climbing for 12 more years.",
+      "Promotion Value", body,
+      faq=[("How much more does an E-6 make than an E-5?",f"At 8 years of service, {money(_p56b)}/month more in basic pay — plus a higher BAH rate (+{money(_p56bah)} in San Diego) since BAH rises with grade."),
+           ("Does BAH increase when I get promoted?","Yes. BAH is set per pay grade, so a promotion raises your housing allowance as well as basic pay."),
+           ("Why do promotions matter for retirement?","Retired pay is based on your highest 36 months of basic pay, so late-career promotions permanently raise your pension.")],
+      related=[("How much does an E-6 make in 2026?","/blog/how-much-does-an-e6-make-2026.html"),
+               ("Military retirement: BRS vs High-3","/blog/military-retirement-brs-vs-high3.html"),
+               ("2026 military pay chart","/blog/2026-military-pay-chart.html")],
+      blurb=f"E-5&rarr;E-6 = +{money(_p56b+_p56bah)}/mo (incl. BAH bump) &mdash; and a steeper curve for 12 more years.")
+
 # ===================== POLICY / NEWS INTERPRETATION PAGES =====================
 NEWS_DATE = "2026-06-10"
 
