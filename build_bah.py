@@ -94,11 +94,32 @@ seen = set()
 valid = [(c,n) for c,n in NAMES.items() if ',' in n and c in BAH['with']]
 valid.sort(key=lambda x: x[1])
 
+# ---- first pass: assign slugs + build state -> [(city, slug)] for cross-linking ----
+entries = []   # (code, name, city, st, slug)
+state_cities = {}
 for code, name in valid:
     city, st = titlecase_city(name)
     slug = slugify(name)
     if slug in seen: slug = slug + "-" + code.lower()
     seen.add(slug)
+    entries.append((code, name, city, st, slug))
+    state_cities.setdefault(st, []).append((city, slug))
+for st in state_cities: state_cities[st].sort()
+
+# ---- second pass: generate each page ----
+for code, name, city, st, slug in entries:
+    stfull = STATE_FULL.get(st, st)
+    # internal links to sibling cities in the same state (dense mesh across all BAH pages)
+    sibs = [(c, sl) for c, sl in state_cities[st] if sl != slug]
+    if sibs:
+        shown = sibs[:24]
+        nlinks = " &middot; ".join(f'<a href="/bah/{sl}.html">{c}</a>' for c, sl in shown)
+        more = (f' &middot; <a href="/bah/#{st.lower()}">+{len(sibs)-24} more in {stfull}</a>'
+                if len(sibs) > 24 else '')
+        neighbor_html = (f'<h2>Other BAH rates in {stfull}</h2>'
+                         f'<p style="line-height:2">{nlinks}{more}</p>')
+    else:
+        neighbor_html = f'<p><a href="/bah/">Browse BAH rates in other states &rarr;</a></p>'
     w = BAH['with'][code]; wo = BAH['without'][code]
     # rate range
     allr = [x for x in w+wo if x]
@@ -155,11 +176,13 @@ local rents, {place}'s rates differ from other locations &mdash; compare yours i
 <p>These are the official <strong>{YEAR}</strong> rates (the latest complete public dataset). 2026 BAH rose about 4.2% on
 average nationwide; for an exact current figure, enter your ZIP in the <a href="/">military pay calculator</a> or check the
 DoD BAH lookup. Learn more in our <a href="/blog/2026-bah-rates-explained.html">2026 BAH guide</a>.</p>
+{neighbor_html}
 {faq_html}
 </article>
 '''
     related = [("All BAH rates by location","/bah/"),
                ("2026 BAH rates explained","/blog/2026-bah-rates-explained.html"),
+               ("How much does an E-5 make in 2026?","/blog/how-much-does-an-e5-make-2026.html"),
                ("BAH with vs without dependents","/blog/bah-with-vs-without-dependents.html"),
                ("2026 military pay chart","/blog/2026-military-pay-chart.html")]
     html = head(title, desc, f"/bah/{slug}.html", jsonld) + body + foot(related)
