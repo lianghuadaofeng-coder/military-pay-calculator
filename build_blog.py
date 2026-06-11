@@ -2356,6 +2356,132 @@ write("how-much-does-a-navy-seal-make.html",
                ("How much does an E-6 make in 2026?","/blog/how-much-does-an-e6-make-2026.html")],
       blurb=f"SEALs earn standard rank pay + stacked special pays (+$1,000&ndash;$1,800/mo) &mdash; tax-free when deployed.")
 
+# ===================== RETIREMENT-MECHANICS BATCH =====================
+# --- BRS Continuation Pay ---
+_cpb = BP["E-6"]["12"]
+body = f'''<h1>BRS Continuation Pay: The Mid-Career Bonus Worth Thousands</h1>
+<p class="meta">Updated {_D2}</p>
+<p class="lead">Under the Blended Retirement System, members hit a one-time payday around <strong>8&ndash;12 years</strong>
+of service: <strong>Continuation Pay</strong>, a cash bonus in exchange for committing to a few more years. It's a
+<strong>multiple of your monthly basic pay</strong> &mdash; often several thousand dollars, sometimes far more.</p>
+<h2>How it works</h2>
+<ul>
+<li>Offered to BRS members near the <strong>12-year mark</strong> (the exact window is set by each service).</li>
+<li>The payout is a <strong>multiplier &times; your monthly basic pay</strong>. The floor for active duty is
+<strong>2.5&times;</strong>, but services can offer much higher multipliers for in-demand skills (sometimes up to
+<strong>13&times;</strong>).</li>
+<li>In exchange you agree to <strong>~4 more years</strong> of service.</li>
+<li>It's <strong>taxable</strong> (22% withholding) &mdash; or tax-free if you take it in a
+<a href="/blog/combat-zone-tax-exclusion.html">combat zone</a>.</li>
+</ul>
+<h2>What it's worth (example)</h2>
+<p>An <a href="/blog/how-much-does-an-e6-make-2026.html">E-6 with 12 years</a> earns {money(_cpb)}/month in basic pay.
+Continuation Pay would be at least:</p>
+<div class="tablewrap"><table class="pay"><thead><tr><th>Multiplier</th><th>Continuation Pay (lump sum)</th></tr></thead><tbody>
+<tr><td>2.5&times; (active-duty floor)</td><td>{money(_cpb*2.5)}</td></tr>
+<tr><td>5&times;</td><td>{money(_cpb*5)}</td></tr>
+<tr><td>13&times; (high-demand max)</td><td>{money(_cpb*13)}</td></tr>
+</tbody></table></div>
+<h2>Should you take it?</h2>
+<p>If you're staying anyway, Continuation Pay is essentially free money &mdash; and pairing it with your
+<a href="/blog/military-tsp-explained.html">TSP</a> (the other half of BRS) can supercharge retirement savings. Reserve
+members get a smaller multiplier. It's separate from reenlistment <a href="/blog/military-bonuses-taxes.html">bonuses</a>;
+you can receive both.</p>
+{cta("See your monthly basic pay — it sets your Continuation Pay amount.", "/")}
+'''
+write("brs-continuation-pay.html",
+      "BRS Continuation Pay: The Mid-Career Bonus Explained (2026)",
+      f"Continuation Pay is a BRS bonus at ~12 years: 2.5x to 13x your monthly basic pay for ~4 more years. An E-6 gets at least {money(_cpb*2.5)}. How it works and whether to take it.",
+      "Continuation Pay", body,
+      faq=[("What is BRS Continuation Pay?","A one-time cash bonus for Blended Retirement System members around 12 years of service, paid as a multiplier (2.5x active-duty floor, up to ~13x) of monthly basic pay in exchange for about 4 more years."),
+           ("How much is Continuation Pay?",f"At least 2.5x your monthly basic pay on active duty — about {money(_cpb*2.5)} for an E-6 with 12 years — and much more for high-demand skills."),
+           ("Is Continuation Pay taxable?","Yes, at the 22% supplemental rate — unless you elect to receive it in a combat zone, where it's tax-free.")],
+      related=[("Military TSP explained","/blog/military-tsp-explained.html"),
+               ("Military retirement: BRS vs High-3","/blog/military-retirement-brs-vs-high3.html"),
+               ("Military bonuses & taxes","/blog/military-bonuses-taxes.html")],
+      blurb=f"A BRS bonus at ~12 yrs: 2.5x&ndash;13x monthly basic pay (&ge;{money(_cpb*2.5)} for an E-6).")
+
+# --- TSP funds explained ---
+body = f'''<h1>TSP Funds Explained: G, F, C, S, I and the Lifecycle (L) Funds</h1>
+<p class="meta">Updated {_D2}</p>
+<p class="lead">The <a href="/blog/military-tsp-explained.html">Thrift Savings Plan</a> offers a handful of ultra-low-cost
+funds. Knowing what each one holds &mdash; and how the automatic <strong>Lifecycle (L) funds</strong> mix them &mdash;
+is most of what you need to invest well.</p>
+<h2>The five core funds</h2>
+<div class="tablewrap"><table class="pay"><thead><tr><th>Fund</th><th>What it holds</th><th>Risk</th></tr></thead><tbody>
+<tr><td><strong>G Fund</strong></td><td>Government securities &mdash; never loses value</td><td>Lowest (but lowest growth)</td></tr>
+<tr><td><strong>F Fund</strong></td><td>U.S. bond market index</td><td>Low&ndash;moderate</td></tr>
+<tr><td><strong>C Fund</strong></td><td>S&amp;P 500 (large U.S. companies)</td><td>Higher / strong long-term growth</td></tr>
+<tr><td><strong>S Fund</strong></td><td>Small & mid-cap U.S. stocks</td><td>Higher</td></tr>
+<tr><td><strong>I Fund</strong></td><td>International developed-market stocks</td><td>Higher</td></tr>
+</tbody></table></div>
+<h2>The Lifecycle (L) funds: set-and-forget</h2>
+<p>An <strong>L Fund</strong> automatically blends the five core funds based on a target retirement date (e.g., L 2055),
+holding more stocks when you're young and shifting toward G/F as you approach the date. For most members, picking the
+L Fund closest to when you'll need the money is a perfectly good one-decision strategy.</p>
+<h2>The classic young-member mistake</h2>
+<p class="callout">New members are <strong>auto-enrolled in an age-appropriate L Fund</strong> now &mdash; good. But for years
+the default was the <strong>G Fund</strong>, where decades of would-be stock growth were lost to a fund that barely beats
+inflation. If you're young and your money is sitting in G, you may be leaving a fortune on the table. Review your
+allocation.</p>
+<h2>Why TSP fees matter</h2>
+<p>TSP expense ratios are among the lowest of any retirement plan anywhere &mdash; a fraction of typical mutual-fund fees.
+Over a career, that fee gap alone can be worth tens of thousands of dollars. Combine the low fees with the
+<a href="/blog/military-tsp-explained.html">5% BRS match</a> and a stock-heavy allocation when young, and the TSP is a
+wealth-building machine.</p>
+{cta("Set your TSP percentage in the calculator and watch your take-home update.", "/")}
+'''
+write("tsp-funds-explained.html",
+      "TSP Funds Explained: G, F, C, S, I & Lifecycle (L) Funds",
+      "What each TSP fund holds: G (government, never loses), F (bonds), C (S&P 500), S (small-cap), I (international), and the automatic Lifecycle L funds. Plus the young-member G-Fund mistake.",
+      "TSP Funds", body,
+      faq=[("What are the TSP funds?","Five core funds — G (government securities), F (bonds), C (S&P 500), S (small/mid-cap stocks), I (international stocks) — plus Lifecycle (L) funds that automatically blend them by target date."),
+           ("Which TSP fund is best?","For long-term growth, stock funds (C, S, I) historically outperform; many members simply pick the Lifecycle (L) fund matching their retirement date. The G Fund is safe but barely beats inflation."),
+           ("What's the TSP G Fund mistake?","Leaving money in the low-growth G Fund for decades when young — missing out on stock-market growth. New members are now auto-enrolled in an age-appropriate L Fund instead.")],
+      related=[("Military TSP explained","/blog/military-tsp-explained.html"),
+               ("Roth IRA vs TSP for military","/blog/roth-ira-vs-tsp-military.html"),
+               ("Military retirement: BRS vs High-3","/blog/military-retirement-brs-vs-high3.html")],
+      blurb="G/F/C/S/I and the Lifecycle funds &mdash; what each holds and the young-member G-Fund trap.")
+
+# --- 2025 vs 2026 pay ---
+def _d25(g,c): return BP[g][c]/1.038
+body = f'''<h1>2025 vs 2026 Military Pay: What Actually Changed</h1>
+<p class="meta">Updated {_D2}</p>
+<p class="lead">2026 brought a <strong>3.8% basic pay raise</strong>, a 2.4% BAS bump, and a ~4.2% average BAH increase.
+Here's exactly what changed from 2025 &mdash; and what it means for your paycheck.</p>
+<h2>Basic pay: +3.8% (examples)</h2>
+<div class="tablewrap"><table class="pay"><thead><tr><th>Rank (years)</th><th>2025 basic pay</th><th>2026 basic pay</th><th>Monthly increase</th></tr></thead><tbody>
+<tr><td>E-4 (over 4)</td><td>{money(_d25("E-4","4"))}</td><td>{money(BP["E-4"]["4"])}</td><td>+{money(BP["E-4"]["4"]-_d25("E-4","4"))}</td></tr>
+<tr><td>E-5 (over 6)</td><td>{money(_d25("E-5","6"))}</td><td>{money(BP["E-5"]["6"])}</td><td>+{money(BP["E-5"]["6"]-_d25("E-5","6"))}</td></tr>
+<tr><td>E-7 (over 12)</td><td>{money(_d25("E-7","12"))}</td><td>{money(BP["E-7"]["12"])}</td><td>+{money(BP["E-7"]["12"]-_d25("E-7","12"))}</td></tr>
+<tr><td>O-3 (over 6)</td><td>{money(_d25("O-3","6"))}</td><td>{money(BP["O-3"]["6"])}</td><td>+{money(BP["O-3"]["6"]-_d25("O-3","6"))}</td></tr>
+</tbody></table></div>
+<h2>Allowances also changed</h2>
+<ul>
+<li><strong>BAS +2.4%:</strong> enlisted rose to <strong>$476.95/month</strong> and officers to <strong>$328.48</strong>.</li>
+<li><strong>BAH +4.2% on average:</strong> your specific change depends on local rents &mdash; some areas rose much more,
+others less. Look yours up in the <a href="/bah/">BAH rates by location</a> pages.</li>
+<li><strong>Still 95% cost coverage:</strong> BAH continues to leave a small out-of-pocket share &mdash; see
+<a href="/blog/bah-reform-95-to-100.html">BAH reform</a>.</li>
+</ul>
+<h2>What's next: the 2027 raise</h2>
+<p>2026's 3.8% was an across-the-board raise. The proposed <a href="/blog/2027-military-pay-raise-tracker.html">2027 raise
+is tiered</a> &mdash; 7% for E-5 and below, 6% for E-6&ndash;O-3, 5% for O-4+ &mdash; pending the FY2027 NDAA. Track it on
+our 2027 page.</p>
+{cta("See your 2026 pay with the current rates — basic, BAH, BAS and take-home.", "/")}
+'''
+write("2025-vs-2026-military-pay.html",
+      "2025 vs 2026 Military Pay: What Changed (Raise, BAH, BAS)",
+      "2026 brought a 3.8% basic pay raise, BAS +2.4% ($476.95/$328.48), and BAH +4.2% on average. See the 2025-to-2026 increase by rank and what's coming in 2027.",
+      "2025 vs 2026", body,
+      faq=[("How much did military pay go up from 2025 to 2026?","Basic pay rose 3.8%, BAS rose 2.4% (to $476.95 enlisted / $328.48 officer), and BAH rose about 4.2% on average — though BAH varies a lot by location."),
+           ("What was the 2026 military pay raise?","A 3.8% across-the-board increase to basic pay, effective January 1, 2026."),
+           ("Is the 2027 raise bigger?","The proposal is tiered and larger for junior troops: 7% for E-5 and below, 6% for E-6 to O-3, and 5% for O-4 and above — not yet law.")],
+      related=[("2026 military pay raise (3.8%)","/blog/2026-military-pay-raise.html"),
+               ("2027 pay raise tracker","/blog/2027-military-pay-raise-tracker.html"),
+               ("Military pay raise history","/blog/military-pay-raise-history.html")],
+      blurb="2026 vs 2025: +3.8% basic, +2.4% BAS, +4.2% BAH &mdash; the increase by rank.")
+
 # ===================== POLICY / NEWS INTERPRETATION PAGES =====================
 NEWS_DATE = "2026-06-10"
 
